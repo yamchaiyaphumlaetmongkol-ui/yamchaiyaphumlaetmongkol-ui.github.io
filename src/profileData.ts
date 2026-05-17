@@ -230,7 +230,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     workExperience: [
       {
         company: "บริษัท ซอฟต์ สแควร์ อินเตอร์เนชั่นแนล จำกัด",
-        role: "นักพัฒนาซอฟต์แวร์ฝึกงาน (Software Developer Intern)",
+        role: "นักพัฒนาซอฟต์แวร์ฝึกงาน (Software Developer Cooperative Education)",
         period: "พ.ย. 2568 – ก.พ. 2569",
         tag: "สหกิจศึกษา",
         highlights: [

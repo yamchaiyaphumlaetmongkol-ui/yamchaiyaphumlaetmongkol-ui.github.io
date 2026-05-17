@@ -529,23 +529,47 @@ body.dark-mode .resume-page-wrapper {
 /* Printing Optimization */
 @media print {
     body {
-        padding: 0;
-        background: white;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: white !important;
+        color: #1e293b !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .resume-page-wrapper {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: transparent !important;
     }
 
     .resume-container {
-        box-shadow: none;
-        border-radius: 0;
-        width: 100%;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-height: auto !important;
+    }
+
+    .sidebar-nav {
+        display: none !important;
+    }
+
+    .sidebar {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background-color: #0f172a !important;
     }
 
     .skill-tags span {
-        border: 1px solid var(--accent);
+        border: 1px solid var(--accent) !important;
         background: white !important;
         color: var(--accent-dark) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 
     .progress-bar {
-        border: 1px solid #ccc;
+        border: 1px solid #ccc !important;
     }
 }

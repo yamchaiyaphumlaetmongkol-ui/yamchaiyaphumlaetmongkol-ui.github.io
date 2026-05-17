@@ -66,6 +66,32 @@ export default function Resume({ lang, setLang }: ResumeProps) {
                   TH
                 </button>
               </div>
+              <button 
+                onClick={() => window.print()} 
+                className="print-pdf-btn"
+                style={{
+                  width: '100%',
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: 'none',
+                  backgroundColor: '#0070f3',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  fontSize: '0.85rem',
+                  fontWeight: 600,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  transition: 'background-color 0.2s, transform 0.1s',
+                  boxShadow: '0 4px 14px 0 rgba(0,118,243,0.39)',
+                  marginTop: '5px'
+                }}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0051bb'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0070f3'}
+              >
+                <i className="fa-solid fa-file-pdf"></i> {lang === 'en' ? 'Download PDF' : 'ดาวน์โหลด PDF'}
+              </button>
             </div>
             <h1 className="name-mobile">{data.personal.fullName}</h1>
             <p className="nickname">({data.personal.nickname})</p>

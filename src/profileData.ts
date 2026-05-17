@@ -115,7 +115,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       },
       {
         title: "SS-Task-Report",
-        description: "A full-stack task synchronization utility integrating with ClickUp API to automate task creation and point tracking.",
+        description: "A full-stack task synchronization utility integrating with the ClickUp API to streamline task logging, story point assignment, and progress reporting.",
         image: "images/project-dashboard.png",
         tech: ["Next.js", "TypeScript", "tRPC", "PostgreSQL", "Netlify"],
       },

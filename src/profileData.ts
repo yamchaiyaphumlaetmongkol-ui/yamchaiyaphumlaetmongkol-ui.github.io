@@ -109,7 +109,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     projects: [
       {
         title: "ECT-ERP+HRMS Integration",
-        description: "Developed frontend views and PostgreSQL database queries for the Office of the Election Commission of Thailand.",
+        description: "Full-stack development (both Angular frontend and .NET Core backend APIs/database components) for the Election Commission of Thailand.",
         image: "images/project-hrms.png",
         tech: ["Angular", "C#", ".NET Core", "PostgreSQL"],
       },
@@ -121,7 +121,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       },
       {
         title: "NEWTJE MAKRO",
-        description: "Developed enterprise-level reports and database integrations for MAKRO using React, Spring Boot, and Oracle Database.",
+        description: "Full-stack development of React frontend screens and Spring Boot backend enterprise-level reports and database integrations.",
         image: "images/project-makro.png",
         tech: ["React", "Spring Boot", "Oracle", "JasperReports"],
       },
@@ -244,7 +244,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     projects: [
       {
         title: "ECT-ERP+HRMS Integration",
-        description: "การพัฒนาส่วนติดต่อผู้ใช้งานและคิวรี่ฐานข้อมูลสำหรับระบบทรัพยากรบุคคลของสำนักงานคณะกรรมการการเลือกตั้ง",
+        description: "การพัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าเว็บแบบ Angular และระบบคิวรี่หลังบ้าน .NET Core สำหรับระบบบริหารทรัพยากรบุคคล กกต.",
         image: "images/project-hrms.png",
         tech: ["Angular", "C#", ".NET Core", "PostgreSQL"],
       },
@@ -256,7 +256,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       },
       {
         title: "NEWTJE MAKRO",
-        description: "การสร้างรายงานระดับองค์กรและระบบเชื่อมต่อฐานข้อมูลสำหรับโครงการ MAKRO ด้วย Spring Boot, React และ Oracle Database",
+        description: "การพัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าจอแสดงผลบน React และระบบรายงานระดับองค์กรหลังบ้านด้วย Spring Boot และ Oracle Database",
         image: "images/project-makro.png",
         tech: ["React", "Spring Boot", "Oracle", "JasperReports"],
       },

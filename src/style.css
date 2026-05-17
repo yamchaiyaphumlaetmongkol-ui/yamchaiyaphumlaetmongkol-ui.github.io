@@ -528,11 +528,15 @@ body.dark-mode .resume-page-wrapper {
 
 /* Printing Optimization */
 @media print {
+    @page {
+        size: A4 portrait;
+        margin: 0 !important; /* Hides default browser header/footer */
+    }
+
     body {
         padding: 0 !important;
         margin: 0 !important;
-        background: white !important;
-        color: #1e293b !important;
+        background: #030712 !important; /* Preserves the sleek dark-mode background in print! */
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
@@ -540,15 +544,30 @@ body.dark-mode .resume-page-wrapper {
     .resume-page-wrapper {
         padding: 0 !important;
         margin: 0 !important;
-        background: transparent !important;
+        background: #030712 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        min-height: 100vh !important;
+    }
+
+    .screen-only-controls {
+        display: none !important;
     }
 
     .resume-container {
         box-shadow: none !important;
         border-radius: 0 !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        min-height: auto !important;
+        width: 210mm !important;
+        min-height: 297mm !important; /* Allow the resume to stretch naturally to include all details */
+        height: auto !important;
+        max-width: 210mm !important;
+        display: flex !important;
+        flex-direction: row !important; /* Force side-by-side! */
+        overflow: visible !important; /* No clipping! Gets all info intact */
+        margin: 0 !important;
+        background: #030712 !important;
+        border: none !important;
     }
 
     .sidebar-nav {
@@ -556,20 +575,190 @@ body.dark-mode .resume-page-wrapper {
     }
 
     .sidebar {
+        width: 33% !important;
+        min-height: 100% !important;
+        height: auto !important;
+        background-color: #0f172a !important; /* Slates background */
+        color: #f8fafc !important;
+        padding: 20px 15px !important; /* Extremely tight padding for A4 */
+        display: block !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        background-color: #0f172a !important;
+    }
+
+    .main-content {
+        width: 67% !important;
+        min-height: 100% !important;
+        height: auto !important;
+        padding: 25px 25px !important; /* tight padding for A4 */
+        display: block !important;
+        background-color: #030712 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .name-mobile {
+        display: none !important;
+    }
+
+    .main-header {
+        display: block !important;
+        margin-bottom: 20px !important;
+    }
+
+    .main-header h1 {
+        font-size: 2.2rem !important;
+        color: #ffffff !important;
+    }
+
+    .professional-title {
+        font-size: 1.1rem !important;
+        color: var(--accent) !important;
+    }
+
+    .header-accent {
+        width: 40px !important;
+        height: 4px !important;
+        margin-top: 10px !important;
+    }
+
+    .profile-img-container {
+        width: 140px !important;
+        height: 140px !important;
+        margin: 0 auto 10px !important;
+        border: 3px solid var(--accent) !important;
+    }
+
+    .nickname {
+        font-size: 1rem !important;
+        margin-bottom: 10px !important;
+    }
+
+    .sidebar-title {
+        font-size: 0.95rem !important;
+        margin-bottom: 8px !important;
+        letter-spacing: 1px !important;
+    }
+
+    .contact-info ul {
+        margin-bottom: 15px !important;
+    }
+
+    .contact-info li {
+        margin-bottom: 6px !important;
+        font-size: 0.78rem !important;
+    }
+
+    .edu-item {
+        margin-bottom: 10px !important;
+    }
+
+    .edu-item h3 {
+        font-size: 0.85rem !important;
+    }
+
+    .edu-item p {
+        font-size: 0.72rem !important;
+    }
+
+    .lang-item {
+        margin-bottom: 8px !important;
+    }
+
+    .lang-name {
+        font-size: 0.78rem !important;
+    }
+
+    .lang-level {
+        font-size: 0.7rem !important;
+    }
+
+    .cert-list li {
+        font-size: 0.72rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .section-title {
+        font-size: 1.1rem !important;
+        margin-bottom: 15px !important;
+    }
+
+    .timeline {
+        padding-left: 20px !important;
+        margin-left: 5px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .timeline-dot {
+        left: -31px !important;
+        width: 14px !important;
+        height: 14px !important;
+        border-width: 3px !important;
+    }
+
+    .timeline-item {
+        margin-bottom: 15px !important;
+    }
+
+    .exp-header h3 {
+        font-size: 1rem !important;
+    }
+
+    .exp-role {
+        font-size: 0.85rem !important;
+    }
+
+    .exp-date {
+        font-size: 0.78rem !important;
+    }
+
+    .exp-details li {
+        font-size: 0.82rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 4px !important;
+    }
+
+    .skills-section {
+        margin-bottom: 20px !important;
+    }
+
+    .skill-category {
+        margin-bottom: 10px !important;
+    }
+
+    .skill-category h3 {
+        font-size: 0.78rem !important;
+        margin-bottom: 5px !important;
     }
 
     .skill-tags span {
-        border: 1px solid var(--accent) !important;
-        background: white !important;
-        color: var(--accent-dark) !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
+        padding: 4px 10px !important;
+        font-size: 0.72rem !important;
+        border: 1px solid rgba(59, 130, 246, 0.3) !important;
+        background: rgba(59, 130, 246, 0.1) !important;
+        color: #60a5fa !important;
     }
 
-    .progress-bar {
-        border: 1px solid #ccc !important;
+    .bottom-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 15px !important;
+    }
+
+    .ach-place {
+        padding: 1px 4px !important;
+        font-size: 0.65rem !important;
+    }
+
+    .ach-name {
+        font-size: 0.8rem !important;
+    }
+
+    .ach-desc {
+        font-size: 0.72rem !important;
+    }
+
+    .honor-list li {
+        font-size: 0.8rem !important;
+        margin-bottom: 6px !important;
     }
 }

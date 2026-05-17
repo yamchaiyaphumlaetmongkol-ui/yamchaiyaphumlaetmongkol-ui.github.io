@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Portfolio from './Portfolio';
 import Resume from './Resume';
+import AiWorkflows from './AiWorkflows';
 
 function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#/');
@@ -44,6 +45,10 @@ function App() {
 
   if (page === 'resume') {
     return <Resume lang={lang} setLang={setLang} />;
+  }
+
+  if (page === 'ai-workflows') {
+    return <AiWorkflows lang={lang} setLang={setLang} theme={theme} setTheme={setTheme} />;
   }
 
   return <Portfolio theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />;

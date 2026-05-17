@@ -16,7 +16,132 @@ export default function Resume({ lang, setLang }: ResumeProps) {
   };
 
   return (
-    <div className="resume-page-wrapper">
+    <div className="resume-page-wrapper" style={{ padding: '40px 20px' }}>
+      
+      {/* Control Bar for Screen Only (Normal Flow, No Overlap!) */}
+      <div className="screen-only-controls" style={{
+        width: '100%',
+        maxWidth: '1200px',
+        margin: '0 auto 30px', /* Centered with a gorgeous 30px bottom gap */
+        backgroundColor: 'rgba(15, 23, 42, 0.65)',
+        backdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 255, 255, 0.1)',
+        borderRadius: '12px',
+        padding: '12px 24px',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)'
+      }}>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <a 
+            href="#/" 
+            onClick={handlePortfolioClick} 
+            className="portfolio-link" 
+            style={{ 
+              textDecoration: 'none', 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '8px', 
+              padding: '8px 16px', 
+              borderRadius: '6px', 
+              backgroundColor: 'rgba(255,255,255,0.05)', 
+              border: '1px solid rgba(255,255,255,0.1)', 
+              color: '#fff', 
+              fontSize: '0.85rem', 
+              fontWeight: 600, 
+              transition: 'all 0.2s' 
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
+          >
+            <i className="fa-solid fa-arrow-left"></i> {lang === 'en' ? 'Back to Portfolio' : 'กลับหน้าพอร์ตโฟลิโอ'}
+          </a>
+          <a 
+            href="#/ai-workflows" 
+            style={{ 
+              textDecoration: 'none', 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '8px', 
+              padding: '8px 16px', 
+              borderRadius: '6px', 
+              backgroundColor: 'rgba(255,255,255,0.05)', 
+              border: '1px solid rgba(255,255,255,0.1)', 
+              color: '#fff', 
+              fontSize: '0.85rem', 
+              fontWeight: 600, 
+              transition: 'all 0.2s' 
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
+          >
+            <i className="fa-solid fa-brain"></i> {lang === 'en' ? 'AI Workflows' : 'กระบวนการ AI'}
+          </a>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+          {/* Language Selector */}
+          <div style={{ display: 'flex', gap: '6px', backgroundColor: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <button 
+              onClick={() => setLang('en')} 
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                border: 'none',
+                backgroundColor: lang === 'en' ? 'var(--accent)' : 'transparent',
+                color: '#fff',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                transition: 'all 0.2s'
+              }}
+            >
+              EN
+            </button>
+            <button 
+              onClick={() => setLang('th')} 
+              style={{
+                padding: '6px 12px',
+                borderRadius: '6px',
+                border: 'none',
+                backgroundColor: lang === 'th' ? 'var(--accent)' : 'transparent',
+                color: '#fff',
+                cursor: 'pointer',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                transition: 'all 0.2s'
+              }}
+            >
+              TH
+            </button>
+          </div>
+
+          <button 
+            onClick={() => window.print()} 
+            style={{
+              padding: '10px 20px',
+              borderRadius: '6px',
+              border: 'none',
+              backgroundColor: '#0070f3',
+              color: '#fff',
+              cursor: 'pointer',
+              fontSize: '0.85rem',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              transition: 'background-color 0.2s, transform 0.1s',
+              boxShadow: '0 4px 14px 0 rgba(0,118,243,0.39)'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0051bb'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0070f3'}
+          >
+            <i className="fa-solid fa-file-pdf"></i> {lang === 'en' ? 'Download PDF' : 'ดาวน์โหลด PDF'}
+          </button>
+        </div>
+      </div>
+
       <div className="resume-container">
         {/* Sidebar */}
         <aside className="sidebar">
@@ -24,77 +149,8 @@ export default function Resume({ lang, setLang }: ResumeProps) {
             <div className="profile-img-container">
               <img src="images/profile.png" alt="Profile Picture" id="profile-img" />
             </div>
-            <div className="sidebar-nav" style={{ display: 'flex', flexDirection: 'column', gap: '10px', width: '100%' }}>
-              <a href="#/" onClick={handlePortfolioClick} className="portfolio-link" style={{ textAlign: 'center' }}>
-                <i className="fa-solid fa-globe"></i> {lang === 'en' ? 'View Portfolio Site' : 'ดูหน้าพอร์ตโฟลิโอ'}
-              </a>
-              <div className="lang-selector-container" style={{ display: 'flex', gap: '8px', width: '100%' }}>
-                <button 
-                  onClick={() => setLang('en')} 
-                  className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                  style={{
-                    flex: 1,
-                    padding: '6px 10px',
-                    borderRadius: '6px',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    backgroundColor: lang === 'en' ? 'rgba(255,255,255,0.2)' : 'transparent',
-                    color: '#fff',
-                    cursor: 'pointer',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  EN
-                </button>
-                <button 
-                  onClick={() => setLang('th')} 
-                  className={`lang-btn ${lang === 'th' ? 'active' : ''}`}
-                  style={{
-                    flex: 1,
-                    padding: '6px 10px',
-                    borderRadius: '6px',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    backgroundColor: lang === 'th' ? 'rgba(255,255,255,0.2)' : 'transparent',
-                    color: '#fff',
-                    cursor: 'pointer',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    transition: 'all 0.2s'
-                  }}
-                >
-                  TH
-                </button>
-              </div>
-              <button 
-                onClick={() => window.print()} 
-                className="print-pdf-btn"
-                style={{
-                  width: '100%',
-                  padding: '10px',
-                  borderRadius: '6px',
-                  border: 'none',
-                  backgroundColor: '#0070f3',
-                  color: '#fff',
-                  cursor: 'pointer',
-                  fontSize: '0.85rem',
-                  fontWeight: 600,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '8px',
-                  transition: 'background-color 0.2s, transform 0.1s',
-                  boxShadow: '0 4px 14px 0 rgba(0,118,243,0.39)',
-                  marginTop: '5px'
-                }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0051bb'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0070f3'}
-              >
-                <i className="fa-solid fa-file-pdf"></i> {lang === 'en' ? 'Download PDF' : 'ดาวน์โหลด PDF'}
-              </button>
-            </div>
             <h1 className="name-mobile">{data.personal.fullName}</h1>
-            <p className="nickname">({data.personal.nickname})</p>
+            <p className="nickname" style={{ marginTop: '5px' }}>({data.personal.nickname})</p>
           </div>
 
           <section className="contact-info">
@@ -234,14 +290,7 @@ export default function Resume({ lang, setLang }: ResumeProps) {
                   ))}
                 </div>
               </div>
-              <div className="skill-category">
-                <h3>{data.skills.aiPrompting.title}</h3>
-                <div className="skill-tags" style={{ display: 'flex', flexDirection: 'column', gap: '6px', alignItems: 'flex-start' }}>
-                  {data.skills.aiPrompting.details.map((detail, idx) => (
-                    <span key={idx} style={{ width: '100%', textAlign: 'left', borderRadius: '4px', padding: '6px 12px' }}>{detail}</span>
-                  ))}
-                </div>
-              </div>
+
             </div>
           </section>
 

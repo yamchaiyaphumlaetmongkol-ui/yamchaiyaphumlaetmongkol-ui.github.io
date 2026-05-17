@@ -52,10 +52,21 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
             <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>{lang === 'en' ? 'Experience' : 'ประสบการณ์'}</a></li>
             <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>{lang === 'en' ? 'Projects' : 'ผลงาน'}</a></li>
             <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>{lang === 'en' ? 'Skills' : 'ทักษะ'}</a></li>
-            <li>
+            {/* <li>
               <a href="#/resume" onClick={handleResumeClick} className="resume-btn">
                 {lang === 'en' ? 'View Resume' : 'ดูเรซูเม'}
               </a>
+            </li> */}
+            
+            <li>
+              <button
+                onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
+                className="theme-toggle"
+                style={{ marginLeft: '6px', fontSize: '0.82rem', fontWeight: 700 }}
+                aria-label="Toggle language"
+              >
+                {lang === 'en' ? 'TH' : 'EN'}
+              </button>
             </li>
             <li>
               <button
@@ -68,16 +79,6 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
                 ) : (
                   <i className="fa-solid fa-moon"></i>
                 )}
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
-                className="theme-toggle"
-                style={{ marginLeft: '6px', fontSize: '0.82rem', fontWeight: 700 }}
-                aria-label="Toggle language"
-              >
-                {lang === 'en' ? 'TH' : 'EN'}
               </button>
             </li>
           </ul>
@@ -185,13 +186,13 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
               <h3><i className="fa-solid fa-code-branch"></i> {data.skills.gitCommands.title}</h3>
               <p>{data.skills.gitCommands.commands.join(', ')}</p>
             </div>
-            <div className="skill-group">
-              <h3><i className="fa-solid fa-brain"></i> {data.skills.aiPrompting.title}</h3>
+            <div className="skill-group" style={{ cursor: 'pointer' }} onClick={() => window.location.hash = '#/ai-workflows'}>
+              <h3><i className="fa-solid fa-brain"></i> {data.skills.aiPrompting.title} <span style={{ fontSize: '0.75rem', color: 'var(--accent)', marginLeft: '6px', fontWeight: 600 }}>({lang === 'en' ? 'View Details →' : 'ดูรายละเอียด →'})</span></h3>
               <p>
                 {lang === 'en' ? (
-                  "Structured system prompt templates, regression prevention guidelines to avoid breaking working code, interactive ambiguity checks, and modular TODO prompt sequences for rapid systems prototyping."
+                  "Structured system prompt templates, specific boundaries for regression prevention, pre-flight ambiguity checks, and sequential TODO milestones for incremental and testable product prototyping."
                 ) : (
-                  "การตั้งกฎบทบาท System Prompt, คู่มือควบคุมเพื่อป้องกันปัญหาโค้ดพังทับตรรกะเดิม, ระบบตรวจจับและถามตอบข้อสงสัยของความคลุมเครือ, และเทคนิค TODO Prompt เพื่อช่วยศึกษาและทดลองระบบภาษาใหม่ๆ อย่างมีขั้นตอน"
+                  "การกำหนดบทบาท System Prompt, แนวทางการควบคุมความปลอดภัยของตรรกะเดิมเพื่อป้องกันโค้ดพัง (Regression), ระบบทวนสอบสเปกเพื่อเคลียร์ความคลุมเครือก่อนเริ่มลงมือ, และเทคนิคการสั่งงานแบบ TODO ทีละเฟสเพื่อพัฒนาและตรวจสอบความถูกต้องได้อย่างมีระบบ"
                 )}
               </p>
             </div>

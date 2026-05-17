@@ -64,7 +64,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       nickname: "Pac",
       title: "Full-Stack Developer",
       location: "Thailand",
-      bio: "An adaptable Full-Stack Developer with a solid academic foundation (First-Class Honors) and hands-on cooperative education experience in building clean Angular, React, and C# (.NET) applications. Passionate about solving real-world development challenges, delivering robust features, and utilizing modern developer workflows effectively.",
+      bio: "A detail-oriented Full-Stack Developer (First-Class Honors) with hands-on cooperative education experience in building scalable web applications. Proficient in Angular, React, and .NET Core (C#), with a strong focus on clean architecture, database optimization, and high-performance system integration. Skilled in utilizing structured AI-assisted workflows to accelerate product engineering while maintaining strict clean code standards.",
     },
 
     contacts: {
@@ -156,10 +156,10 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       aiPrompting: {
         title: "AI-Assisted Development",
         details: [
-          "System Prompt Engineering (Enforcing development roles and specific coding standards)",
-          "Regression Prevention Guidelines (Restricting AI changes to keep unrelated logic intact)",
-          "Specification Clarification Workflows (Instructing AI to validate specs and ask questions before coding)",
-          "Structured TODO Prototyping (Accelerating delivery of unfamiliar language systems using modular prompts)",
+          "System Prompt Engineering (Defining specialized developer personas and clear coding conventions)",
+          "Regression Prevention (Establishing boundaries to protect legacy systems and stable code modules)",
+          "Specification Validation (Instructing the AI to identify ambiguities and request clarification before implementation)",
+          "Structured TODO Prototyping (Breaking down complex deliverables into sequential, testable milestones)",
         ],
       },
     },
@@ -199,7 +199,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       nickname: "ภัค",
       title: "นักพัฒนาเว็บฟูลสแต็ก (Full-Stack Developer)",
       location: "ประเทศไทย",
-      bio: "นิสิตสหกิจศึกษาตำแหน่ง Full-Stack Developer ผู้เรียนรู้ว่องไวและปรับตัวได้ดี มีผลการเรียนดีเยี่ยม เกียรตินิยมอันดับ 1 มีประสบการณ์ลงมือปฏิบัติจริงในการพัฒนาเว็บแอปพลิเคชันด้วย Angular, React และ C# (.NET) มีความกระหายในการแก้ไขปัญหาในโลกจริง มุ่งมั่นส่งมอบฟีเจอร์ที่มีประสิทธิภาพ และใช้ประโยชน์จากเครื่องมือ AI Workflows ยุคใหม่อย่างเป็นระเบียบ",
+      bio: "นักพัฒนาเว็บฟูลสแต็ก (เกียรตินิยมอันดับ 1) พร้อมประสบการณ์สหกิจศึกษาด้านการออกแบบและสร้างสรรค์แอปพลิเคชันอย่างครบวงจร เชี่ยวชาญการใช้ Angular, React, และ C# (.NET) โดยมุ่งเน้นการเขียนโค้ดที่สะอาด (Clean Code) การเชื่อมต่อระบบ (API Integration) ที่เสถียร และการออกแบบฐานข้อมูลที่มีประสิทธิภาพ พร้อมประยุกต์ใช้กระบวนการพัฒนาซอฟต์แวร์ด้วย AI (AI-Assisted Workflows) เพื่อเร่งความเร็วในการส่งมอบผลิตภัณฑ์ที่มีคุณภาพสูง",
     },
 
     contacts: {
@@ -236,7 +236,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         highlights: [
           "พัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าเว็บ (Angular) และระบบหลังบ้าน (.NET Core API & PostgreSQL) สำหรับโครงการ **ECT-ERP+HRMS** (ระบบบริหารทรัพยากรบุคคล กกต.) ส่งมอบงานตรงเวลาและแก้ไขบั๊กได้อย่างมีประสิทธิภาพ",
           "พัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) สำหรับโครงการ **MAKRO** (NEWTJE MAKRO) โดยสร้างส่วนหน้าจอแสดงผลด้วย React และพัฒนาระบบหลังบ้านพร้อมรายงานระดับองค์กรด้วย Spring Boot และ Oracle Database",
-          "ออกแบบและพัฒนาเว็บแอปพลิเคชันแบบฟูลสแต็ก (**SS-Task-Report**) ด้วย **Next.js (T3 Stack)**, **Netlify** และ **Neon (PostgreSQL)** เพื่อซิงค์ข้อมูลภารกิจและติดตามแต้มคะแนนผ่าน **ClickUp API** ช่วยเพิ่มประสิทธิภาพความรวดเร็วในการจัดการงาน",
+          "ออกแบบและพัฒนาเว็บแอปพลิเคชันแบบฟูลสแต็ก (**SS-Task-Report**) ด้วย **Next.js (T3 Stack)**, **Netlify** และ **Neon (PostgreSQL)** เพื่อซิงค์ข้อมูลภารกิจและติดตามแต้มคะแนนผ่าน **ClickUp API** ช่วยเพิ่มความรวดเร็วและประสิทธิภาพในการบริหารจัดการงานภายในทีม",
         ],
       },
     ],
@@ -291,10 +291,10 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       aiPrompting: {
         title: "การพัฒนาซอฟต์แวร์ร่วมกับ AI (AI-Assisted Development)",
         details: [
-          "การกำหนด System Prompt (บังคับบทบาทนักพัฒนาและระเบียบโค้ดที่รัดกุมก่อนเริ่มทำ)",
-          "การคุมคำสั่งเพื่อป้องกัน Regression (คุมไม่ให้ AI เขียนทับหน้าจอหรือตรรกะเดิมที่ทำงานได้ดีอยู่แล้ว)",
-          "การควบคุมให้ AI ถามกลับเมื่อสเปกคลุมเครือ (สั่งให้ AI ตรวจสอบและถามคำถามหากข้อกำหนดไม่เพียงพอ)",
-          "การออกแบบลำดับงาน TODO (เขียน Prompt แยกเป็นข้อเพื่อทดลองโปรโตไทป์ภาษาใหม่ๆ อย่างมีประสิทธิภาพ)",
+          "การกำหนด System Prompt (การกำหนดบทบาทนักพัฒนาและระบุมาตรฐานคุณภาพโค้ดอย่างรัดกุมก่อนเริ่มโครงการ)",
+          "การควบคุมป้องกัน Regression (การจำกัดขอบเขตไม่ให้ AI แก้ไขตรรกะหรือโมดูลเดิมที่มีเสถียรภาพอยู่แล้ว)",
+          "การทวนสอบข้อกำหนดระบบ (การกำหนดให้ AI ตรวจสอบความถูกต้องและสอบถามข้อกำหนดที่ยังไม่ครบถ้วนก่อนลงมือ)",
+          "การจัดลำดับแผนงาน TODO (การแยกย่อยความต้องการที่ซับซ้อนออกเป็นแผนงานย่อย เพื่อการทดสอบและทยอยสร้างชิ้นงานอย่างเป็นระบบ)",
         ],
       },
     },

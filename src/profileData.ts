@@ -126,12 +126,6 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         image: "images/project-makro.png",
         tech: ["React", "Spring Boot", "Oracle", "JasperReports"],
       },
-      {
-        title: "Gmail API Reply Parser",
-        description: "A frontend proof-of-concept utility built with React to parse nested email reply chains and extract messages cleanly using the Gmail API, completely database-free.",
-        image: "images/project-parser.png",
-        tech: ["React", "Gmail API", "OAuth 2.0", "JSON Parser"],
-      },
     ],
 
     skills: {
@@ -267,12 +261,6 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         description: "การสร้างรายงานระดับองค์กรและระบบเชื่อมต่อฐานข้อมูลสำหรับโครงการ MAKRO ด้วย Spring Boot, React และ Oracle Database",
         image: "images/project-makro.png",
         tech: ["React", "Spring Boot", "Oracle", "JasperReports"],
-      },
-      {
-        title: "Gmail API Reply Parser",
-        description: "โปรเจกต์ Proof of Concept ด้วย React สำหรับแยกประวัติการตอบกลับอีเมลเป็นโครงสร้าง JSON ที่อ่านง่าย โดยเชื่อมต่อผ่าน Gmail API โดยตรงและไม่มีการใช้ระบบฐานข้อมูล",
-        image: "images/project-parser.png",
-        tech: ["React", "Gmail API", "OAuth 2.0", "JSON Parser"],
       },
     ],
 

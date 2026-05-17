@@ -133,15 +133,6 @@ export default function Resume({ lang, setLang }: ResumeProps) {
             </ul>
           </section>
 
-          <section className="interests">
-            <h2 className="sidebar-title">{lang === 'en' ? 'Interests' : 'ความสนใจ'}</h2>
-            <ul className="interest-list">
-              <li><i className="fa-solid fa-shield-halved"></i> {lang === 'en' ? 'Cybersecurity (CTF)' : 'ความมั่นคงปลอดภัยไซเบอร์ (CTF)'}</li>
-              <li><i className="fa-solid fa-brain"></i> {lang === 'en' ? 'Exploring AI Workflows' : 'การศึกษาเทคโนโลยี AI'}</li>
-              <li><i className="fa-solid fa-book-open"></i> {lang === 'en' ? 'Technical Reading' : 'อ่านคู่มือทางเทคนิค'}</li>
-              <li><i className="fa-solid fa-car"></i> {lang === 'en' ? 'Driving' : 'การขับขี่รถยนต์'}</li>
-            </ul>
-          </section>
         </aside>
 
         {/* Main Content */}

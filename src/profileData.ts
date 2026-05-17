@@ -111,7 +111,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         title: "ECT-ERP+HRMS Integration",
         description: "Full-stack development (both Angular frontend and .NET Core backend APIs/database components) for the Election Commission of Thailand.",
         image: "images/project-hrms.png",
-        tech: ["Angular", "C#", ".NET Core", "PostgreSQL"],
+        tech: ["Angular", "C#", ".NET Core", "PostgreSQL", "JasperReports"],
       },
       {
         title: "SS-Task-Report",
@@ -246,7 +246,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         title: "ECT-ERP+HRMS Integration",
         description: "การพัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าเว็บแบบ Angular และระบบคิวรี่หลังบ้าน .NET Core สำหรับระบบบริหารทรัพยากรบุคคล กกต.",
         image: "images/project-hrms.png",
-        tech: ["Angular", "C#", ".NET Core", "PostgreSQL"],
+        tech: ["Angular", "C#", ".NET Core", "PostgreSQL", "JasperReports"],
       },
       {
         title: "SS-Task-Report",

@@ -141,7 +141,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
       {/* Projects Section */}
       <section id="projects" className="section alt-bg">
         <div className="container">
-          <h2 className="section-heading">{lang === 'en' ? 'Selected Projects' : 'ผลงานที่คัดสรร'}<span>.</span></h2>
+          <h2 className="section-heading">{lang === 'en' ? 'Projects' : 'ผลงาน'}<span>.</span></h2>
           <div className="projects-grid">
             {data.projects.map((project, index) => (
               <div className="project-card" key={index}>
@@ -219,17 +219,6 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
         </div>
       </footer>
 
-      {/* Interests Compact */}
-      <section className="interests-compact">
-        <div className="container">
-          <div className="interests-flex">
-            <div className="interest-pill"><i className="fa-solid fa-shield-halved"></i> {lang === 'en' ? 'Cybersecurity (CTF)' : 'ความมั่นคงปลอดภัยไซเบอร์ (CTF)'}</div>
-            <div className="interest-pill"><i className="fa-solid fa-brain"></i> {lang === 'en' ? 'Exploring AI Workflows' : 'การศึกษาเทคโนโลยี AI'}</div>
-            <div className="interest-pill"><i className="fa-solid fa-book-open"></i> {lang === 'en' ? 'Technical Reading' : 'อ่านคู่มือทางเทคนิค'}</div>
-            <div className="interest-pill"><i className="fa-solid fa-car"></i> {lang === 'en' ? 'Driving' : 'การขับขี่รถยนต์'}</div>
-          </div>
-        </div>
-      </section>
 
       {/* Contact Modal */}
       {isContactOpen && (

@@ -250,7 +250,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       },
       {
         title: "SS-Task-Report",
-        description: "เครื่องมือฟูลสแต็กสำหรับซิงค์และวิเคราะห์แต้มภารกิจทีมร่วมกับ ClickUp API โดยไม่โหลด Task อัตโนมัติ",
+        description: "เครื่องมือฟูลสแต็กสำหรับซิงค์และวิเคราะห์แต้มภารกิจทีมร่วมกับ ClickUp API",
         image: "images/project-dashboard.png",
         tech: ["Next.js", "TypeScript", "tRPC", "PostgreSQL", "Netlify"],
       },

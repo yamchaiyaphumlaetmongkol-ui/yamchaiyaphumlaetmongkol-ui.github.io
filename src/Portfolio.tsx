@@ -5,13 +5,16 @@ import './portfolio.css';
 interface PortfolioProps {
   theme: 'light' | 'dark';
   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
+  lang: 'en' | 'th';
+  setLang: (lang: 'en' | 'th') => void;
 }
 
-export default function Portfolio({ theme, setTheme }: PortfolioProps) {
+export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioProps) {
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [isGameOpen, setIsGameOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedLine, setCopiedLine] = useState(false);
+
+  const data = profileData[lang];
 
   const copyToClipboard = (text: string, type: 'email' | 'line') => {
     navigator.clipboard.writeText(text).then(() => {
@@ -43,15 +46,15 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       {/* Navbar */}
       <nav className="navbar">
         <div className="nav-container">
-          <a href="#/" className="logo">{profileData.personal.nickname}<span>.</span></a>
+          <a href="#/" className="logo">{data.personal.nickname}<span>.</span></a>
           <ul className="nav-links">
-            <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>About</a></li>
-            <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>Experience</a></li>
-            <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>Projects</a></li>
-            <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>Skills</a></li>
+            <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>{lang === 'en' ? 'About' : 'เกี่ยวกับ'}</a></li>
+            <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>{lang === 'en' ? 'Experience' : 'ประสบการณ์'}</a></li>
+            <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>{lang === 'en' ? 'Projects' : 'ผลงาน'}</a></li>
+            <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>{lang === 'en' ? 'Skills' : 'ทักษะ'}</a></li>
             <li>
               <a href="#/resume" onClick={handleResumeClick} className="resume-btn">
-                View Resume
+                {lang === 'en' ? 'View Resume' : 'ดูเรซูเม'}
               </a>
             </li>
             <li>
@@ -67,6 +70,16 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
                 )}
               </button>
             </li>
+            <li>
+              <button
+                onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
+                className="theme-toggle"
+                style={{ marginLeft: '6px', fontSize: '0.82rem', fontWeight: 700 }}
+                aria-label="Toggle language"
+              >
+                {lang === 'en' ? 'TH' : 'EN'}
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -74,24 +87,24 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       {/* Hero Section */}
       <header id="about" className="hero-section">
         <div className="hero-content">
-          <span className="hero-greeting">Hello, I am</span>
+          <span className="hero-greeting">{lang === 'en' ? 'Hello, I am' : 'สวัสดีครับ ผมชื่อ'}</span>
           <h1 className="hero-name">
-            {profileData.personal.firstName} <span>{profileData.personal.lastName}</span>
+            {data.personal.firstName} <span>{data.personal.lastName}</span>
           </h1>
-          <h2 className="hero-title">{profileData.personal.title}</h2>
-          <p className="hero-bio">{profileData.personal.bio}</p>
+          <h2 className="hero-title">{data.personal.title}</h2>
+          <p className="hero-bio">{data.personal.bio}</p>
           <div className="hero-actions">
             <button onClick={() => setIsContactOpen(true)} className="btn btn-primary">
-              Contact Me <i className="fa-solid fa-arrow-right"></i>
+              {lang === 'en' ? 'Contact Me' : 'ติดต่อฉัน'} <i className="fa-solid fa-arrow-right"></i>
             </button>
-            <a href={profileData.contacts.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+            <a href={data.contacts.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               <i className="fa-brands fa-github"></i> GitHub
             </a>
           </div>
         </div>
         <div className="hero-visual">
           <div className="profile-blob">
-            <img src="images/profile.png" alt={profileData.personal.firstName} />
+            <img src="images/profile.png" alt={data.personal.firstName} />
           </div>
         </div>
       </header>
@@ -99,9 +112,9 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       {/* Experience Section */}
       <section id="experience" className="section">
         <div className="container">
-          <h2 className="section-heading">Experience<span>.</span></h2>
+          <h2 className="section-heading">{lang === 'en' ? 'Experience' : 'ประสบการณ์ทำงาน'}<span>.</span></h2>
           <div className="experience-list">
-            {profileData.workExperience.map((exp, index) => (
+            {data.workExperience.map((exp, index) => (
               <div className="experience-card" key={index}>
                 <div className="exp-info">
                   <span className="exp-tag">{exp.tag}</span>
@@ -128,13 +141,10 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       {/* Projects Section */}
       <section id="projects" className="section alt-bg">
         <div className="container">
-          <h2 className="section-heading">Selected Projects<span>.</span></h2>
+          <h2 className="section-heading">{lang === 'en' ? 'Selected Projects' : 'ผลงานที่คัดสรร'}<span>.</span></h2>
           <div className="projects-grid">
-            {profileData.projects.map((project, index) => (
+            {data.projects.map((project, index) => (
               <div className="project-card" key={index}>
-                <div className="project-img">
-                  <img src={project.image} alt={project.title} />
-                </div>
                 <div className="project-info">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
@@ -153,32 +163,36 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       {/* Skills Section */}
       <section id="skills" className="section">
         <div className="container">
-          <h2 className="section-heading">Expertise<span>.</span></h2>
+          <h2 className="section-heading">{lang === 'en' ? 'Expertise' : 'ความเชี่ยวชาญ'}<span>.</span></h2>
           <div className="skills-wrapper">
             <div className="skill-group">
-              <h3><i className="fa-solid fa-layer-group"></i> {profileData.skills.frontend.title}</h3>
-              <p>{profileData.skills.frontend.skills.join(', ')}</p>
+              <h3><i className="fa-solid fa-layer-group"></i> {data.skills.frontend.title}</h3>
+              <p>{data.skills.frontend.skills.join(', ')}</p>
             </div>
             <div className="skill-group">
-              <h3><i className="fa-solid fa-server"></i> {profileData.skills.backend.title}</h3>
-              <p>{profileData.skills.backend.skills.join(', ')}</p>
+              <h3><i className="fa-solid fa-server"></i> {data.skills.backend.title}</h3>
+              <p>{data.skills.backend.skills.join(', ')}</p>
             </div>
             <div className="skill-group">
-              <h3><i className="fa-solid fa-database"></i> {profileData.skills.database.title}</h3>
-              <p>{profileData.skills.database.skills.join(', ')}</p>
+              <h3><i className="fa-solid fa-database"></i> {data.skills.database.title}</h3>
+              <p>{data.skills.database.skills.join(', ')}</p>
             </div>
             <div className="skill-group">
-              <h3><i className="fa-solid fa-cloud-arrow-up"></i> {profileData.skills.devops.title}</h3>
-              <p>{profileData.skills.devops.skills.join(', ')}</p>
+              <h3><i className="fa-solid fa-cloud-arrow-up"></i> {data.skills.devops.title}</h3>
+              <p>{data.skills.devops.skills.join(', ')}</p>
             </div>
             <div className="skill-group">
-              <h3><i className="fa-solid fa-code-branch"></i> {profileData.skills.gitCommands.title}</h3>
-              <p>{profileData.skills.gitCommands.commands.join(', ')}</p>
+              <h3><i className="fa-solid fa-code-branch"></i> {data.skills.gitCommands.title}</h3>
+              <p>{data.skills.gitCommands.commands.join(', ')}</p>
             </div>
             <div className="skill-group">
-              <h3><i className="fa-solid fa-brain"></i> {profileData.skills.aiPrompting.title}</h3>
+              <h3><i className="fa-solid fa-brain"></i> {data.skills.aiPrompting.title}</h3>
               <p>
-                Role-Setting (e.g. expert &amp; meticulous coder), Todo-driven prompts, ambiguity handling (asking clarifying questions) to avoid over-engineering, and maintaining system prompts (<code>.[ai_name]</code>) to align team standards.
+                {lang === 'en' ? (
+                  "Structured system prompt templates, regression prevention guidelines to avoid breaking working code, interactive ambiguity checks, and modular TODO prompt sequences for rapid systems prototyping."
+                ) : (
+                  "การตั้งกฎบทบาท System Prompt, คู่มือควบคุมเพื่อป้องกันปัญหาโค้ดพังทับตรรกะเดิม, ระบบตรวจจับและถามตอบข้อสงสัยของความคลุมเครือ, และเทคนิค TODO Prompt เพื่อช่วยศึกษาและทดลองระบบภาษาใหม่ๆ อย่างมีขั้นตอน"
+                )}
               </p>
             </div>
           </div>
@@ -189,12 +203,12 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <p>&copy; 2026 {profileData.personal.fullName}. All rights reserved.</p>
+            <p>&copy; 2026 {data.personal.fullName}. All rights reserved.</p>
             <div className="social-links">
-              <a href={profileData.contacts.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <a href={data.contacts.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <i className="fa-brands fa-linkedin"></i>
               </a>
-              <a href={profileData.contacts.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <a href={data.contacts.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                 <i className="fa-brands fa-github"></i>
               </a>
               <a href="#contact" onClick={(e) => { e.preventDefault(); setIsContactOpen(true); }} aria-label="Email">
@@ -209,12 +223,10 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
       <section className="interests-compact">
         <div className="container">
           <div className="interests-flex">
-            <div className="interest-pill clickable" onClick={() => setIsGameOpen(true)}>
-              <i className="fa-solid fa-gamepad"></i> Co-op Gaming
-            </div>
-            <div className="interest-pill"><i className="fa-solid fa-book-open"></i> Manga &amp; Anime</div>
-            <div className="interest-pill"><i className="fa-solid fa-film"></i> Movies</div>
-            <div className="interest-pill"><i className="fa-solid fa-car"></i> Driving</div>
+            <div className="interest-pill"><i className="fa-solid fa-shield-halved"></i> {lang === 'en' ? 'Cybersecurity (CTF)' : 'ความมั่นคงปลอดภัยไซเบอร์ (CTF)'}</div>
+            <div className="interest-pill"><i className="fa-solid fa-brain"></i> {lang === 'en' ? 'Exploring AI Workflows' : 'การศึกษาเทคโนโลยี AI'}</div>
+            <div className="interest-pill"><i className="fa-solid fa-book-open"></i> {lang === 'en' ? 'Technical Reading' : 'อ่านคู่มือทางเทคนิค'}</div>
+            <div className="interest-pill"><i className="fa-solid fa-car"></i> {lang === 'en' ? 'Driving' : 'การขับขี่รถยนต์'}</div>
           </div>
         </div>
       </section>
@@ -224,8 +236,10 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
         <div id="contactModal" className="modal" style={{ display: 'flex' }} onClick={() => setIsContactOpen(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <span className="close-modal" onClick={() => setIsContactOpen(false)}>&times;</span>
-            <h2 className="modal-title">Get in Touch<span>.</span></h2>
-            <p className="modal-subtitle">Feel free to reach out for collaborations or just a friendly hello.</p>
+            <h2 className="modal-title">{lang === 'en' ? 'Get in Touch' : 'ติดต่อฉัน'}<span>.</span></h2>
+            <p className="modal-subtitle">
+              {lang === 'en' ? 'Feel free to reach out for collaborations or just a friendly hello.' : 'สามารถติดต่อผมเพื่อร่วมงานหรือพูดคุยแลกเปลี่ยนกันได้เลยครับ'}
+            </p>
             
             <div className="contact-methods">
               <div className="contact-method">
@@ -233,10 +247,10 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
                 <div className="method-details">
                   <h3>Email</h3>
                   <div className="copy-wrapper">
-                    <p id="emailText">{profileData.contacts.email}</p>
+                    <p id="emailText">{data.contacts.email}</p>
                     <button 
                       className={`copy-btn ${copiedEmail ? 'copied' : ''}`} 
-                      onClick={() => copyToClipboard(profileData.contacts.email, 'email')}
+                      onClick={() => copyToClipboard(data.contacts.email, 'email')}
                     >
                       {copiedEmail ? (
                         <i className="fa-solid fa-check" style={{ color: '#10b981' }}></i>
@@ -253,10 +267,10 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
                 <div className="method-details">
                   <h3>Line</h3>
                   <div className="copy-wrapper">
-                    <p id="lineText">{profileData.contacts.line}</p>
+                    <p id="lineText">{data.contacts.line}</p>
                     <button 
                       className={`copy-btn ${copiedLine ? 'copied' : ''}`} 
-                      onClick={() => copyToClipboard(profileData.contacts.line, 'line')}
+                      onClick={() => copyToClipboard(data.contacts.line, 'line')}
                     >
                       {copiedLine ? (
                         <i className="fa-solid fa-check" style={{ color: '#10b981' }}></i>
@@ -272,9 +286,9 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
                 <div className="method-icon"><i className="fa-brands fa-linkedin"></i></div>
                 <div className="method-details">
                   <h3>LinkedIn</h3>
-                  <p>{profileData.personal.nickname}</p>
-                  <a href={profileData.contacts.linkedin} target="_blank" rel="noopener noreferrer" className="method-link">
-                    Visit Profile
+                  <p>{data.personal.nickname}</p>
+                  <a href={data.contacts.linkedin} target="_blank" rel="noopener noreferrer" className="method-link">
+                    {lang === 'en' ? 'Visit Profile' : 'ไปที่โปรไฟล์'}
                   </a>
                 </div>
               </div>
@@ -283,32 +297,12 @@ export default function Portfolio({ theme, setTheme }: PortfolioProps) {
                 <div className="method-icon"><i className="fa-brands fa-github"></i></div>
                 <div className="method-details">
                   <h3>GitHub</h3>
-                  <p>{profileData.personal.nickname}</p>
-                  <a href={profileData.contacts.github} target="_blank" rel="noopener noreferrer" className="method-link">
-                    View Projects
+                  <p>{data.personal.nickname}</p>
+                  <a href={data.contacts.github} target="_blank" rel="noopener noreferrer" className="method-link">
+                    {lang === 'en' ? 'View Projects' : 'ดูผลงานบน GitHub'}
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Game Modal */}
-      {isGameOpen && (
-        <div id="gameModal" className="modal" style={{ display: 'flex' }} onClick={() => setIsGameOpen(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <span className="close-modal" onClick={() => setIsGameOpen(false)}>&times;</span>
-            <h2 className="modal-title">Favorite <span>Games.</span></h2>
-            <p className="modal-subtitle">Some of the co-op titles I enjoy playing with friends.</p>
-            
-            <div className="game-grid">
-              {profileData.favoriteGames.map((game, index) => (
-                <div className="game-item" key={index}>
-                  <img src={game.logo} alt={game.name} className="game-logo" />
-                  <span className="game-name">{game.name}</span>
-                </div>
-              ))}
             </div>
           </div>
         </div>

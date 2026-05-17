@@ -8,6 +8,10 @@ function App() {
     const saved = localStorage.getItem('theme');
     return saved === 'light' ? 'light' : 'dark';
   });
+  const [lang, setLang] = useState<'en' | 'th'>(() => {
+    const saved = localStorage.getItem('lang');
+    return saved === 'th' ? 'th' : 'en';
+  });
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -31,14 +35,18 @@ function App() {
     }
   }, [theme]);
 
+  useEffect(() => {
+    localStorage.setItem('lang', lang);
+  }, [lang]);
+
   // Normalize current page name
   const page = currentHash.replace(/^#\/?/, '').split('?')[0] || 'portfolio';
 
   if (page === 'resume') {
-    return <Resume />;
+    return <Resume lang={lang} setLang={setLang} />;
   }
 
-  return <Portfolio theme={theme} setTheme={setTheme} />;
+  return <Portfolio theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />;
 }
 
 export default App;

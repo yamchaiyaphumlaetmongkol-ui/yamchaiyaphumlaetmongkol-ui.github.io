@@ -64,7 +64,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       nickname: "Pac",
       title: "Full-Stack Developer",
       location: "Thailand",
-      bio: "An adaptable Full-Stack Developer Intern with a solid academic foundation (First-Class Honors) and hands-on experience in building clean Angular, React, and C# (.NET) applications. Passionate about solving real-world development challenges, delivering robust features, and utilizing modern developer workflows effectively.",
+      bio: "An adaptable Full-Stack Developer with a solid academic foundation (First-Class Honors) and hands-on cooperative education experience in building clean Angular, React, and C# (.NET) applications. Passionate about solving real-world development challenges, delivering robust features, and utilizing modern developer workflows effectively.",
     },
 
     contacts: {
@@ -95,7 +95,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     workExperience: [
       {
         company: "Soft Square International Co., Ltd.",
-        role: "Software Developer Intern",
+        role: "Software Developer (Cooperative Education)",
         period: "Nov 2025 – Feb 2026",
         tag: "Cooperative Education",
         highlights: [
@@ -199,7 +199,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       nickname: "ภัค",
       title: "นักพัฒนาเว็บฟูลสแต็ก (Full-Stack Developer)",
       location: "ประเทศไทย",
-      bio: "นักศึกษาฝึกงานตำแหน่ง Full-Stack Developer ผู้เรียนรู้ว่องไวและปรับตัวได้ดี มีผลการเรียนดีเยี่ยม เกียรตินิยมอันดับ 1 มีประสบการณ์ลงมือปฏิบัติจริงในการพัฒนาเว็บแอปพลิเคชันด้วย Angular, React และ C# (.NET) มีความกระหายในการแก้ไขปัญหาในโลกจริง มุ่งมั่นส่งมอบฟีเจอร์ที่มีประสิทธิภาพ และใช้ประโยชน์จากเครื่องมือ AI Workflows ยุคใหม่อย่างเป็นระเบียบ",
+      bio: "นิสิตสหกิจศึกษาตำแหน่ง Full-Stack Developer ผู้เรียนรู้ว่องไวและปรับตัวได้ดี มีผลการเรียนดีเยี่ยม เกียรตินิยมอันดับ 1 มีประสบการณ์ลงมือปฏิบัติจริงในการพัฒนาเว็บแอปพลิเคชันด้วย Angular, React และ C# (.NET) มีความกระหายในการแก้ไขปัญหาในโลกจริง มุ่งมั่นส่งมอบฟีเจอร์ที่มีประสิทธิภาพ และใช้ประโยชน์จากเครื่องมือ AI Workflows ยุคใหม่อย่างเป็นระเบียบ",
     },
 
     contacts: {
@@ -230,7 +230,7 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     workExperience: [
       {
         company: "บริษัท ซอฟต์ สแควร์ อินเตอร์เนชั่นแนล จำกัด",
-        role: "นักพัฒนาซอฟต์แวร์ฝึกงาน (Software Developer Cooperative Education)",
+        role: "นักพัฒนาซอฟต์แวร์ - สหกิจศึกษา (Software Developer - Cooperative Education)",
         period: "พ.ย. 2568 – ก.พ. 2569",
         tag: "สหกิจศึกษา",
         highlights: [

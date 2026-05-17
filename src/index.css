@@ -1,0 +1,6 @@
+/* Global resets and entry variables are managed in respective portfolio and style sheets */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

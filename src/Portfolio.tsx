@@ -28,10 +28,6 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
     });
   };
 
-  const handleResumeClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    window.location.hash = '#/resume';
-  };
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();

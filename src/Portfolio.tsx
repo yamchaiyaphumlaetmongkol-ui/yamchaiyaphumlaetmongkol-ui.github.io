@@ -2,6 +2,28 @@ import React, { useState } from 'react';
 import { profileData } from './profileData';
 import './portfolio.css';
 
+const activityData = [
+  { src: "activity/PC030511.JPG", titleEn: "Hackathon & Workshop", titleTh: "กิจกรรม Hackathon & Workshop" },
+  { src: "activity/IMG_1863.JPG", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
+  { src: "activity/JPEG image.jpeg", titleEn: "Project Presentation", titleTh: "การนำเสนอโปรเจกต์" }
+];
+
+const certificateData = [
+  { src: "certificate/3-Dec-2024 UP Shield เลิศมงคล ยามชัยภูมิ.png", titleEn: "UP Shield 2024", titleTh: "การอบรม UP Shield 2024" },
+  { src: "certificate/3-Dec-2024-1.png", titleEn: "Certificate 3 Dec 2024", titleTh: "เกียรติบัตร 3 ธ.ค. 2567" },
+  { src: "certificate/Screenshot 2026-05-28 003819.png", titleEn: "Achievement Certificate", titleTh: "เกียรติบัตรความสำเร็จ" },
+  { src: "certificate/ใบ Certificate สหกิจศึกษา Mr. Laetmongkol Yamchaiyaphum-1.png", titleEn: "Cooperative Education Certificate", titleTh: "ใบรับรองการสหกิจศึกษา" },
+  { src: "certificate/Fullstack Developer Program.png", titleEn: "Fullstack Developer Program", titleTh: "การอบรม Fullstack Developer" },
+  { src: "certificate/3-Feb-2025-CERTIFICATE mooc-1.png", titleEn: "MOOC Certificate", titleTh: "เกียรติบัตรหลักสูตร MOOC" },
+  { src: "certificate/10-Dec-2024Enterprise Networking-1.png", titleEn: "Enterprise Networking", titleTh: "Enterprise Networking" },
+  { src: "certificate/18-Aug-2024-Cybersecurity_Essentials_certificate_65020564-up-ac-th_a172b655-9677-4ae6-bad6-425276cf3-1.png", titleEn: "Cybersecurity Essentials", titleTh: "Cybersecurity Essentials" },
+  { src: "certificate/19-Aug-2023-Cybersecurity_Essentials_certificate_65020564-up-ac-th_e5d8ceec-60e8-4696-920e-2e5f491df-1.png", titleEn: "Cybersecurity Essentials (2023)", titleTh: "Cybersecurity Essentials (2566)" },
+  { src: "certificate/17-18-Aug-2024-CERTIFICATE-1.png", titleEn: "Training Certificate Aug 2024", titleTh: "เกียรติบัตรการอบรม ส.ค. 2567" },
+  { src: "certificate/IMG_20250726_215928.jpg", titleEn: "Certificate", titleTh: "เกียรติบัตร" },
+  { src: "certificate/IMG_20250910_170621_1.jpg", titleEn: "Certificate", titleTh: "เกียรติบัตร" },
+  { src: "certificate/เตรียมความพร้อมนิสิตสหกิจศึกษาและการศึกษาเชิงบูรณาการกับการทำงา-1.png", titleEn: "Cooperative Education Preparation", titleTh: "เตรียมความพร้อมสหกิจศึกษา" }
+];
+
 interface PortfolioProps {
   theme: 'light' | 'dark';
   setTheme: React.Dispatch<React.SetStateAction<'light' | 'dark'>>;
@@ -13,6 +35,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedLine, setCopiedLine] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const data = profileData[lang];
 
@@ -48,12 +71,14 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
             <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>{lang === 'en' ? 'Experience' : 'ประสบการณ์'}</a></li>
             <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>{lang === 'en' ? 'Projects' : 'ผลงาน'}</a></li>
             <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>{lang === 'en' ? 'Skills' : 'ทักษะ'}</a></li>
+            <li><a href="#activities" onClick={(e) => scrollToSection(e, 'activities')}>{lang === 'en' ? 'Activities' : 'กิจกรรม'}</a></li>
+            <li><a href="#certificates" onClick={(e) => scrollToSection(e, 'certificates')}>{lang === 'en' ? 'Certificates' : 'เกียรติบัตร'}</a></li>
             {/* <li>
               <a href="#/resume" onClick={handleResumeClick} className="resume-btn">
                 {lang === 'en' ? 'View Resume' : 'ดูเรซูเม'}
               </a>
             </li> */}
-            
+
             <li>
               <button
                 onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
@@ -158,7 +183,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="section">
+      <section id="skills" className="section alt-bg">
         <div className="container">
           <h2 className="section-heading">{lang === 'en' ? 'Expertise' : 'ความเชี่ยวชาญ'}<span>.</span></h2>
           <div className="skills-wrapper">
@@ -196,6 +221,52 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
         </div>
       </section>
 
+      {/* Activities Section */}
+      <section id="activities" className="section">
+        <div className="container">
+          <h2 className="section-heading">{lang === 'en' ? 'Activities' : 'กิจกรรม'}<span>.</span></h2>
+          <div className="gallery-grid">
+            {activityData.map((item, idx) => (
+              <div
+                key={idx}
+                className="gallery-item"
+                onClick={() => setSelectedImage(item.src)}
+              >
+                <div className="gallery-img-wrapper">
+                  <img src={item.src} alt={lang === 'en' ? item.titleEn : item.titleTh} className="gallery-img" loading="lazy" />
+                </div>
+                <div className="gallery-caption">
+                  <p>{lang === 'en' ? item.titleEn : item.titleTh}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certificates Section */}
+      <section id="certificates" className="section alt-bg">
+        <div className="container">
+          <h2 className="section-heading">{lang === 'en' ? 'Certificates' : 'เกียรติบัตร'}<span>.</span></h2>
+          <div className="gallery-grid">
+            {certificateData.map((item, idx) => (
+              <div
+                key={idx}
+                className="gallery-item"
+                onClick={() => setSelectedImage(item.src)}
+              >
+                <div className="gallery-img-wrapper">
+                  <img src={item.src} alt={lang === 'en' ? item.titleEn : item.titleTh} className="gallery-img" loading="lazy" />
+                </div>
+                <div className="gallery-caption">
+                  <p>{lang === 'en' ? item.titleEn : item.titleTh}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer Section */}
       <footer className="footer">
         <div className="container">
@@ -226,7 +297,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
             <p className="modal-subtitle">
               {lang === 'en' ? 'Feel free to reach out for collaborations or just a friendly hello.' : 'สามารถติดต่อผมเพื่อร่วมงานหรือพูดคุยแลกเปลี่ยนกันได้เลยครับ'}
             </p>
-            
+
             <div className="contact-methods">
               <div className="contact-method">
                 <div className="method-icon"><i className="fa-solid fa-envelope"></i></div>
@@ -234,8 +305,8 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
                   <h3>Email</h3>
                   <div className="copy-wrapper">
                     <p id="emailText">{data.contacts.email}</p>
-                    <button 
-                      className={`copy-btn ${copiedEmail ? 'copied' : ''}`} 
+                    <button
+                      className={`copy-btn ${copiedEmail ? 'copied' : ''}`}
                       onClick={() => copyToClipboard(data.contacts.email, 'email')}
                     >
                       {copiedEmail ? (
@@ -247,15 +318,15 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
                   </div>
                 </div>
               </div>
-              
+
               <div className="contact-method">
                 <div className="method-icon"><i className="fa-brands fa-line"></i></div>
                 <div className="method-details">
                   <h3>Line</h3>
                   <div className="copy-wrapper">
                     <p id="lineText">{data.contacts.line}</p>
-                    <button 
-                      className={`copy-btn ${copiedLine ? 'copied' : ''}`} 
+                    <button
+                      className={`copy-btn ${copiedLine ? 'copied' : ''}`}
                       onClick={() => copyToClipboard(data.contacts.line, 'line')}
                     >
                       {copiedLine ? (
@@ -290,6 +361,16 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Image Modal for Gallery */}
+      {selectedImage && (
+        <div className="modal" style={{ display: 'flex' }} onClick={() => setSelectedImage(null)}>
+          <span className="close-modal image-close-btn" onClick={() => setSelectedImage(null)}>&times;</span>
+          <div className="modal-content image-modal-content">
+            <img src={selectedImage} alt="Expanded view" onClick={(e) => e.stopPropagation()} />
           </div>
         </div>
       )}

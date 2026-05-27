@@ -7,7 +7,7 @@ function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#/');
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     const saved = localStorage.getItem('theme');
-    return saved === 'light' ? 'light' : 'dark';
+    return saved === 'dark' ? 'dark' : 'light';
   });
   const [lang, setLang] = useState<'en' | 'th'>(() => {
     const saved = localStorage.getItem('lang');

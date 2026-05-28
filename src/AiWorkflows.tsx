@@ -31,16 +31,17 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
       saTabTitle: "System Analyst & Architect Workflows",
       saTabSub: "Architecture, Data Model, Integration, Tech Decision, Diagrams",
       devTabTitle: "AI-Assisted Development Workflows",
-      devTabSub: "System Prompts, Regression Prevention, Ambiguity Checks, TODO Sequencing, Explanations, Testing",
+      devTabSub: "Enterprise Prompt, Code Explainer, Test Cases, Meta-Prompting",
       saCards: [
         {
           icon: "fa-solid fa-user-gear",
           title: "System Architect Persona",
           summary: "Defining a clear Solution Architect persona that focuses on pragmatic solutions, trade-off analysis, and avoiding over-engineering.",
           rule: "Architect Role Enforcement",
-          prompt: "You are a Solution Architect who prioritizes practical over perfect solutions:\n1. Always provide clear, decisive recommendations instead of saying 'it depends'.\n2. Explicitly state trade-offs and risks for every decision.\n3. If the provided context is insufficient for a decision:\n   - Ask exactly 1-2 high-priority clarifying questions.\n   - Offer a choice: 'I can proceed with my best assumptions immediately (which you must approve first) OR you can choose to answer these questions first.'\n4. Never proceed with immediate implementation without my explicit approval of your assumptions or plan.",
+          prompt: "You are a Solution Architect who prioritizes practical over perfect solutions:\n1. Always provide clear, decisive recommendations instead of saying 'it depends'.\n2. Explicitly state trade-offs and risks for every decision.\n3. If the provided context is insufficient for a decision:\n   - Ask exactly 1-2 high-priority clarifying questions.\n   - Offer a choice: 'I can proceed with my best assumptions immediately (which you must approve first) OR you can choose to answer these questions first.'",
           benefit: "Ensures recommendations are highly actionable and pragmatic rather than generic."
         },
+
         {
           icon: "fa-solid fa-database",
           title: "Schema & Database Design",
@@ -64,48 +65,24 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
           rule: "Decisive Tech Evaluation",
           prompt: "Compare [Technology A] and [Technology B] for [Technical/Business Goal]:\n- Constraint: [Budget / Team Skillset / Time-to-Market]\n- Scale Target: [Expected requests per second / storage volume]\n\nEvaluate and output:\n1. Comparative analysis matrix (Performance, Complexity, Cost)\n2. Direct trade-offs (What we gain vs what we lose)\n3. Definitive recommendation (practical over perfect choice)\n4. Migration risks and mitigation strategy",
           benefit: "Provides a structured comparison to support decisive technology choices based on business and technical constraints."
-        },
-        {
-          icon: "fa-solid fa-diagram-project",
-          title: "Diagram Blueprint Generation",
-          summary: "Instructing AI to generate clean, standard Mermaid.js architecture diagrams that developers can render directly.",
-          rule: "Mermaid.js System Modeling",
-          prompt: "Generate a Mermaid.js diagram representing the system architecture of [Domain]:\n- Level: [C1 Context Diagram / C2 Container Diagram]\n- Key Components: [Frontend, API Gateway, Microservices, DBs, Third-party APIs]\n\nEnsure the output satisfies:\n1. Valid Mermaid.js diagram code (flowchart TB or sequenceDiagram)\n2. Wrap all node labels containing parentheses, brackets, or special characters in double quotes (e.g. node[\"Label (Info)\"]) to avoid parser syntax errors. Do not use raw HTML tags inside node text.\n3. Clear layout subgraphs grouping internal vs external networks\n4. Descriptive labels on arrows detailing communication protocols (HTTPS, gRPC)",
-          benefit: "Translates structural architecture descriptions into standard Mermaid.js visualization code."
         }
       ],
       devCards: [
         {
+          icon: "fa-solid fa-brain",
+          title: "IDE Meta-Prompt (Context-Aware)",
+          summary: "Instructing the IDE AI to analyze the project structure first and generate a more detailed execution prompt for itself based on actual context.",
+          rule: "Self-Refining Prompt Generation",
+          prompt: "Before implementing [Feature/Task], you must analyze the current workspace structure, dependencies, and relevant files.\nBased on your understanding of this specific project, generate a highly detailed execution plan and a refined prompt for yourself.\n\n[Task Information]\nThe goal is to develop a feature / modify the system according to the following list:\n1. [What to do]\n\nThis generated plan must include:\n1. The exact files that will be created or modified.\n2. The architectural patterns currently used in the project that you must follow.\n3. Potential impacts or breaking changes to existing components.\nPresent this refined prompt/plan to me for approval. Do not write any code until I approve it.",
+          benefit: "Leverages the AI's ability to read the workspace, turning a generic user request into a highly specific, project-tailored execution plan."
+        },
+        {
           icon: "fa-solid fa-terminal",
-          title: "Developer System Prompt",
-          summary: "Setting up a structured, reusable AI developer persona to establish coding standards, regression prevention, and proactive feedback.",
-          rule: "Master Developer Prompt",
-          prompt: "You are an expert Senior Developer specialized in [Tech Stack, e.g., TypeScript/React]:\n1. Code Standards: Write clean, modular, and self-documenting code. Enforce strict type declarations and robust error handling.\n2. Regression Prevention: Protect designated core modules [Protected Files/Folders, e.g., src/db.ts]. Never modify or delete stable helper methods; write new separate helper extensions if needed.\n3. Pre-Flight Ambiguity Check:\n   - Analyze instructions and requirements before writing any code.\n   - If there are ambiguities, ask exactly 1-2 high-priority clarifying questions.\n   - Provide a choice: 'I can proceed with my best assumptions immediately (which you must approve first) OR you can choose to answer these questions first.'\n4. Human Approval Rule: Never write code or execute final implementations without my explicit approval of your proposed assumptions, TODO sequence, or plan.",
-          benefit: "Provides a single startup template that establishes clear boundaries, conventions, and safety rules for the AI."
-        },
-        {
-          icon: "fa-solid fa-shield-halved",
-          title: "Regression Prevention Guidelines",
-          summary: "Directly instructing the AI never to overwrite stable existing methods or break working systems.",
-          rule: "Boundary & Integrity Guard",
-          prompt: "Do not modify existing working code in [Module Path, e.g., src/db.ts] to avoid breaking the system:\n1. Never delete or modify any existing functions or logic in this file.\n2. If you need to add new features, write new functions at the bottom or create a new file; do not overwrite old code.\n3. Ensure all previous features continue to work 100% exactly as they did before.",
-          benefit: "Maintains system stability by protecting verified code from accidental or unnecessary refactoring."
-        },
-        {
-          icon: "fa-solid fa-circle-question",
-          title: "Specification Clarification Workflows",
-          summary: "Mandating that the AI analyze instructions, highlight ambiguities, and request validation before writing code.",
-          rule: "Pre-Flight Ambiguity Check",
-          prompt: "Analyze the attached project specifications for [Feature Name] and identify ambiguities:\n1. List all incomplete requirements or missing data constraints.\n2. Identify potential API rate limit bottlenecks or security gaps.\n3. If there are minor ambiguities:\n   - Ask exactly 1-2 high-priority clarifying questions.\n   - Offer a choice: 'I can proceed with my best assumptions immediately (which you must approve first) OR you can choose to answer these questions first.'\n4. Never write any code or execute implementations until I clarify these concerns or explicitly approve your plan.",
-          benefit: "Prevents waste and misaligned feature deliveries by eliminating assumptions early."
-        },
-        {
-          icon: "fa-solid fa-list-check",
-          title: "Structured TODO Prototyping",
-          summary: "Breaking down complex features into modular, sequential TODO milestones using targeted system instructions.",
-          rule: "Modular Execution Sequence",
-          prompt: "Break down the complex feature [Feature/Integration Name] into clear, sequential milestones:\n1. Define the technical boundaries, core interfaces, and data structures (TODO 1).\n2. Create a mock implementation and verify the API schema logic (TODO 2).\n3. Implement the actual business logic/integration and run verification tests (TODO 3).\n4. Deliver only the code for the active TODO step first and wait for my verification before proceeding to the next.",
-          benefit: "Supports incremental prototyping and continuous validation of complex APIs and systems."
+          title: "Enterprise Developer Prompt",
+          summary: "A comprehensive developer persona framework ensuring consistency, preventing regressions, avoiding hallucination, and enforcing strict coding standards.",
+          rule: "Ultimate Developer Template",
+          prompt: "[Role] You are a highly meticulous Principal Software Engineer focused on system safety and stability.\n\n[Context] I am working on a large-scale project using: [Tech Stack, e.g., React 18, TypeScript, Tailwind] with strict coding standards.\n\n[Task] Implement: [Specify task, e.g., Shopping Cart System]\n\n[Constraints & Rules]:\n1. Do not start coding immediately. Ask clarifying questions if anything is ambiguous.\n2. Code must align with existing architecture [Attach examples if any].\n3. Must handle the following Edge Cases: [Specify or ask AI to think of them].\n4. No laziness: Provide full implementations without truncation or placeholders. Ensure robust error handling.\n5. Include Unit Tests for the provided functionality.",
+          benefit: "Provides a robust starting template that establishes clear boundaries, prevents technical debt, and ensures code is enterprise-ready."
         },
         {
           icon: "fa-solid fa-code",
@@ -123,6 +100,7 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
           prompt: "Create a Manual Test Case Suite and checklist for [Feature Name]:\n- User Journey/Flow: [Specify the user flow, e.g., User logs in and uploads a file]\n- Expected Result: [Specify the successful outcome]\n\nGenerate the test suite in this structured table format:\n1. Test Case ID & Title (e.g., TC01 - Successful Upload)\n2. Pre-conditions (What is needed before starting)\n3. Action Steps (numbered 1, 2, 3... exactly what the tester clicks/types)\n4. Expected Behavior (what the screen/system should display)\n5. Edge Cases & Negative Tests (e.g., uploading invalid file type, offline state)",
           benefit: "Helps ensure manual verification is structured, reproducible, and covers critical edge cases."
         }
+
       ]
     },
     th: {
@@ -132,14 +110,14 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
       saTabTitle: "งานวิเคราะห์และออกแบบระบบ (SA & Architect)",
       saTabSub: "ออกแบบสถาปัตยกรรม, Data Model, API Integration, ADR, Diagrams",
       devTabTitle: "งานพัฒนาและเขียนโปรแกรม (AI-Assisted Dev)",
-      devTabSub: "การตั้ง System Prompt, คู่มือป้องกันโค้ดพัง, ระบบเคลียร์ความคลุมเครือ, เทคนิค TODO, อธิบายโค้ด, แผนทดสอบ",
+      devTabSub: "Enterprise System Prompt, อธิบายโค้ด, แผนทดสอบ, IDE Meta-Prompt",
       saCards: [
         {
           icon: "fa-solid fa-user-gear",
           title: "การกำหนดบทบาท Solution Architect",
           summary: "การกำหนดบทบาทให้ AI วิเคราะห์ระบบในฐานะ Solution Architect โดยเน้นแนวทางที่เหมาะสมกับการใช้งานจริง พร้อมประเมินข้อดีข้อเสีย",
           rule: "System Prompt",
-          prompt: "คุณคือ Solution Architect ที่เน้น Practical over Perfect:\n1. ให้คำแนะนำ (Recommendation) ที่ชัดเจนเด็ดขาดเสมอ ห้ามตอบกว้างๆ หรือ 'ขึ้นอยู่กับ'\n2. ระบุข้อดีข้อเสีย (Trade-off) และความเสี่ยง (Risk) ทุกครั้งประกอบการตัดสินใจ\n3. หากข้อมูลในปัจจุบันยังไม่เพียงพอสำหรับตัดสินใจ:\n   - ให้ตั้งคำถามกลับมา 1-2 ข้อที่สำคัญที่สุด\n   - เสนอทางเลือกเสมอ: 'จะให้เริ่มวิเคราะห์ทันทีโดยใช้สมมติฐานที่ดีที่สุด (ซึ่งฉันต้องตรวจสอบและอนุมัติก่อน) หรือคุณจะตอบคำถามต่อไปนี้ก่อน'\n4. ห้ามเริ่มทำระบบหรือเขียนโค้ดจริงทันทีโดยไม่ได้รับสัญญาณอนุมัติแผนงานจากฉันก่อน",
+          prompt: "คุณคือ Solution Architect ที่เน้น Practical over Perfect:\n1. ให้คำแนะนำ (Recommendation) ที่ชัดเจนเด็ดขาดเสมอ ห้ามตอบกว้างๆ หรือ 'ขึ้นอยู่กับ'\n2. ระบุข้อดีข้อเสีย (Trade-off) และความเสี่ยง (Risk) ทุกครั้งประกอบการตัดสินใจ\n3. หากข้อมูลในปัจจุบันยังไม่เพียงพอสำหรับตัดสินใจ:\n   - ให้ตั้งคำถามกลับมา 1-2 ข้อที่สำคัญที่สุด\n   - เสนอทางเลือกเสมอ: 'จะให้เริ่มวิเคราะห์ทันทีโดยใช้สมมติฐานที่ดีที่สุด (ซึ่งฉันต้องตรวจสอบและอนุมัติก่อน) หรือคุณจะตอบคำถามต่อไปนี้ก่อน'",
           benefit: "ช่วยให้ได้ข้อเสนอแนะและแผนงานที่เป็นรูปธรรม นำไปประยุกต์ใช้ในการออกแบบระบบได้ทันที"
         },
         {
@@ -165,48 +143,24 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
           rule: "Technology Evaluation Matrix",
           prompt: "เปรียบเทียบระหว่าง [เทคโนโลยี A] และ [เทคโนโลยี B] เพื่อ [เป้าหมายทางธุรกิจ/เทคนิค]:\n- ข้อจำกัดในปัจจุบัน: [งบประมาณ / ทักษะทีม / เวลาออกสู่ตลาด]\n- สเกลที่ต้องรองรับ: [ปริมาณ request ต่อวินาที / ขนาดข้อมูล]\n\nประเมินและสรุปผลเป็นข้อๆ:\n1. ตารางเปรียบเทียบด้าน Performance, Complexity และ Cost\n2. การวิเคราะห์ Trade-off (ได้อะไรมา และต้องยอมเสียอะไรไป)\n3. คำแนะนำในการเลือกขั้นสุดท้ายที่เด็ดขาด (เน้นใช้งานจริง)\n4. ความเสี่ยงในการย้ายระบบ (Migration Risk) และแผนรับมือ",
           benefit: "ช่วยให้ได้ตารางวิเคราะห์และเปรียบเทียบเทคโนโลยีที่เป็นกลางและอ้างอิงเหตุผลทางวิศวกรรมอย่างชัดเจน"
-        },
-        {
-          icon: "fa-solid fa-diagram-project",
-          title: "การสร้างโค้ดไดอะแกรม (Architecture Diagram)",
-          summary: "การกำหนดองค์ประกอบสถาปัตยกรรมเครือข่ายและระบบย่อย เพื่อแปลงเป็นโค้ดไดอะแกรม Mermaid.js ที่นำไปเรนเดอร์ใช้งานต่อได้ทันที",
-          rule: "Mermaid.js Blueprint",
-          prompt: "สร้างโค้ด Mermaid.js เพื่อแสดงไดอะแกรมสถาปัตยกรรมของระบบ [ระบบงาน]:\n- ระดับของไดอะแกรม: [C1 Context Diagram / C2 Container Diagram]\n- ส่วนประกอบสำคัญ: [หน้าจอ, API Gateway, ไมโครเซอร์วิส, ฐานข้อมูล, บริการภายนอก]\n\nกำหนดรูปแบบโค้ดดังนี้:\n1. โครงสร้างโค้ด Mermaid.js ที่ถูกต้องใช้งานได้จริง (flowchart หรือ sequence)\n2. ให้ครอบข้อความใน Node ที่มีวงเล็บหรืออักขระพิเศษด้วยเครื่องหมายอัญประกาศคู่ (เช่น node[\"ข้อความ (ข้อมูลเพิ่มเติม)\"]) เสมอเพื่อป้องกันข้อผิดพลาดทางไวยากรณ์ (Syntax Error) ห้ามใช้แท็ก HTML ในข้อความ\n3. แบ่งกลุ่มเครือข่ายอย่างชัดเจนด้วย subgraph (เช่น internal vs external)\n4. ระบุข้อความอธิบายทิศทางและโปรโตคอลสื่อสารบนเส้นเชื่อมโยง (เช่น HTTPS, gRPC)",
-          benefit: "ช่วยแปลงคำอธิบายโครงสร้างระบบเป็นโค้ด Mermaid.js เพื่อแสดงแผนผังระบบย่อยและเครือข่ายได้อย่างรวดเร็ว"
         }
       ],
       devCards: [
         {
+          icon: "fa-solid fa-brain",
+          title: "ระบบสร้าง Prompt อัตโนมัติจากโค้ดจริง (IDE Meta-Prompt)",
+          summary: "การสั่งให้ IDE AI สแกนโครงสร้างโปรเจกต์ก่อน แล้วให้ AI เขียน Prompt หรือแผนงานที่ละเอียดขึ้นให้ตัวเอง เพื่อให้สอดคล้องกับโปรเจกต์มากที่สุด",
+          rule: "Context-Aware Self-Refinement",
+          prompt: "ก่อนที่จะเริ่มเขียนโค้ดสำหรับ [ชื่อฟีเจอร์/งาน] ให้คุณวิเคราะห์โครงสร้างโปรเจกต์ ไฟล์ที่เกี่ยวข้อง และ Dependencies ใน Workspace นี้ก่อน\nจากความเข้าใจในสถาปัตยกรรมของโปรเจกต์นี้ จงสร้าง 'แผนการทำงานที่ละเอียดที่สุด (Execution Plan)' หรือ 'Prompt ฉบับสมบูรณ์' ให้กับตัวคุณเอง\n\n[ข้อมูลงานที่ต้องทำ]\nเป้าหมายคือการพัฒนาฟีเจอร์/แก้ไขระบบ ตามรายการต่อไปนี้:\n1. [สิ่งที่จะทำ]\n\nโดยต้องระบุ:\n1. รายชื่อไฟล์ที่ต้องสร้างหรือแก้ไขอย่างเจาะจง\n2. รูปแบบการเขียนโค้ด (Pattern) ของโปรเจกต์นี้ที่คุณจะยึดตาม\n3. ผลกระทบที่อาจเกิดขึ้นกับระบบเดิม\nให้ส่งแผนงานหรือ Prompt ที่คุณสร้างขึ้นมาให้ฉันพิจารณาก่อน ห้ามลงมือเขียนโค้ดจนกว่าฉันจะอนุมัติ",
+          benefit: "ใช้ประโยชน์จากการที่ AI เห็นไฟล์ในโปรเจกต์ เพื่อเปลี่ยนคำสั่งสั้นๆ ของเราให้กลายเป็นแผนงานที่ละเอียดและปลอดภัยที่สุด"
+        },
+        {
           icon: "fa-solid fa-terminal",
-          title: "บทบาทผู้พัฒนาซอฟต์แวร์ (Developer System Prompt)",
-          summary: "การกำหนดบทบาทให้ AI ทำหน้าที่เป็น Senior Developer โดยเน้นการควบคุมคุณภาพโค้ด การป้องกันการแก้ไขโค้ดเก่าโดยไม่ตั้งใจ และการทวนสอบข้อกำหนดก่อนทำงาน",
-          rule: "Master Developer Prompt",
-          prompt: "คุณคือนักพัฒนาซอฟต์แวร์ระดับอาวุโส (Senior Developer) ที่เชี่ยวชาญด้าน [Tech Stack เช่น TypeScript/React]:\n1. มาตรฐานโค้ด: เขียนโค้ดสะอาด แยกโมดูลชัดเจน (Modular Code) กำหนด Type อย่างรัดกุม และมีระบบจัดการ Error ที่ครอบคลุม\n2. การป้องกันโค้ดพัง (Regression): ห้ามลบหรือแก้ไขฟังก์ชันการทำงานหลักในพื้นที่คุ้มครอง [Protected Files/Folders เช่น src/db.ts] หากจำเป็นต้องแก้ไข ให้สร้างฟังก์ชันขยายแยกต่างหาก\n3. ระบบเคลียร์ความคลุมเครือ (Pre-Flight Ambiguity Check):\n   - วิเคราะห์ข้อกำหนดระบบอย่างละเอียด หาจุดคอขวดหรือจุดที่สเปกไม่ชัดเจน\n   - ตั้งคำถามกลับมาเฉพาะเรื่องที่จำเป็นที่สุด 1-2 ข้อ\n   - เสนอทางเลือกเสมอ: \"จะให้เริ่มเขียนโค้ดจำลองภายใต้สมมติฐานที่ดีที่สุด (ซึ่งคุณต้องอนุมัติก่อน) หรือคุณจะเลือกตอบคำถามต่อไปนี้ก่อนเพื่อความแม่นยำ\"\n4. การขออนุมัติงาน (Human Approval Required): ห้ามเขียนโค้ดจริงหรือสร้างระบบทันทีโดยไม่ได้รับสัญญาณอนุมัติแผนงานหรือสมมติฐานจากฉันก่อนเป็นอันขาด",
-          benefit: "เป็นเทมเพลตเริ่มต้นเพื่อควบคุมสไตล์โค้ด ขอบเขตความปลอดภัย และแนวทางการเขียนโค้ดร่วมกับ AI ให้มีเสถียรภาพสูงสุด"
-        },
-        {
-          icon: "fa-solid fa-shield-halved",
-          title: "การควบคุมขอบเขตเพื่อป้องกันโค้ดพัง (Regression Prevention)",
-          summary: "การระบุขอบเขตให้ AI หลีกเลี่ยงการแก้ไขโค้ดส่วนที่มีเสถียรภาพอยู่ก่อนแล้ว เพื่อลดความเสี่ยงจากการเกิดบัคซ้ำซ้อน",
-          rule: "Boundary Prompt",
-          prompt: "ห้ามแก้ไขโค้ดเก่าที่ทำงานได้ปกติอยู่แล้วในโมดูล [ระบุชื่อไฟล์ เช่น src/db.ts] เพื่อไม่ให้ระบบเสียหาย:\n1. ห้ามลบ ห้ามแก้ไข หรือห้ามลบโค้ดตรรกะเดิมที่มีอยู่แล้วในไฟล์นี้อย่างเด็ดขาด\n2. ถ้าต้องการเพิ่มฟีเจอร์หรือความสามารถใหม่ ให้เขียนฟังก์ชันใหม่เพิ่มที่ด้านล่างสุด หรือสร้างไฟล์แยกต่างหาก (ห้ามเขียนทับโค้ดเดิม)\n3. ทุกความสามารถเดิมของโค้ดไฟล์นี้ ต้องยังคงทำงานได้ปกติ 100% เหมือนเดิมทุกประการ",
-          benefit: "ช่วยปกป้องไฟล์สำคัญไม่ให้โดนเขียนทับโดยไม่จำเป็น ทำให้ฟังก์ชันเดิมยังคงทำงานได้ถูกต้องครบถ้วน"
-        },
-        {
-          icon: "fa-solid fa-circle-question",
-          title: "ระบบเคลียร์ความคลุมเครือ (Ambiguity Check)",
-          summary: "การกำหนดให้ AI วิเคราะห์รายละเอียดความต้องการของระบบ ค้นหาความคลุมเครือ และทวนสอบความถูกต้องก่อนการเขียนโค้ด",
-          rule: "Clarification Prompt",
-          prompt: "วิเคราะห์รายละเอียดความต้องการของฟีเจอร์ [ชื่อฟีเจอร์ เช่น API sync] เพื่อหาจุดคลุมเครือ:\n1. แสดงรายการความต้องการที่ยังไม่สมบูรณ์ หรือเงื่อนไขข้อจำกัดข้อมูลที่หายไป\n2. ระบุความเสี่ยงของจุดคอขวด เช่น API Rate Limit หรือช่องโหว่ความปลอดภัย\n3. หากประเมินแล้วพบจุดคลุมเครือที่ควรสอบถาม:\n   - ให้ตั้งคำถามกลับมาเฉพาะเรื่องที่จำเป็นที่สุด 1-2 ข้อ\n   - เสนอทางเลือกเสมอ: 'จะให้เริ่มเขียนโค้ดจำลองภายใต้สมมติฐานที่ดีที่สุด (ซึ่งฉันต้องอนุมัติก่อน) หรือคุณจะตอบคำถามต่อไปนี้ก่อน'\n4. ห้ามลงมือเขียนโค้ดจริงหรือสร้างระบบทันทีโดยไม่ได้รับสัญญาณอนุมัติแผนงานจากฉันก่อน",
-          benefit: "ช่วยลดการทำงานซ้ำซ้อนจากความเข้าใจที่คลาดเคลื่อน และทำให้งานสอดคล้องกับข้อกำหนดจริงมากขึ้น"
-        },
-        {
-          icon: "fa-solid fa-list-check",
-          title: "เทคนิคการสั่งงานแบบ TODO ทีละขั้นตอน",
-          summary: "การแยกย่อยฟีเจอร์ที่ซับซ้อนออกเป็นลำดับขั้นตอนย่อย ๆ เพื่อช่วยควบคุมความเสี่ยงและทยอยตรวจสอบการทำงานของโค้ดในแต่ละส่วน",
-          rule: "Sequence Prompt",
-          prompt: "แยกย่อยงานที่ซับซ้อนของฟีเจอร์ [ชื่อฟีเจอร์/ระบบ] ออกเป็นลำดับขั้นตอนที่ชัดเจน:\n1. กำหนดขอบเขตเชิงเทคนิค โครงสร้างข้อมูล และ Interface เริ่มต้น (TODO 1)\n2. สร้างส่วนทำงานจำลอง (Mock API/Logic) และทดสอบความถูกต้องของสเปกข้อมูล (TODO 2)\n3. เชื่อมต่อระบบจริงและเพิ่มตรรกะทางธุรกิจพร้อมทั้งตรวจสอบผลลัพธ์ (TODO 3)\n4. ส่งมอบเฉพาะโค้ดของ TODO ลำดับแรกก่อน เพื่อให้ฉันตรวจสอบและอนุมัติก่อนเริ่มทำขั้นตอนถัดไป",
-          benefit: "ช่วยให้การเขียนโค้ดในฟีเจอร์ที่ยากมีความก้าวหน้าแบบเป็นขั้นเป็นตอน และสามารถตรวจสอบผลลัพธ์ย่อยได้ทันที"
+          title: "โครงสร้าง Prompt ระดับองค์กร (Enterprise Developer)",
+          summary: "เทมเพลตสำหรับกำหนดบทบาทให้ AI เป็น Principal Software Engineer ระดับองค์กร เน้นความรอบคอบ รักษามาตรฐานเดิม ป้องกันระบบพัง และห้ามย่อโค้ด",
+          rule: "The Ultimate Developer Prompt",
+          prompt: "[บทบาท] คุณคือ Principal Software Engineer ที่มีความรอบคอบสูงมาก มุ่งเน้นความปลอดภัยและความเสถียรของระบบ\n\n[บริบทโปรเจกต์] ฉันกำลังทำงานในโปรเจกต์ใหญ่ที่ใช้ Stack: [ระบุ เช่น React 18, TypeScript, Tailwind] มีมาตรฐานการเขียนโค้ดที่เข้มงวด\n\n[งานที่ต้องทำ] จงเขียนระบบ [ระบุสิ่งที่ต้องการ เช่น ระบบจัดการตะกร้าสินค้า]\n\n[เงื่อนไขและข้อบังคับ]:\n1. ห้ามเริ่มเขียนโค้ดทันที ให้ถามคำถามกลับมาหากมีจุดที่คลุมเครือ\n2. โค้ดต้องสอดคล้องกับโครงสร้างเดิม [ถ้ามีตัวอย่างให้แนบ]\n3. ต้องรองรับ Edge Cases ต่อไปนี้: [ระบุ หรือสั่งให้มันคิดให้]\n4. ห้ามย่อโค้ด ให้แสดงโค้ดตัวเต็มที่จัดการ Error Handling เรียบร้อยแล้ว\n5. แนบ Unit Test สำหรับฟังก์ชันนี้มาด้วย",
+          benefit: "ควบคุมให้ AI ทำงานเหมือนโปรแกรมเมอร์ผู้ช่วยฝีมือดี แทนที่จะคาดเดาเองจนเกิด Technical Debt หรือทำให้ระบบพัง"
         },
         {
           icon: "fa-solid fa-code",
@@ -234,12 +188,12 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
   return (
     <div className="resume-page-wrapper" style={{ minHeight: '100vh', padding: '40px 20px' }}>
       <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        
+
         {/* Navigation Header */}
-        <header style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
+        <header style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
           marginBottom: '30px',
           paddingBottom: '20px',
           borderBottom: '1px solid var(--border-color)',
@@ -247,10 +201,10 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
           gap: '15px'
         }}>
           <div style={{ display: 'flex', gap: '12px' }}>
-            <a 
-              href="#/" 
+            <a
+              href="#/"
               onClick={(e) => handleBackClick(e, '#/')}
-              className="portfolio-link" 
+              className="portfolio-link"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 18px' }}
             >
               <i className="fa-solid fa-arrow-left"></i> {currentDetails.backBtn}
@@ -259,7 +213,7 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
             {/* Theme Toggle */}
-            <button 
+            <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               style={{
                 background: 'none',
@@ -278,8 +232,8 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
 
             {/* Language Selector */}
             <div style={{ display: 'flex', gap: '6px', backgroundColor: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-              <button 
-                onClick={() => setLang('en')} 
+              <button
+                onClick={() => setLang('en')}
                 className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
                 style={{
                   padding: '6px 12px',
@@ -295,8 +249,8 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
               >
                 EN
               </button>
-              <button 
-                onClick={() => setLang('th')} 
+              <button
+                onClick={() => setLang('th')}
                 className={`lang-btn ${lang === 'th' ? 'active' : ''}`}
                 style={{
                   padding: '6px 12px',
@@ -318,45 +272,45 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
 
         {/* Hero Section */}
         <div style={{ textAlign: 'center', marginBottom: '40px' }}>
-          <div style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            justifyContent: 'center', 
-            width: '70px', 
-            height: '70px', 
-            borderRadius: '50%', 
-            backgroundColor: 'rgba(59, 130, 246, 0.1)', 
-            color: 'var(--accent)', 
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '70px',
+            height: '70px',
+            borderRadius: '50%',
+            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+            color: 'var(--accent)',
             fontSize: '2rem',
             marginBottom: '20px',
             border: '2px solid rgba(59, 130, 246, 0.3)'
           }}>
             <i className="fa-solid fa-microchip"></i>
           </div>
-          <h1 style={{ 
-            fontFamily: 'Outfit, sans-serif', 
-            fontSize: '2.5rem', 
+          <h1 style={{
+            fontFamily: 'Outfit, sans-serif',
+            fontSize: '2.5rem',
             marginBottom: '15px',
             color: 'var(--main-text)'
           }}>{currentDetails.title}</h1>
-          <p style={{ 
-            fontSize: '1.1rem', 
-            color: '#64748b', 
-            maxWidth: '850px', 
+          <p style={{
+            fontSize: '1.1rem',
+            color: '#64748b',
+            maxWidth: '850px',
             margin: '0 auto',
             lineHeight: '1.6'
           }}>{currentDetails.subtitle}</p>
         </div>
 
         {/* Tab Controls */}
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          gap: '20px', 
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: '20px',
           marginBottom: '40px',
           flexWrap: 'wrap'
         }}>
-          <button 
+          <button
             onClick={() => { setActiveTab('dev'); setCopiedIdx(null); }}
             style={{
               padding: '16px 24px',
@@ -385,7 +339,7 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
             </div>
           </button>
 
-          <button 
+          <button
             onClick={() => { setActiveTab('sa'); setCopiedIdx(null); }}
             style={{
               padding: '16px 24px',
@@ -429,7 +383,7 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
               alignItems: 'flex-start',
               flexDirection: window.innerWidth < 768 ? 'column' : 'row'
             }} className="workflow-card">
-              
+
               {/* Card Icon */}
               <div style={{
                 display: 'flex',
@@ -448,23 +402,23 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
 
               {/* Card Content */}
               <div style={{ flex: 1 }}>
-                <h2 style={{ 
-                  fontFamily: 'Outfit, sans-serif', 
-                  fontSize: '1.4rem', 
+                <h2 style={{
+                  fontFamily: 'Outfit, sans-serif',
+                  fontSize: '1.4rem',
                   marginBottom: '10px',
                   color: 'var(--main-text)'
                 }}>{card.title}</h2>
-                
-                <p style={{ 
-                  fontSize: '1rem', 
-                  color: 'var(--main-text)', 
+
+                <p style={{
+                  fontSize: '1rem',
+                  color: 'var(--main-text)',
                   opacity: 0.9,
                   marginBottom: '15px',
                   lineHeight: '1.5'
                 }}>{card.summary}</p>
-                
-                <div style={{ 
-                  fontSize: '0.85rem', 
+
+                <div style={{
+                  fontSize: '0.85rem',
                   color: '#64748b',
                   marginBottom: '20px',
                   display: 'flex',
@@ -485,24 +439,24 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
                   position: 'relative',
                   overflowX: 'auto'
                 }}>
-                  <div style={{ 
-                    position: 'absolute', 
-                    top: '8px', 
-                    right: '12px', 
+                  <div style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '12px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '10px'
                   }}>
-                    <span style={{ 
-                      fontSize: '0.7rem', 
-                      textTransform: 'uppercase', 
-                      letterSpacing: '1px', 
+                    <span style={{
+                      fontSize: '0.7rem',
+                      textTransform: 'uppercase',
+                      letterSpacing: '1px',
                       color: '#64748b',
-                      fontWeight: 700 
+                      fontWeight: 700
                     }}>
                       {card.rule}
                     </span>
-                    <button 
+                    <button
                       onClick={() => handleCopy(card.prompt, idx)}
                       style={{
                         background: 'none',
@@ -528,8 +482,8 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
                   <div style={{ color: theme === 'dark' ? '#a5b4fc' : '#4f46e5', fontWeight: 600, marginBottom: '8px' }}>
                     &gt; Prompt Context Template:
                   </div>
-                  <div style={{ 
-                    color: theme === 'dark' ? '#e2e8f0' : '#1e293b', 
+                  <div style={{
+                    color: theme === 'dark' ? '#e2e8f0' : '#1e293b',
                     lineHeight: '1.5',
                     whiteSpace: 'pre-wrap'
                   }}>

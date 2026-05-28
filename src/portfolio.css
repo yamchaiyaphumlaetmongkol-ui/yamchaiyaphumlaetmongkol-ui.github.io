@@ -41,9 +41,17 @@ body.dark-mode {
     background: var(--section-bg);
 }
 
-.theme-toggle .fa-sun { display: none; }
-body.dark-mode .theme-toggle .fa-moon { display: none; }
-body.dark-mode .theme-toggle .fa-sun { display: block; }
+.theme-toggle .fa-sun {
+    display: none;
+}
+
+body.dark-mode .theme-toggle .fa-moon {
+    display: none;
+}
+
+body.dark-mode .theme-toggle .fa-sun {
+    display: block;
+}
 
 * {
     margin: 0;
@@ -698,7 +706,8 @@ h3,
     max-height: 85vh;
     padding: 40px;
     overflow-y: auto;
-    display: block; /* Ensure scrolling works */
+    display: block;
+    /* Ensure scrolling works */
 }
 
 /* Custom scrollbar for game modal */
@@ -747,7 +756,7 @@ h3,
     height: 120px;
     object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .game-name {
@@ -858,11 +867,10 @@ h3,
     color: white;
     font-size: 3rem;
     z-index: 2010;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     transition: color 0.3s ease;
 }
 
 .image-close-btn:hover {
     color: var(--accent);
 }
-

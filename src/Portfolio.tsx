@@ -7,8 +7,8 @@ const activityData = [
   { src: "activity/PC030511.JPG", titleEn: "Award from Hackathon & Workshop", titleTh: "รับรางวัลชมเชยจากการแข่งขัน Hackathon & Workshop" },
   { src: "activity/IMG_1863.JPG", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
   { src: "activity/JPEG image.jpeg", titleEn: "Team & Advisor", titleTh: "ทีมและอาจารย์ที่ปรึกษา" },
-  { src: "activity/received_1323488609830592.jpeg", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
   { src: "activity/received_1701813651191352.jpeg", titleEn: "Team & Advisor", titleTh: "ทีมและอาจารย์ที่ปรึกษา" },
+  { src: "activity/received_1323488609830592.jpeg", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
 
 ];
 

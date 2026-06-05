@@ -42,7 +42,7 @@ export interface ProfileType {
     database: { title: string; skills: string[] };
     devops: { title: string; skills: string[] };
     gitCommands: { title: string; commands: string[] };
-    aiPrompting: { title: string; details: string[] };
+    aiPrompting: { title: string; summary: string; details: string[] };
   };
   languages: Array<{ name: string; level: string }>;
   certifications: string[];
@@ -144,11 +144,14 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       },
       aiPrompting: {
         title: "AI-Assisted Development",
+        summary: "Production-grade templates for HRMS/ERP projects — clarify specs, prevent regression, and ship in testable phases.",
         details: [
-          "System Prompt Engineering (Defining specialized developer personas and clear coding conventions)",
-          "Regression Prevention (Establishing boundaries to protect legacy systems and stable code modules)",
-          "Specification Validation (Instructing the AI to identify ambiguities and request clarification before implementation)",
-          "Structured TODO Prototyping (Breaking down complex deliverables into sequential, testable milestones)",
+          "Pre-Flight Spec Validation",
+          "IDE Meta-Prompt (Context-Aware Plan)",
+          "Regression-Safe Implementation",
+          "Structured TODO Milestones",
+          "Manual Test & UAT Checklist",
+          "Schema Design · Integration · ADR",
         ],
       },
     },
@@ -272,11 +275,14 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       },
       aiPrompting: {
         title: "การพัฒนาซอฟต์แวร์ร่วมกับ AI (AI-Assisted Development)",
+        summary: "เทมเพลตที่ใช้จริงในโปรเจกต์ HRMS/ERP — เคลียร์สเปก ป้องกัน Regression ส่งมอบทีละเฟส",
         details: [
-          "การกำหนด System Prompt (การกำหนดบทบาทนักพัฒนาและระบุมาตรฐานคุณภาพโค้ดอย่างรัดกุมก่อนเริ่มโครงการ)",
-          "การควบคุมป้องกัน Regression (การจำกัดขอบเขตไม่ให้ AI แก้ไขตรรกะหรือโมดูลเดิมที่มีเสถียรภาพอยู่แล้ว)",
-          "การทวนสอบข้อกำหนดระบบ (การกำหนดให้ AI ตรวจสอบความถูกต้องและสอบถามข้อกำหนดที่ยังไม่ครบถ้วนก่อนลงมือ)",
-          "การจัดลำดับแผนงาน TODO (การแยกย่อยความต้องการที่ซับซ้อนออกเป็นแผนงานย่อย เพื่อการทดสอบและทยอยสร้างชิ้นงานอย่างเป็นระบบ)",
+          "Pre-Flight — ตรวจสเปกก่อนลงมือ",
+          "IDE Meta-Prompt (แผนจากโค้ดจริง)",
+          "แก้โค้ดอย่างปลอดภัย (Regression-Safe)",
+          "แผนงาน TODO ทีละเฟส",
+          "ชุดทดสอบมือ & UAT",
+          "Schema · Integration · ADR",
         ],
       },
     },

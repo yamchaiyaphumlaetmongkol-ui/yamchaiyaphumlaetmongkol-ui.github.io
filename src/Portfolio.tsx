@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { workflowDetails } from './aiWorkflowData';
 import { profileData } from './profileData';
 import './portfolio.css';
 
@@ -9,6 +10,8 @@ const activityData = [
 ];
 
 const RESUME_PDF = "/cv/Resume_SE_Laetmongkol.pdf";
+
+const NAV_SECTION_IDS = ['about', 'experience', 'projects', 'skills', 'activities', 'certificates'] as const;
 
 const certificateData = [
   { src: "certificate/3-Dec-2024 UP Shield เลิศมงคล ยามชัยภูมิ.png", titleEn: "UP Shield 2024", titleTh: "การอบรม UP Shield 2024" },
@@ -39,9 +42,12 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedLine, setCopiedLine] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string>('about');
 
   const data = profileData[lang];
   const mobileNavRef = useRef<HTMLDivElement>(null);
+  const isProgrammaticScrollRef = useRef(false);
+  const programmaticScrollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     document.body.style.overflow = isNavOpen ? 'hidden' : '';
@@ -74,6 +80,67 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
     };
   }, [isNavOpen]);
 
+  useEffect(() => {
+    let rafId = 0;
+
+    const getNavHeight = () =>
+      parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue('--nav-height'),
+        10
+      ) || 80;
+
+    const resolveActiveSection = () => {
+      if (isProgrammaticScrollRef.current) return;
+
+      const navHeight = getNavHeight();
+      const focusLine = navHeight + (window.innerHeight - navHeight) * 0.32;
+
+      let bestId: string = NAV_SECTION_IDS[0];
+      let bestDistance = Infinity;
+
+      for (const id of NAV_SECTION_IDS) {
+        const section = document.getElementById(id);
+        if (!section) continue;
+
+        const target =
+          id === 'about'
+            ? section
+            : (section.querySelector('.section-heading') as HTMLElement | null) ?? section;
+
+        const rect = target.getBoundingClientRect();
+        if (rect.bottom < navHeight || rect.top > window.innerHeight) continue;
+
+        const midpoint = rect.top + rect.height / 2;
+        const distance = Math.abs(midpoint - focusLine);
+
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestId = id;
+        }
+      }
+
+      setActiveSection((prev) => (prev === bestId ? prev : bestId));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(resolveActiveSection);
+    };
+
+    resolveActiveSection();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (programmaticScrollTimerRef.current) {
+        clearTimeout(programmaticScrollTimerRef.current);
+      }
+    };
+  }, []);
+
   const copyToClipboard = (text: string, type: 'email' | 'line') => {
     navigator.clipboard.writeText(text).then(() => {
       if (type === 'email') {
@@ -90,6 +157,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     setIsNavOpen(false);
+    setActiveSection(id);
     const section = document.getElementById(id);
     if (!section) return;
 
@@ -104,7 +172,23 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
     ) || 80;
     const gap = 12;
     const top = target.getBoundingClientRect().top + window.scrollY - navHeight - gap;
+
+    isProgrammaticScrollRef.current = true;
+    if (programmaticScrollTimerRef.current) {
+      clearTimeout(programmaticScrollTimerRef.current);
+    }
+
     window.scrollTo({ top, behavior: 'smooth' });
+
+    const releaseScrollSpy = () => {
+      isProgrammaticScrollRef.current = false;
+    };
+
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', releaseScrollSpy, { once: true });
+    } else {
+      programmaticScrollTimerRef.current = setTimeout(releaseScrollSpy, 700);
+    }
   };
 
   const navItems = [
@@ -120,7 +204,12 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
     <ul className={variant === 'desktop' ? 'nav-links' : 'mobile-nav-links'}>
       {navItems.map((item) => (
         <li key={item.id}>
-          <a href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)}>
+          <a
+            href={`#${item.id}`}
+            onClick={(e) => scrollToSection(e, item.id)}
+            className={activeSection === item.id ? 'active' : undefined}
+            aria-current={activeSection === item.id ? 'true' : undefined}
+          >
             {lang === 'en' ? item.labelEn : item.labelTh}
           </a>
         </li>
@@ -300,15 +389,40 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
               <h3><i className="fa-solid fa-code-branch"></i> {data.skills.gitCommands.title}</h3>
               <p>{data.skills.gitCommands.commands.join(', ')}</p>
             </div>
-            <div className="skill-group" style={{ cursor: 'pointer' }} onClick={() => window.location.hash = '#/ai-workflows'}>
-              <h3><i className="fa-solid fa-brain"></i> {data.skills.aiPrompting.title} <span style={{ fontSize: '0.75rem', color: 'var(--accent)', marginLeft: '6px', fontWeight: 600 }}>({lang === 'en' ? 'View Details →' : 'ดูรายละเอียด →'})</span></h3>
-              <p>
-                {lang === 'en' ? (
-                  "Structured system prompt templates, specific boundaries for regression prevention, pre-flight ambiguity checks, and sequential TODO milestones for incremental and testable product prototyping."
-                ) : (
-                  "การกำหนดบทบาท System Prompt, แนวทางการควบคุมความปลอดภัยของตรรกะเดิมเพื่อป้องกันโค้ดพัง (Regression), ระบบทวนสอบสเปกเพื่อเคลียร์ความคลุมเครือก่อนเริ่มลงมือ, และเทคนิคการสั่งงานแบบ TODO ทีละเฟสเพื่อพัฒนาและตรวจสอบความถูกต้องได้อย่างมีระบบ"
-                )}
-              </p>
+            <div
+              className="skill-group skill-group--ai"
+              role="link"
+              tabIndex={0}
+              onClick={() => { window.location.hash = '#/ai-workflows'; }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  window.location.hash = '#/ai-workflows';
+                }
+              }}
+            >
+              <h3>
+                <i className="fa-solid fa-brain"></i>
+                {data.skills.aiPrompting.title}
+                <span className="skill-group-link">
+                  ({lang === 'en' ? 'View Details →' : 'ดูรายละเอียด →'})
+                </span>
+              </h3>
+              <p>{workflowDetails[lang].portfolioSummary}</p>
+              <div className="ai-skill-tags">
+                <div className="ai-skill-tag-row">
+                  <span className="ai-skill-tag-label">Dev</span>
+                  {workflowDetails[lang].portfolioDevTags.map((tag) => (
+                    <span key={tag} className="ai-skill-tag">{tag}</span>
+                  ))}
+                </div>
+                <div className="ai-skill-tag-row">
+                  <span className="ai-skill-tag-label">SA</span>
+                  {workflowDetails[lang].portfolioSaTags.map((tag) => (
+                    <span key={tag} className="ai-skill-tag ai-skill-tag--sa">{tag}</span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>

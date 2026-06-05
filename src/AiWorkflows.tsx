@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type Dispatch, type SetStateAction } from 'react';
 import SubPageNavbar from './SubPageNavbar';
 import { workflowDetails } from './aiWorkflowData';
 import './style.css';
@@ -7,7 +7,7 @@ interface AiWorkflowsProps {
   lang: 'en' | 'th';
   setLang: (lang: 'en' | 'th') => void;
   theme: 'light' | 'dark';
-  setTheme: (theme: 'light' | 'dark') => void;
+  setTheme: Dispatch<SetStateAction<'light' | 'dark'>>;
 }
 
 export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkflowsProps) {

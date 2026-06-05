@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './style.css';
 
 interface AiWorkflowsProps {
   lang: 'en' | 'th';
@@ -190,79 +191,39 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
       <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
         {/* Navigation Header */}
-        <header style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '30px',
-          paddingBottom: '20px',
-          borderBottom: '1px solid var(--border-color)',
-          flexWrap: 'wrap',
-          gap: '15px'
-        }}>
+        <header className="page-nav-header">
           <div style={{ display: 'flex', gap: '12px' }}>
             <a
               href="#/"
               onClick={(e) => handleBackClick(e, '#/')}
               className="portfolio-link"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 18px' }}
             >
               <i className="fa-solid fa-arrow-left"></i> {currentDetails.backBtn}
             </a>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-            {/* Theme Toggle */}
+          <div className="page-nav-actions">
             <button
+              type="button"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              style={{
-                background: 'none',
-                border: 'none',
-                color: theme === 'dark' ? '#fbbf24' : '#64748b',
-                fontSize: '1.2rem',
-                cursor: 'pointer',
-                padding: '8px',
-                borderRadius: '50%',
-                transition: 'all 0.2s'
-              }}
+              className="theme-toggle-btn"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <i className="fa-solid fa-sun"></i> : <i className="fa-solid fa-moon"></i>}
             </button>
 
-            {/* Language Selector */}
-            <div style={{ display: 'flex', gap: '6px', backgroundColor: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+            <div className="lang-toggle-group">
               <button
+                type="button"
                 onClick={() => setLang('en')}
-                className={`lang-btn ${lang === 'en' ? 'active' : ''}`}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  border: 'none',
-                  backgroundColor: lang === 'en' ? 'var(--accent)' : 'transparent',
-                  color: lang === 'en' ? '#fff' : 'var(--main-text)',
-                  cursor: 'pointer',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  transition: 'all 0.2s'
-                }}
+                className={lang === 'en' ? 'active' : ''}
               >
                 EN
               </button>
               <button
+                type="button"
                 onClick={() => setLang('th')}
-                className={`lang-btn ${lang === 'th' ? 'active' : ''}`}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: '6px',
-                  border: 'none',
-                  backgroundColor: lang === 'th' ? 'var(--accent)' : 'transparent',
-                  color: lang === 'th' ? '#fff' : 'var(--main-text)',
-                  cursor: 'pointer',
-                  fontSize: '0.8rem',
-                  fontWeight: 600,
-                  transition: 'all 0.2s'
-                }}
+                className={lang === 'th' ? 'active' : ''}
               >
                 TH
               </button>
@@ -295,7 +256,7 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
           }}>{currentDetails.title}</h1>
           <p style={{
             fontSize: '1.1rem',
-            color: '#64748b',
+            color: 'var(--muted-text)',
             maxWidth: '850px',
             margin: '0 auto',
             lineHeight: '1.6'

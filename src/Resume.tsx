@@ -19,62 +19,18 @@ export default function Resume({ lang, setLang }: ResumeProps) {
     <div className="resume-page-wrapper" style={{ padding: '40px 20px' }}>
       
       {/* Control Bar for Screen Only (Normal Flow, No Overlap!) */}
-      <div className="screen-only-controls" style={{
-        width: '100%',
-        maxWidth: '1200px',
-        margin: '0 auto 30px', /* Centered with a gorgeous 30px bottom gap */
-        backgroundColor: 'rgba(15, 23, 42, 0.65)',
-        backdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
-        borderRadius: '12px',
-        padding: '12px 24px',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)'
-      }}>
+      <div className="screen-only-controls">
         <div style={{ display: 'flex', gap: '10px' }}>
           <a 
             href="#/" 
             onClick={handlePortfolioClick} 
-            className="portfolio-link" 
-            style={{ 
-              textDecoration: 'none', 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '8px', 
-              padding: '8px 16px', 
-              borderRadius: '6px', 
-              backgroundColor: 'rgba(255,255,255,0.05)', 
-              border: '1px solid rgba(255,255,255,0.1)', 
-              color: '#fff', 
-              fontSize: '0.85rem', 
-              fontWeight: 600, 
-              transition: 'all 0.2s' 
-            }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
+            className="portfolio-link"
           >
             <i className="fa-solid fa-arrow-left"></i> {lang === 'en' ? 'Back to Portfolio' : 'กลับหน้าพอร์ตโฟลิโอ'}
           </a>
           <a 
             href="#/ai-workflows" 
-            style={{ 
-              textDecoration: 'none', 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              gap: '8px', 
-              padding: '8px 16px', 
-              borderRadius: '6px', 
-              backgroundColor: 'rgba(255,255,255,0.05)', 
-              border: '1px solid rgba(255,255,255,0.1)', 
-              color: '#fff', 
-              fontSize: '0.85rem', 
-              fontWeight: 600, 
-              transition: 'all 0.2s' 
-            }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.15)'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.05)'}
+            className="secondary-nav-link"
           >
             <i className="fa-solid fa-brain"></i> {lang === 'en' ? 'AI Workflows' : 'กระบวนการ AI'}
           </a>
@@ -82,60 +38,27 @@ export default function Resume({ lang, setLang }: ResumeProps) {
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
           {/* Language Selector */}
-          <div style={{ display: 'flex', gap: '6px', backgroundColor: 'rgba(255,255,255,0.05)', padding: '4px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)' }}>
+          <div className="lang-toggle-group">
             <button 
+              type="button"
               onClick={() => setLang('en')} 
-              style={{
-                padding: '6px 12px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: lang === 'en' ? 'var(--accent)' : 'transparent',
-                color: '#fff',
-                cursor: 'pointer',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                transition: 'all 0.2s'
-              }}
+              className={lang === 'en' ? 'active' : ''}
             >
               EN
             </button>
             <button 
+              type="button"
               onClick={() => setLang('th')} 
-              style={{
-                padding: '6px 12px',
-                borderRadius: '6px',
-                border: 'none',
-                backgroundColor: lang === 'th' ? 'var(--accent)' : 'transparent',
-                color: '#fff',
-                cursor: 'pointer',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                transition: 'all 0.2s'
-              }}
+              className={lang === 'th' ? 'active' : ''}
             >
               TH
             </button>
           </div>
 
           <button 
+            type="button"
             onClick={() => window.print()} 
-            style={{
-              padding: '10px 20px',
-              borderRadius: '6px',
-              border: 'none',
-              backgroundColor: '#0070f3',
-              color: '#fff',
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              transition: 'background-color 0.2s, transform 0.1s',
-              boxShadow: '0 4px 14px 0 rgba(0,118,243,0.39)'
-            }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0051bb'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#0070f3'}
+            className="print-btn"
           >
             <i className="fa-solid fa-file-pdf"></i> {lang === 'en' ? 'Download PDF' : 'ดาวน์โหลด PDF'}
           </button>

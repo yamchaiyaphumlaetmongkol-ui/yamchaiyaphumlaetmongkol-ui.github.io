@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { profileData } from './profileData';
 import './portfolio.css';
 
 const activityData = [
-  { src: "activity/PC030511.JPG", titleEn: "Hackathon & Workshop", titleTh: "กิจกรรม Hackathon & Workshop" },
+  { src: "activity/PC030511.JPG", titleEn: "Award from Hackathon & Workshop", titleTh: "รับรางวัลชมเชยจากการแข่งขัน Hackathon & Workshop" },
   { src: "activity/IMG_1863.JPG", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
-  { src: "activity/JPEG image.jpeg", titleEn: "Project Presentation", titleTh: "การนำเสนอโปรเจกต์" }
+  { src: "activity/JPEG image.jpeg", titleEn: "Team & Advisor", titleTh: "ทีมและอาจารย์ที่ปรึกษา" }
 ];
+
+const RESUME_PDF = "/cv/Resume_SE_Laetmongkol.pdf";
 
 const certificateData = [
   { src: "certificate/3-Dec-2024 UP Shield เลิศมงคล ยามชัยภูมิ.png", titleEn: "UP Shield 2024", titleTh: "การอบรม UP Shield 2024" },
@@ -33,11 +35,44 @@ interface PortfolioProps {
 
 export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioProps) {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
   const [copiedLine, setCopiedLine] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const data = profileData[lang];
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.body.style.overflow = isNavOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isNavOpen]);
+
+  useEffect(() => {
+    if (!isNavOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsNavOpen(false);
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth > 968) setIsNavOpen(false);
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
+    const firstFocusable = mobileNavRef.current?.querySelector<HTMLElement>(
+      'a, button'
+    );
+    firstFocusable?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isNavOpen]);
 
   const copyToClipboard = (text: string, type: 'email' | 'line') => {
     navigator.clipboard.writeText(text).then(() => {
@@ -54,57 +89,112 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    setIsNavOpen(false);
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const target =
+      id === 'about'
+        ? section
+        : (section.querySelector('.section-heading') as HTMLElement | null) ?? section;
+
+    const navHeight = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-height'),
+      10
+    ) || 80;
+    const gap = 12;
+    const top = target.getBoundingClientRect().top + window.scrollY - navHeight - gap;
+    window.scrollTo({ top, behavior: 'smooth' });
   };
+
+  const navItems = [
+    { id: 'about', labelEn: 'About', labelTh: 'เกี่ยวกับ' },
+    { id: 'experience', labelEn: 'Experience', labelTh: 'ประสบการณ์' },
+    { id: 'projects', labelEn: 'Projects', labelTh: 'ผลงาน' },
+    { id: 'skills', labelEn: 'Skills', labelTh: 'ทักษะ' },
+    { id: 'activities', labelEn: 'Activities', labelTh: 'กิจกรรม' },
+    { id: 'certificates', labelEn: 'Certificates', labelTh: 'เกียรติบัตร' },
+  ];
+
+  const renderNavLinks = (variant: 'desktop' | 'mobile') => (
+    <ul className={variant === 'desktop' ? 'nav-links' : 'mobile-nav-links'}>
+      {navItems.map((item) => (
+        <li key={item.id}>
+          <a href={`#${item.id}`} onClick={(e) => scrollToSection(e, item.id)}>
+            {lang === 'en' ? item.labelEn : item.labelTh}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a
+          href={RESUME_PDF}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="resume-btn"
+          onClick={() => variant === 'mobile' && setIsNavOpen(false)}
+        >
+          {lang === 'en' ? 'View CV' : 'ดู CV'}
+        </a>
+      </li>
+      <li>
+        <button
+          onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
+          className="theme-toggle"
+          style={variant === 'desktop' ? { marginLeft: '6px', fontSize: '0.82rem', fontWeight: 700 } : undefined}
+          aria-label="Toggle language"
+        >
+          {lang === 'en' ? 'TH' : 'EN'}
+        </button>
+      </li>
+      <li>
+        <button
+          onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
+          className="theme-toggle"
+          aria-label="Toggle dark mode"
+        >
+          {theme === 'dark' ? (
+            <i className="fa-solid fa-sun"></i>
+          ) : (
+            <i className="fa-solid fa-moon"></i>
+          )}
+        </button>
+      </li>
+    </ul>
+  );
 
   return (
     <div className="portfolio-page-wrapper">
       {/* Navbar */}
-      <nav className="navbar">
+      <nav className={`navbar${isNavOpen ? ' nav-open' : ''}`}>
         <div className="nav-container">
           <a href="#/" className="logo">{data.personal.nickname}<span>.</span></a>
-          <ul className="nav-links">
-            <li><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>{lang === 'en' ? 'About' : 'เกี่ยวกับ'}</a></li>
-            <li><a href="#experience" onClick={(e) => scrollToSection(e, 'experience')}>{lang === 'en' ? 'Experience' : 'ประสบการณ์'}</a></li>
-            <li><a href="#projects" onClick={(e) => scrollToSection(e, 'projects')}>{lang === 'en' ? 'Projects' : 'ผลงาน'}</a></li>
-            <li><a href="#skills" onClick={(e) => scrollToSection(e, 'skills')}>{lang === 'en' ? 'Skills' : 'ทักษะ'}</a></li>
-            <li><a href="#activities" onClick={(e) => scrollToSection(e, 'activities')}>{lang === 'en' ? 'Activities' : 'กิจกรรม'}</a></li>
-            <li><a href="#certificates" onClick={(e) => scrollToSection(e, 'certificates')}>{lang === 'en' ? 'Certificates' : 'เกียรติบัตร'}</a></li>
-            {/* <li>
-              <a href="#/resume" onClick={handleResumeClick} className="resume-btn">
-                {lang === 'en' ? 'View Resume' : 'ดูเรซูเม'}
-              </a>
-            </li> */}
-
-            <li>
-              <button
-                onClick={() => setLang(lang === 'en' ? 'th' : 'en')}
-                className="theme-toggle"
-                style={{ marginLeft: '6px', fontSize: '0.82rem', fontWeight: 700 }}
-                aria-label="Toggle language"
-              >
-                {lang === 'en' ? 'TH' : 'EN'}
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => setTheme(prev => prev === 'light' ? 'dark' : 'light')}
-                className="theme-toggle"
-                aria-label="Toggle dark mode"
-              >
-                {theme === 'dark' ? (
-                  <i className="fa-solid fa-sun"></i>
-                ) : (
-                  <i className="fa-solid fa-moon"></i>
-                )}
-              </button>
-            </li>
-          </ul>
+          <button
+            type="button"
+            className="nav-toggle"
+            onClick={() => setIsNavOpen(prev => !prev)}
+            aria-label={isNavOpen ? (lang === 'en' ? 'Close menu' : 'ปิดเมนู') : (lang === 'en' ? 'Open menu' : 'เปิดเมนู')}
+            aria-expanded={isNavOpen}
+            aria-controls="mobile-nav-panel"
+          >
+            <i className={`fa-solid ${isNavOpen ? 'fa-xmark' : 'fa-bars'}`}></i>
+          </button>
+          {renderNavLinks('desktop')}
         </div>
       </nav>
+
+      {isNavOpen && (
+        <div className="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label={lang === 'en' ? 'Navigation menu' : 'เมนูนำทาง'}>
+          <button
+            type="button"
+            className="mobile-nav-backdrop"
+            onClick={() => setIsNavOpen(false)}
+            aria-label={lang === 'en' ? 'Close menu' : 'ปิดเมนู'}
+          />
+          <div id="mobile-nav-panel" className="mobile-nav-panel" ref={mobileNavRef}>
+            {renderNavLinks('mobile')}
+          </div>
+        </div>
+      )}
 
       {/* Hero Section */}
       <header id="about" className="hero-section">
@@ -121,6 +211,9 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
             </button>
             <a href={data.contacts.github} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
               <i className="fa-brands fa-github"></i> GitHub
+            </a>
+            <a href={RESUME_PDF} target="_blank" rel="noopener noreferrer" className="btn btn-secondary">
+              <i className="fa-solid fa-file-pdf"></i> {lang === 'en' ? 'View CV' : 'ดู CV'}
             </a>
           </div>
         </div>
@@ -185,7 +278,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
       {/* Skills Section */}
       <section id="skills" className="section alt-bg">
         <div className="container">
-          <h2 className="section-heading">{lang === 'en' ? 'Expertise' : 'ความเชี่ยวชาญ'}<span>.</span></h2>
+          <h2 className="section-heading">{lang === 'en' ? 'Skills' : 'ทักษะ'}<span>.</span></h2>
           <div className="skills-wrapper">
             <div className="skill-group">
               <h3><i className="fa-solid fa-layer-group"></i> {data.skills.frontend.title}</h3>

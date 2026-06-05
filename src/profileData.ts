@@ -62,9 +62,9 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       firstName: "Lertmongkon",
       lastName: "Yamchaiphum",
       nickname: "Pac",
-      title: "Full-Stack Developer",
+      title: "Software Developer",
       location: "Thailand",
-      bio: "A detail-oriented Full-Stack Developer (First-Class Honors) with hands-on cooperative education experience in building scalable web applications. Proficient in Angular, React, and .NET Core (C#), with a strong focus on clean architecture, database optimization, and high-performance system integration. Skilled in utilizing structured AI-assisted workflows to accelerate product engineering while maintaining strict clean code standards.",
+      bio: "Software Developer with practical experience working on production web applications. Contributed to backend features, dashboards, and reporting systems used in business workflows. Interested in growing as a Software Engineer, with focus on writing maintainable code and learning scalable and reliable system design.",
     },
 
     contacts: {
@@ -81,27 +81,21 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       {
         school: "University of Phayao",
         period: "2022 – 2026",
-        degree: "B.Sc. Information Technology",
+        degree: "Bachelor of Science in Information Technology (First-Class Honors)",
         gpa: "3.66",
-      },
-      {
-        school: "Khonsan Wittayakom School",
-        period: "2019 – 2022",
-        degree: "Science-Mathematics Program",
-        gpa: "3.19",
       },
     ],
 
     workExperience: [
       {
         company: "Soft Square International Co., Ltd.",
-        role: "Software Developer (Cooperative Education)",
+        role: "Software Developer Cooperative Education",
         period: "Nov 2025 – Feb 2026",
         tag: "Cooperative Education",
         highlights: [
-          "Developed full-stack features—both Angular frontend and .NET Core backend APIs/database components—for **ECT-ERP+HRMS** (Election Commission of Thailand) with **PostgreSQL**, delivering features on time and resolving bugs iteratively.",
-          "Delivered full-stack solutions for **MAKRO** (NEWTJE MAKRO) by building React frontend views, Spring Boot backend services, and Oracle Database enterprise-level report integrations.",
-          "Engineered **SS-Task-Report** as a standalone full-stack utility using **Next.js (T3 Stack)**, **Netlify**, and **Neon (PostgreSQL)**, integrating **ClickUp API** to streamline team task points and scheduling.",
+          "Designed and developed HRMS frontend features and dashboards using Angular and TypeScript, seamlessly integrating them with C#/.NET backend services.",
+          "Wrote and optimized complex SQL queries for data extraction, transformation, and reporting, ensuring high performance, accuracy, and data-driven decision-making.",
+          "Maintained legacy modules, resolved bugs during UAT, and created user documentation to improve system stability and support end-users.",
         ],
       },
     ],
@@ -130,28 +124,23 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     skills: {
       frontend: {
         title: "Frontend",
-        skills: ["React", "Next.js", "Angular", "TypeScript", "Tailwind CSS"],
+        skills: ["Angular", "Bootstrap", "TypeScript", "HTML", "CSS", "Tailwind", "React", "Next.js", "JavaScript"],
       },
       backend: {
         title: "Backend",
-        skills: ["C# (.NET)", "Java (Spring Boot)", "tRPC", "RESTful APIs"],
+        skills: ["C#", "ASP.NET", "Java", "Spring Boot", "Node.js"],
       },
       database: {
         title: "Database",
-        skills: ["PostgreSQL", "Oracle Database", "SQL Server", "MySQL"],
+        skills: ["MySQL", "PostgreSQL"],
       },
       devops: {
-        title: "Tools & DevOps",
-        skills: ["Git", "Netlify", "Vercel", "Neon Database", "JasperReports"],
+        title: "Tools",
+        skills: ["JasperReport", "Git", "GitHub", "Figma"],
       },
       gitCommands: {
-        title: "Version Control",
-        commands: [
-          "Git Flow & Branching",
-          "Collaborative Pull Requests",
-          "Conflict Resolution & Routing Merge",
-          "Standard Sync (add / commit / push / merge)",
-        ],
+        title: "Soft Skills",
+        commands: ["Problem-solving", "Communication", "Team Collaboration"],
       },
       aiPrompting: {
         title: "AI-Assisted Development",
@@ -165,8 +154,8 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     },
 
     languages: [
-      { name: "Thai", level: "Native" },
-      { name: "English", level: "A1 CEFR" },
+      { name: "Thai", level: "" },
+      { name: "English", level: "" },
     ],
 
     certifications: [
@@ -178,15 +167,19 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
 
     achievements: [
       {
-        place: "4th Place & Competitor",
-        name: "PSRU Cyber Hackathon (Season 2 & 3)",
-        description: "CTF Competitions & Security Workshops focusing on vulnerability scanning, logical analysis, and system defense.",
+        place: "4th Place (Honorable Mention)",
+        name: "PSRU Cyber Hackathon #2: Advanced CTF & Security Workshop",
+        description: "Dec 2024",
+      },
+      {
+        place: "Participant",
+        name: "PSRU Cyber Hackathon #3: Cybersecurity Skill Competition",
+        description: "Mar 2026",
       },
     ],
 
     honors: [
-      { title: "First-Class Honors", description: "B.Sc. in Information Technology" },
-      { title: "Academic Excellence", description: "Consecutive Awards (2022-2024)" },
+      { title: "Academic Excellence Consecutive Awards", description: "2022, 2023, 2024" },
     ],
 
     favoriteGames: [],
@@ -197,9 +190,9 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       firstName: "เลิศมงคล",
       lastName: "ยามชัยภูมิ",
       nickname: "ภัค",
-      title: "นักพัฒนาเว็บฟูลสแต็ก (Full-Stack Developer)",
+      title: "นักพัฒนาซอฟต์แวร์ (Software Developer)",
       location: "ประเทศไทย",
-      bio: "นักพัฒนาเว็บฟูลสแต็ก (เกียรตินิยมอันดับ 1) พร้อมประสบการณ์สหกิจศึกษาด้านการออกแบบและสร้างสรรค์แอปพลิเคชันอย่างครบวงจร เชี่ยวชาญการใช้ Angular, React, และ C# (.NET) โดยมุ่งเน้นการเขียนโค้ดที่สะอาด (Clean Code) การเชื่อมต่อระบบ (API Integration) ที่เสถียร และการออกแบบฐานข้อมูลที่มีประสิทธิภาพ พร้อมประยุกต์ใช้กระบวนการพัฒนาซอฟต์แวร์ด้วย AI (AI-Assisted Workflows) เพื่อเร่งความเร็วในการส่งมอบผลิตภัณฑ์ที่มีคุณภาพสูง",
+      bio: "นักพัฒนาซอฟต์แวร์ที่มีประสบการณ์จริงในการทำงานกับแอปพลิเคชันเว็บที่ใช้งานจริง มีส่วนร่วมในการพัฒนาฟีเจอร์แบ็กเอนด์ แดชบอร์ด และระบบรายงานที่ใช้ในกระบวนการทำงานทางธุรกิจ สนใจที่จะพัฒนาตนเองในฐานะวิศวกรซอฟต์แวร์ โดยเน้นการเขียนโค้ดที่ดูแลรักษาง่าย และเรียนรู้การออกแบบระบบที่ปรับขนาดได้และเชื่อถือได้",
     },
 
     contacts: {
@@ -216,27 +209,21 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
       {
         school: "มหาวิทยาลัยพะเยา",
         period: "2565 – 2569",
-        degree: "วิทยาศาสตรบัณฑิต (วท.บ.) เทคโนโลยีสารสนเทศ",
+        degree: "วิทยาศาสตรบัณฑิต (วท.บ.) เทคโนโลยีสารสนเทศ (เกียรตินิยมอันดับ 1)",
         gpa: "3.66",
-      },
-      {
-        school: "โรงเรียนคอนสารวิทยาคม",
-        period: "2562 – 2565",
-        degree: "แผนการเรียนวิทยาศาสตร์-คณิตศาสตร์",
-        gpa: "3.19",
       },
     ],
 
     workExperience: [
       {
         company: "บริษัท ซอฟต์ สแควร์ อินเตอร์เนชั่นแนล จำกัด",
-        role: "นักพัฒนาซอฟต์แวร์ - สหกิจศึกษา (Software Developer - Cooperative Education)",
+        role: "นักพัฒนาซอฟต์แวร์ สหกิจศึกษา (Software Developer Cooperative Education)",
         period: "พ.ย. 2568 – ก.พ. 2569",
         tag: "สหกิจศึกษา",
         highlights: [
-          "พัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าเว็บ (Angular) และระบบหลังบ้าน (.NET Core API & PostgreSQL) สำหรับโครงการ **ECT-ERP+HRMS** (ระบบบริหารทรัพยากรบุคคล กกต.) ส่งมอบงานตรงเวลาและแก้ไขบั๊กได้อย่างมีประสิทธิภาพ",
-          "พัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) สำหรับโครงการ **MAKRO** (NEWTJE MAKRO) โดยสร้างส่วนหน้าจอแสดงผลด้วย React และพัฒนาระบบหลังบ้านพร้อมรายงานระดับองค์กรด้วย Spring Boot และ Oracle Database",
-          "ออกแบบและพัฒนาเว็บแอปพลิเคชันแบบฟูลสแต็ก (**SS-Task-Report**) ด้วย **Next.js (T3 Stack)**, **Netlify** และ **Neon (PostgreSQL)** เพื่อซิงค์ข้อมูลภารกิจและติดตามแต้มคะแนนผ่าน **ClickUp API** ช่วยเพิ่มความรวดเร็วและประสิทธิภาพในการบริหารจัดการงานภายในทีม",
+          "ออกแบบและพัฒนาฟีเจอร์ HRMS ด้าน frontend และแดชบอร์ดด้วย Angular และ TypeScript โดยเชื่อมต่อกับบริการ backend C#/.NET อย่างราบรื่น",
+          "เขียนและปรับปรุง SQL query ที่ซับซ้อนสำหรับการดึง แปลง และรายงานข้อมูล เพื่อประสิทธิภาพ ความแม่นยำ และการตัดสินใจบนข้อมูล",
+          "ดูแลโมดูล legacy แก้ไขบั๊กช่วง UAT และจัดทำเอกสารคู่มือผู้ใช้ เพื่อเพิ่มความเสถียรของระบบและสนับสนุนผู้ใช้งาน",
         ],
       },
     ],
@@ -265,28 +252,23 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     skills: {
       frontend: {
         title: "หน้าบ้าน (Frontend)",
-        skills: ["React", "Next.js", "Angular", "TypeScript", "Tailwind CSS"],
+        skills: ["Angular", "Bootstrap", "TypeScript", "HTML", "CSS", "Tailwind", "React", "Next.js", "JavaScript"],
       },
       backend: {
         title: "หลังบ้าน (Backend)",
-        skills: ["C# (.NET)", "Java (Spring Boot)", "tRPC", "RESTful APIs"],
+        skills: ["C#", "ASP.NET", "Java", "Spring Boot", "Node.js"],
       },
       database: {
         title: "ระบบฐานข้อมูล (Database)",
-        skills: ["PostgreSQL", "Oracle Database", "SQL Server", "MySQL"],
+        skills: ["MySQL", "PostgreSQL"],
       },
       devops: {
-        title: "เครื่องมือและการปรับใช้ (Tools & DevOps)",
-        skills: ["Git", "Netlify", "Vercel", "Neon Database", "JasperReports"],
+        title: "เครื่องมือ (Tools)",
+        skills: ["JasperReport", "Git", "GitHub", "Figma"],
       },
       gitCommands: {
-        title: "ระบบควบคุมเวอร์ชัน (Version Control)",
-        commands: [
-          "การทำงานแบบ Git Flow & Branching",
-          "การสร้าง Collaborative Pull Requests",
-          "การแก้ปัญหาโค้ดชนกันและการรวมสาขา (Conflict)",
-          "การซิงค์ข้อมูลมาตรฐาน (add / commit / push / merge)",
-        ],
+        title: "ทักษะด้านอ่อน (Soft Skills)",
+        commands: ["การแก้ปัญหา (Problem-solving)", "การสื่อสาร (Communication)", "การทำงานร่วมกับทีม (Team Collaboration)"],
       },
       aiPrompting: {
         title: "การพัฒนาซอฟต์แวร์ร่วมกับ AI (AI-Assisted Development)",
@@ -300,8 +282,8 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     },
 
     languages: [
-      { name: "ภาษาไทย", level: "ภาษาแม่ (Native)" },
-      { name: "ภาษาอังกฤษ", level: "A1 CEFR" },
+      { name: "ภาษาไทย", level: "" },
+      { name: "ภาษาอังกฤษ", level: "" },
     ],
 
     certifications: [
@@ -313,15 +295,19 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
 
     achievements: [
       {
-        place: "อันดับ 4 และผู้เข้าแข่งขัน",
-        name: "การแข่งขัน PSRU Cyber Hackathon (ซีซัน 2 และ 3)",
-        description: "การแข่ง CTF และเวิร์กชอปด้านความมั่นคงปลอดภัยไซเบอร์ เน้นการสืบค้นช่องโหว่ วิเคราะห์ตรรกะระบบ และการตั้งรับ",
+        place: "อันดับ 4 (รองชนะเลิศ)",
+        name: "PSRU Cyber Hackathon #2: Advanced CTF & Security Workshop",
+        description: "ธ.ค. 2567",
+      },
+      {
+        place: "ผู้เข้าร่วม",
+        name: "PSRU Cyber Hackathon #3: Cybersecurity Skill Competition",
+        description: "มี.ค. 2569",
       },
     ],
 
     honors: [
-      { title: "เกียรตินิยมอันดับ 1", description: "วิทยาศาสตรบัณฑิต (วท.บ.) สาขาเทคโนโลยีสารสนเทศ" },
-      { title: "รางวัลผลการเรียนดีเยี่ยม", description: "ได้รับรางวัลเรียนดีต่อเนื่องปี 2565 - 2567" },
+      { title: "รางวัลผลการเรียนดีเยี่ยมต่อเนื่อง", description: "2565, 2566, 2567" },
     ],
 
     favoriteGames: [],

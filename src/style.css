@@ -9,6 +9,12 @@
     --border-color: #e2e8f0;
     --timeline-color: #cbd5e1;
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --muted-text: #64748b;
+    --nav-btn-bg: #ffffff;
+    --nav-btn-text: #1e293b;
+    --nav-btn-border: #e2e8f0;
+    --nav-panel-bg: rgba(255, 255, 255, 0.92);
+    --nav-panel-border: #e2e8f0;
 }
 
 body.dark-mode {
@@ -21,6 +27,12 @@ body.dark-mode {
     --accent-dark: #60a5fa;
     --border-color: #1f2937;
     --timeline-color: #374151;
+    --muted-text: #94a3b8;
+    --nav-btn-bg: rgba(255, 255, 255, 0.05);
+    --nav-btn-text: #f3f4f6;
+    --nav-btn-border: #1f2937;
+    --nav-panel-bg: rgba(15, 23, 42, 0.65);
+    --nav-panel-border: rgba(255, 255, 255, 0.1);
 }
 
 /* Specific Dark Mode Enhancements */
@@ -75,14 +87,6 @@ body.dark-mode .ach-place {
 
 body.dark-mode .timeline-dot {
     background: var(--main-bg);
-}
-
-body.dark-mode .portfolio-link {
-    background: #111827;
-}
-
-body.dark-mode .portfolio-link:hover {
-    background: var(--accent);
 }
 
 * {
@@ -157,22 +161,128 @@ body.dark-mode .resume-page-wrapper {
     margin-bottom: 30px;
 }
 
-.portfolio-link {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #1e293b;
-    color: var(--accent);
+.portfolio-link,
+.secondary-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--nav-btn-bg);
+    color: var(--nav-btn-text);
     text-decoration: none;
     border-radius: 8px;
     font-size: 0.85rem;
     font-weight: 600;
-    border: 1px solid var(--accent);
-    transition: all 0.3s ease;
+    border: 1px solid var(--nav-btn-border);
+    transition: all 0.2s ease;
 }
 
-.portfolio-link:hover {
+.portfolio-link:hover,
+.secondary-nav-link:hover {
     background: var(--accent);
-    color: white;
+    color: #fff;
+    border-color: var(--accent);
+}
+
+.screen-only-controls {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    background-color: var(--nav-panel-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--nav-panel-border);
+    border-radius: 12px;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+}
+
+.page-nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lang-toggle-group {
+    display: flex;
+    gap: 6px;
+    background-color: var(--nav-btn-bg);
+    padding: 4px;
+    border-radius: 8px;
+    border: 1px solid var(--nav-btn-border);
+}
+
+.lang-toggle-group button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: var(--nav-btn-text);
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.lang-toggle-group button.active {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+.theme-toggle-btn {
+    background: var(--nav-btn-bg);
+    border: 1px solid var(--nav-btn-border);
+    color: var(--muted-text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+body.dark-mode .theme-toggle-btn {
+    color: #fbbf24;
+}
+
+.print-btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--accent);
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.print-btn:hover {
+    background-color: var(--accent-dark);
 }
 
 .name-mobile {

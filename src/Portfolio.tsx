@@ -6,7 +6,10 @@ import './portfolio.css';
 const activityData = [
   { src: "activity/PC030511.JPG", titleEn: "Award from Hackathon & Workshop", titleTh: "รับรางวัลชมเชยจากการแข่งขัน Hackathon & Workshop" },
   { src: "activity/IMG_1863.JPG", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
-  { src: "activity/JPEG image.jpeg", titleEn: "Team & Advisor", titleTh: "ทีมและอาจารย์ที่ปรึกษา" }
+  { src: "activity/JPEG image.jpeg", titleEn: "Team & Advisor", titleTh: "ทีมและอาจารย์ที่ปรึกษา" },
+  { src: "activity/received_1323488609830592.jpeg", titleEn: "Team Collaboration", titleTh: "การทำงานร่วมกับทีม" },
+  { src: "activity/received_1701813651191352.jpeg", titleEn: "Team & Advisor", titleTh: "ทีมและอาจารย์ที่ปรึกษา" },
+
 ];
 
 const RESUME_PDF = "/cv/Resume_SE_Laetmongkol.pdf";
@@ -14,19 +17,19 @@ const RESUME_PDF = "/cv/Resume_SE_Laetmongkol.pdf";
 const NAV_SECTION_IDS = ['about', 'experience', 'projects', 'skills', 'activities', 'certificates'] as const;
 
 const certificateData = [
-  { src: "certificate/3-Dec-2024 UP Shield เลิศมงคล ยามชัยภูมิ.png", titleEn: "UP Shield 2024", titleTh: "การอบรม UP Shield 2024" },
-  { src: "certificate/3-Dec-2024-1.png", titleEn: "Certificate 3 Dec 2024", titleTh: "เกียรติบัตร 3 ธ.ค. 2567" },
-  { src: "certificate/Screenshot 2026-05-28 003819.png", titleEn: "Achievement Certificate", titleTh: "เกียรติบัตรความสำเร็จ" },
-  { src: "certificate/ใบ Certificate สหกิจศึกษา Mr. Laetmongkol Yamchaiyaphum-1.png", titleEn: "Cooperative Education Certificate", titleTh: "ใบรับรองการสหกิจศึกษา" },
-  { src: "certificate/Fullstack Developer Program.png", titleEn: "Fullstack Developer Program", titleTh: "การอบรม Fullstack Developer" },
-  { src: "certificate/3-Feb-2025-CERTIFICATE mooc-1.png", titleEn: "MOOC Certificate", titleTh: "เกียรติบัตรหลักสูตร MOOC" },
-  { src: "certificate/10-Dec-2024Enterprise Networking-1.png", titleEn: "Enterprise Networking", titleTh: "Enterprise Networking" },
-  { src: "certificate/18-Aug-2024-Cybersecurity_Essentials_certificate_65020564-up-ac-th_a172b655-9677-4ae6-bad6-425276cf3-1.png", titleEn: "Cybersecurity Essentials", titleTh: "Cybersecurity Essentials" },
-  { src: "certificate/19-Aug-2023-Cybersecurity_Essentials_certificate_65020564-up-ac-th_e5d8ceec-60e8-4696-920e-2e5f491df-1.png", titleEn: "Cybersecurity Essentials (2023)", titleTh: "Cybersecurity Essentials (2566)" },
-  { src: "certificate/17-18-Aug-2024-CERTIFICATE-1.png", titleEn: "Training Certificate Aug 2024", titleTh: "เกียรติบัตรการอบรม ส.ค. 2567" },
-  { src: "certificate/IMG_20250726_215928.jpg", titleEn: "Certificate", titleTh: "เกียรติบัตร" },
-  { src: "certificate/IMG_20250910_170621_1.jpg", titleEn: "Certificate", titleTh: "เกียรติบัตร" },
-  { src: "certificate/เตรียมความพร้อมนิสิตสหกิจศึกษาและการศึกษาเชิงบูรณาการกับการทำงา-1.png", titleEn: "Cooperative Education Preparation", titleTh: "เตรียมความพร้อมสหกิจศึกษา" }
+  { src: "certificate/3-Dec-2024 UP Shield เลิศมงคล ยามชัยภูมิ.png", titleEn: "Award from UP Shield 2024", titleTh: "รางวัลชมเชยจากการแข่งขัน UP Shield 2024" },
+  { src: "certificate/3-Dec-2024-1.png", titleEn: "Certificate PSRU Cyber Hackathon #2", titleTh: "เกียรติบัตรการแข่งขัน PSRU Cyber Hackathon #2" },
+  { src: "certificate/Screenshot 2026-05-28 003819.png", titleEn: "Certificate PSRU Cyber Hackathon #3", titleTh: "เกียรติบัตรการแข่งขัน PSRU Cyber Hackathon #3" },
+  { src: "certificate/ใบ Certificate สหกิจศึกษา Mr. Laetmongkol Yamchaiyaphum-1.png", titleEn: "Certificate Cooperative Education", titleTh: "เกียรติบัตรการสหกิจศึกษา" },
+  { src: "certificate/Fullstack Developer Program.png", titleEn: "Certificate Fullstack Developer Program", titleTh: "เกียรติบัตรการอบรม Fullstack Developer Program" },
+  { src: "certificate/3-Feb-2025-CERTIFICATE mooc-1.png", titleEn: "Certificate MOOC", titleTh: "เกียรติบัตรหลักสูตร MOOC" },
+  { src: "certificate/10-Dec-2024Enterprise Networking-1.png", titleEn: "Certificate Enterprise Networking 2024", titleTh: "เกียรติบัตรการอบรม Enterprise Networking 2024" },
+  { src: "certificate/18-Aug-2024-Cybersecurity_Essentials_certificate_65020564-up-ac-th_a172b655-9677-4ae6-bad6-425276cf3-1.png", titleEn: "Certificate Cybersecurity Essentials 2024", titleTh: "Certificate Cybersecurity Essentials 2024" },
+  { src: "certificate/19-Aug-2023-Cybersecurity_Essentials_certificate_65020564-up-ac-th_e5d8ceec-60e8-4696-920e-2e5f491df-1.png", titleEn: "Certificate Cybersecurity Essentials 2023", titleTh: "Certificate Cybersecurity Essentials 2023" },
+  { src: "certificate/17-18-Aug-2024-CERTIFICATE-1.png", titleEn: "Certificate Forensic Techniques for Email and Cybersecurity", titleTh: "Certificate Forensic Techniques for Email and Cybersecurity" },
+  { src: "certificate/IMG_20250726_215928.jpg", titleEn: "Certificate of Excellence for Outstanding Student, Academic Year 2022.", titleTh: "เกียรติบัตรรางวัลนิสิตดีเด่น ประจำปีการศึกษา 2565" },
+  { src: "certificate/IMG_20250910_170621_1.jpg", titleEn: "Certificate of Honor for Distinguished Students", titleTh: "เกียรติบัตรนิสิตเกียรติยศ" },
+  { src: "certificate/เตรียมความพร้อมนิสิตสหกิจศึกษาและการศึกษาเชิงบูรณาการกับการทำงา-1.png", titleEn: "Certificate of Cooperative Education Preparation", titleTh: "เกียรติบัตรเตรียมความพร้อมสหกิจศึกษา" }
 ];
 
 interface PortfolioProps {

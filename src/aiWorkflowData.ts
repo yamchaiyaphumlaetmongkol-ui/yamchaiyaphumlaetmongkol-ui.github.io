@@ -14,8 +14,7 @@ export interface WorkflowPageContent {
   subtitle: string;
   intro: string;
   portfolioSummary: string;
-  portfolioDevTags: string[];
-  portfolioSaTags: string[];
+  portfolioHighlights: string[];
   howToUse: [string, string, string];
   backBtn: string;
   saTabTitle: string;
@@ -34,8 +33,13 @@ export const workflowDetails: Record<'en' | 'th', WorkflowPageContent> = {
     subtitle: "Production-grade prompt templates used in enterprise and full-stack projects — designed to clarify specs, prevent regression, and ship incrementally.",
     intro: "These are the actual prompt patterns I use in large projects (HRMS dashboards, ERP integrations, legacy module maintenance). Each template is copy-ready: fill the bracket placeholders, paste into Cursor IDE or any LLM, and approve the plan before code changes.",
     portfolioSummary: "Production-grade templates for HRMS/ERP projects — clarify specs, prevent regression, and ship in testable phases.",
-    portfolioDevTags: ["Pre-Flight", "Meta-Prompt", "Regression-Safe", "TODO Milestones", "UAT"],
-    portfolioSaTags: ["Schema Design", "Integration", "ADR"],
+    portfolioHighlights: [
+      "Check specs before coding",
+      "Protect existing code from breaking",
+      "Deliver step by step",
+      "Plan manual & UAT tests",
+      "Design data models & APIs",
+    ],
     howToUse: [
       "Copy the template and replace [bracket] placeholders with your ticket, module, or stack.",
       "Run Pre-Flight or Meta-Prompt first — never jump straight to implementation on legacy systems.",
@@ -323,8 +327,13 @@ Add a final "Sign-off checklist" (5 yes/no items for release readiness).`,
     subtitle: "เทมเพลต Prompt ระดับใช้งานจริงในโปรเจกต์องค์กร — ออกแบบมาเพื่อเคลียร์สเปก ป้องกัน Regression และส่งมอบงานทีละเฟส",
     intro: "นี่คือรูปแบบ Prompt ที่ผมใช้จริงในโปรเจกต์ขนาดใหญ่ (HRMS Dashboard, ERP Integration, ดูแล Legacy Module) แต่ละเทมเพลต copy ไปใช้ได้ทันที: แทนค่าใน [วงเล็บ] แล้ววางใน Cursor IDE หรือ LLM อื่น — อนุมัติแผนก่อนลงมือแก้โค้ดเสมอ",
     portfolioSummary: "เทมเพลตที่ใช้จริงในโปรเจกต์ HRMS/ERP — เคลียร์สเปก ป้องกัน Regression ส่งมอบทีละเฟส",
-    portfolioDevTags: ["Pre-Flight", "Meta-Prompt", "Regression-Safe", "TODO", "UAT"],
-    portfolioSaTags: ["Schema", "Integration", "ADR"],
+    portfolioHighlights: [
+      "ตรวจสเปกก่อนลงมือ",
+      "แก้โค้ดโดยไม่พังระบบเดิม",
+      "ส่งมอบทีละขั้น ทดสอบได้",
+      "วางแผนทดสอบ UAT",
+      "ออกแบบข้อมูลและเชื่อม API",
+    ],
     howToUse: [
       "Copy เทมเพลต แล้วแทนค่า [วงเล็บ] ด้วย Ticket, Module หรือ Tech Stack ของคุณ",
       "รัน Pre-Flight หรือ Meta-Prompt ก่อน — ห้ามข้ามไปเขียนโค้ดทันทีบนระบบเดิม",

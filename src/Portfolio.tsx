@@ -154,8 +154,7 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
   };
 
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
+  const scrollToSectionById = (id: string) => {
     setIsNavOpen(false);
     setActiveSection(id);
     const section = document.getElementById(id);
@@ -190,6 +189,20 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
       programmaticScrollTimerRef.current = setTimeout(releaseScrollSpy, 700);
     }
   };
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    scrollToSectionById(id);
+  };
+
+  useEffect(() => {
+    const page = (window.location.hash || '#/').replace(/^#\/?/, '').split('?')[0];
+    if (!NAV_SECTION_IDS.includes(page as (typeof NAV_SECTION_IDS)[number])) return;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => scrollToSectionById(page));
+    });
+  }, []);
 
   const navItems = [
     { id: 'about', labelEn: 'About', labelTh: 'เกี่ยวกับ' },
@@ -409,19 +422,10 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
                 </span>
               </h3>
               <p>{workflowDetails[lang].portfolioSummary}</p>
-              <div className="ai-skill-tags">
-                <div className="ai-skill-tag-row">
-                  <span className="ai-skill-tag-label">Dev</span>
-                  {workflowDetails[lang].portfolioDevTags.map((tag) => (
-                    <span key={tag} className="ai-skill-tag">{tag}</span>
-                  ))}
-                </div>
-                <div className="ai-skill-tag-row">
-                  <span className="ai-skill-tag-label">SA</span>
-                  {workflowDetails[lang].portfolioSaTags.map((tag) => (
-                    <span key={tag} className="ai-skill-tag ai-skill-tag--sa">{tag}</span>
-                  ))}
-                </div>
+              <div className="ai-skill-highlights">
+                {workflowDetails[lang].portfolioHighlights.map((item) => (
+                  <span key={item} className="ai-skill-highlight">{item}</span>
+                ))}
               </div>
             </div>
           </div>

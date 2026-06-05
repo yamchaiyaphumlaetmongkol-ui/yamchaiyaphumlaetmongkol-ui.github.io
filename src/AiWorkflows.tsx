@@ -34,6 +34,7 @@ export default function AiWorkflows({ lang, setLang, theme, setTheme }: AiWorkfl
         theme={theme}
         setTheme={setTheme}
         backLabel={currentDetails.backBtn}
+        backHref="#/skills"
       />
 
       <div className="sub-page-content">

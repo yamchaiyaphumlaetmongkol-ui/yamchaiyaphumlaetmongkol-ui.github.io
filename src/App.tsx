@@ -23,7 +23,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const page = currentHash.replace(/^#\/?/, '').split('?')[0] || 'portfolio';
+    const portfolioSections = ['about', 'experience', 'projects', 'skills', 'activities', 'certificates'];
+    if (page === 'ai-workflows' || page === 'resume') {
+      window.scrollTo(0, 0);
+    } else if (page === 'portfolio' || page === '') {
+      window.scrollTo(0, 0);
+    } else if (!portfolioSections.includes(page)) {
+      window.scrollTo(0, 0);
+    }
   }, [currentHash]);
 
   useEffect(() => {

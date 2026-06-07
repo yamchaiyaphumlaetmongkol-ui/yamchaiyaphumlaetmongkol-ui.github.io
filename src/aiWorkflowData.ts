@@ -213,7 +213,7 @@ End with: "Reply APPROVED to proceed, or answer the questions above."`,
 - Do not introduce new dependencies unless explicitly justified.
 
 Present this plan only. Wait for my "APPROVED" before writing any code.`,
-        prompt: "Converts a one-line request into a safe, repo-aware implementation plan."
+        benefit: "Converts a one-line request into a safe, repo-aware implementation plan."
       },
       {
         icon: "fa-solid fa-shield-halved",

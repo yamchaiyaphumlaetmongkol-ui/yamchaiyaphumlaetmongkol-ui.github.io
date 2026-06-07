@@ -402,8 +402,8 @@ export default function Portfolio({ theme, setTheme, lang, setLang }: PortfolioP
               <p>{data.skills.devops.skills.join(', ')}</p>
             </div>
             <div className="skill-group">
-              <h3><i className="fa-solid fa-code-branch"></i> {data.skills.gitCommands.title}</h3>
-              <p>{data.skills.gitCommands.commands.join(', ')}</p>
+              <h3><i className="fa-solid fa-code-branch"></i> {data.skills.softSkills.title}</h3>
+              <p>{data.skills.softSkills.commands.join(', ')}</p>
             </div>
             <div
               className="skill-group skill-group--ai"

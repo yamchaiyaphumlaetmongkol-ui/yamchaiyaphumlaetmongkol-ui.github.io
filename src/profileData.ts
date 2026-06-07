@@ -41,7 +41,7 @@ export interface ProfileType {
     backend: { title: string; skills: string[] };
     database: { title: string; skills: string[] };
     devops: { title: string; skills: string[] };
-    gitCommands: { title: string; commands: string[] };
+    softSkills: { title: string; commands: string[] };
     aiPrompting: { title: string; summary: string; details: string[] };
   };
   languages: Array<{ name: string; level: string }>;
@@ -93,9 +93,9 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         period: "Nov 2025 – Feb 2026",
         tag: "Cooperative Education",
         highlights: [
-          "Designed and developed HRMS frontend features and dashboards using Angular and TypeScript, seamlessly integrating them with C#/.NET backend services.",
-          "Wrote and optimized complex SQL queries for data extraction, transformation, and reporting, ensuring high performance, accuracy, and data-driven decision-making.",
-          "Maintained legacy modules, resolved bugs during UAT, and created user documentation to improve system stability and support end-users.",
+          "Developed frontend components and dashboards for the HRMS system using Angular and TypeScript, integrating them with ASP.NET Core backend services.",
+          "Wrote and optimized SQL queries for accurate data retrieval and report generation.",
+          "Assisted in maintaining legacy modules, fixing bugs during UAT, and creating user manuals to support end-users.",
         ],
       },
     ],
@@ -103,55 +103,57 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     projects: [
       {
         title: "ECT-ERP+HRMS Integration",
-        description: "Full-stack development (both Angular frontend and .NET Core backend APIs/database components) for the Election Commission of Thailand.",
+        description: "Contributed to developing the frontend with Angular and backend APIs using ASP.NET Core for the ECT HRMS system. Also designed and implemented enterprise-level reporting using Jasper Report.",
         image: "images/project-hrms.png",
-        tech: ["Angular", "C#", ".NET Core", "PostgreSQL", "JasperReports"],
+        tech: ["Angular", "ASP.NET Core", "PostgreSQL", "JasperReports"],
       },
       {
-        title: "SS-Task-Report",
-        description: "A full-stack task synchronization utility integrating with the ClickUp API to streamline task logging, story point assignment, and progress reporting.",
+        title: "My Task Report",
+        description: "Developed a Full-Stack tool using Next.js integrated with ClickUp API to track monthly man-days, monitor tasks, and manage team availability, streamlining overall resource management.",
         image: "images/project-dashboard.png",
-        tech: ["Next.js", "TypeScript", "tRPC", "PostgreSQL", "Netlify"],
-      },
+        tech: ["Next.js", "PostgreSQL"],
+      }, 
       {
         title: "NEWTJE MAKRO",
-        description: "Full-stack development of React frontend screens and Spring Boot backend enterprise-level reports and database integrations.",
+        description: "Contributed to developing the report printing feature, connecting the React frontend with the Spring Boot backend and Oracle Database.",
         image: "images/project-makro.png",
-        tech: ["React", "Spring Boot", "Oracle", "JasperReports"],
+        tech: ["React", "Spring Boot", "Oracle"],
       },
     ],
 
     skills: {
       frontend: {
         title: "Frontend",
-        skills: ["Angular", "Bootstrap", "TypeScript", "HTML", "CSS", "Tailwind", "React", "Next.js", "JavaScript"],
+        // เอาตัวที่เคยทำโปรเจกต์ขึ้นก่อน
+        skills: ["Angular", "Next.js", "TypeScript", "React", "JavaScript", "HTML", "CSS", "Tailwind", "Bootstrap"],
       },
       backend: {
         title: "Backend",
-        skills: ["C#", "ASP.NET", "Java", "Spring Boot", "Node.js"],
+        // เอา ASP.NET และ C# ขึ้นก่อนเพื่อเน้นความมั่นใจ ส่วน Java/Node.js เอาไว้ท้ายสุด
+        skills: ["C#", "ASP.NET Core", "Java (Spring Boot)", "Node.js"],
       },
       database: {
         title: "Database",
-        skills: ["MySQL", "PostgreSQL"],
+        skills: ["PostgreSQL", "MySQL", "Oracle Database"], // เพิ่ม Oracle จากโปรเจกต์แรกที่คุณเคยทำ
       },
       devops: {
-        title: "Tools",
-        skills: ["JasperReport", "Git", "GitHub", "Figma"],
+        title: "Tools & Libraries",
+        skills: ["Git", "GitHub", "JasperReports"],
       },
-      gitCommands: {
+      softSkills: { // แนะนำเปลี่ยน key เป็น softSkills เพื่อความไม่งงครับ
         title: "Soft Skills",
-        commands: ["Problem-solving", "Communication", "Team Collaboration"],
+        commands: ["Problem-solving", "Team Collaboration", "Effective Communication", "Fast Learner"],
       },
       aiPrompting: {
         title: "AI-Assisted Development",
-        summary: "Production-grade templates for HRMS/ERP projects — clarify specs, prevent regression, and ship in testable phases.",
+        // ปรับคำอธิบายให้เหมาะกับเด็กจบใหม่ที่ใช้ AI ช่วยเพิ่มประสิทธิภาพในการทำงานจริง
+        summary: "Leveraging AI tools to accelerate development, clarify technical specifications, and ensure systematic feature implementation.",
         details: [
-          "Pre-Flight Spec Validation",
-          "IDE Meta-Prompt (Context-Aware Plan)",
-          "Regression-Safe Implementation",
-          "Structured TODO Milestones",
-          "Manual Test & UAT Checklist",
-          "Schema Design · Integration · ADR",
+          "Prompt Engineering for Code Generation",
+          "Context-Aware Feature Planning",
+          "Incremental Implementation & Debugging",
+          "Structured Task & Milestone Mapping",
+          "UAT & Test Case Generation Assistance"
         ],
       },
     },
@@ -224,9 +226,9 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
         period: "พ.ย. 2568 – ก.พ. 2569",
         tag: "สหกิจศึกษา",
         highlights: [
-          "ออกแบบและพัฒนาฟีเจอร์ HRMS ด้าน frontend และแดชบอร์ดด้วย Angular และ TypeScript โดยเชื่อมต่อกับบริการ backend C#/.NET อย่างราบรื่น",
-          "เขียนและปรับปรุง SQL query ที่ซับซ้อนสำหรับการดึง แปลง และรายงานข้อมูล เพื่อประสิทธิภาพ ความแม่นยำ และการตัดสินใจบนข้อมูล",
-          "ดูแลโมดูล legacy แก้ไขบั๊กช่วง UAT และจัดทำเอกสารคู่มือผู้ใช้ เพื่อเพิ่มความเสถียรของระบบและสนับสนุนผู้ใช้งาน",
+          "พัฒนาหน้าจอและแดชบอร์ด ของระบบ HRMS ด้วย Angular และ TypeScript โดยเชื่อมต่อการทำงานร่วมกับระบบหลังบ้าน ASP.NET Core",
+          "เขียนและปรับปรุง SQL Query เพื่อดึงข้อมูลมาแสดงผลในระบบรายงานได้อย่างถูกต้องและมีประสิทธิภาพ",
+          "ร่วมดูแลระบบเดิม (Legacy) แก้ไขบั๊กในช่วงทดสอบระบบ (UAT) และจัดทำคู่มือการใช้งานสำหรับผู้ใช้",
         ],
       },
     ],
@@ -234,55 +236,57 @@ export const profileData: Record<'en' | 'th', ProfileType> = {
     projects: [
       {
         title: "ECT-ERP+HRMS Integration",
-        description: "การพัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าเว็บแบบ Angular และระบบคิวรี่หลังบ้าน .NET Core สำหรับระบบบริหารทรัพยากรบุคคล กกต.",
+        description: "มีส่วนร่วมในการพัฒนาหน้าจอด้วย Angular และสร้าง API หลังบ้านด้วย ASP.NET Core สำหรับระบบบริหารทรัพยากรบุคคล กกต. พร้อมทั้งออกแบบและจัดทำระบบรายงานด้วย Jasper Report",
         image: "images/project-hrms.png",
-        tech: ["Angular", "C#", ".NET Core", "PostgreSQL", "JasperReports"],
+        tech: ["Angular", "ASP.NET Core", "PostgreSQL", "JasperReports"],
       },
       {
-        title: "SS-Task-Report",
-        description: "เครื่องมือฟูลสแต็กสำหรับซิงค์และวิเคราะห์แต้มภารกิจทีมร่วมกับ ClickUp API",
+        title: "My Task Report",
+        description: "พัฒนาเครื่องมือ Full-Stack ด้วย Next.js ร่วมกับ ClickUp API สำหรับติดตามและคำนวณ Man-day ของทีมเป็นรายเดือน พร้อมระบบตารางแสดงสถานะงานและวันว่างเพื่อเพิ่มประสิทธิภาพในการบริหารบุคคล",
         image: "images/project-dashboard.png",
-        tech: ["Next.js", "TypeScript", "tRPC", "PostgreSQL", "Netlify"],
+        tech: ["Next.js", "PostgreSQL"],
       },
       {
         title: "NEWTJE MAKRO",
-        description: "การพัฒนาฟีเจอร์แบบฟูลสแต็ก (Full-Stack) ทั้งส่วนหน้าจอแสดงผลบน React และระบบรายงานระดับองค์กรหลังบ้านด้วย Spring Boot และ Oracle Database",
+        description: "มีส่วนร่วมในการพัฒนาฟังก์ชันพิมพ์รายงาน (Report) ของระบบ โดยเชื่อมต่อหน้าจอแสดงผลด้วย React ร่วมกับระบบหลังบ้าน Spring Boot และฐานข้อมูล Oracle Database",
         image: "images/project-makro.png",
-        tech: ["React", "Spring Boot", "Oracle", "JasperReports"],
+        tech: ["React", "Spring Boot", "Oracle"],
       },
     ],
 
     skills: {
       frontend: {
-        title: "หน้าบ้าน (Frontend)",
-        skills: ["Angular", "Bootstrap", "TypeScript", "HTML", "CSS", "Tailwind", "React", "Next.js", "JavaScript"],
+        title: "Frontend",
+        // เรียงเอาตัวที่เคยทำโปรเจกต์และมั่นใจขึ้นก่อนครับ
+        skills: ["Angular", "Next.js", "TypeScript", "React", "JavaScript", "HTML", "CSS", "Tailwind", "Bootstrap"],
       },
       backend: {
-        title: "หลังบ้าน (Backend)",
-        skills: ["C#", "ASP.NET", "Java", "Spring Boot", "Node.js"],
+        title: "Backend",
+        // เอา ASP.NET และ C# ขึ้นหน้าสุดเพื่อเน้นความมั่นใจในจุดแข็งของเรา
+        skills: ["C#", "ASP.NET Core", "Java (Spring Boot)", "Node.js"],
       },
       database: {
-        title: "ระบบฐานข้อมูล (Database)",
-        skills: ["MySQL", "PostgreSQL"],
+        title: "Database",
+        skills: ["PostgreSQL", "MySQL", "Oracle Database"], // เพิ่ม Oracle Database จากโปรเจกต์แรกเข้าไปด้วยครับ
       },
       devops: {
-        title: "เครื่องมือ (Tools)",
-        skills: ["JasperReport", "Git", "GitHub", "Figma"],
+        title: "Tools & Libraries",
+        skills: ["Git", "GitHub", "JasperReports"],
       },
-      gitCommands: {
-        title: "ทักษะด้านอ่อน (Soft Skills)",
-        commands: ["การแก้ปัญหา (Problem-solving)", "การสื่อสาร (Communication)", "การทำงานร่วมกับทีม (Team Collaboration)"],
+      softSkills: { // ปรับ key จาก gitCommands เป็น softSkills ให้ตรงความหมาย
+        title: "Soft Skills",
+        commands: ["การแก้ปัญหา", "การทำงานร่วมกับทีม", "การสื่อสารที่มีประสิทธิภาพ", "การเรียนรู้เทคโนโลยีใหม่ได้เร็ว"],
       },
       aiPrompting: {
         title: "การพัฒนาซอฟต์แวร์ร่วมกับ AI (AI-Assisted Development)",
-        summary: "เทมเพลตที่ใช้จริงในโปรเจกต์ HRMS/ERP — เคลียร์สเปก ป้องกัน Regression ส่งมอบทีละเฟส",
+        // ปรับให้สั้น กระชับ และแสดงถึงการนำ AI มาช่วยเพิ่ม Productivity ในการทำงานจริง
+        summary: "ประยุกต์ใช้เครื่องมือ AI ในการช่วยเขียนโค้ด ตรวจสอบความถูกต้องของสเปก และช่วยไล่ตรวจสอบบั๊กเพื่อเพิ่มความรวดเร็วในการส่งมอบงาน",
         details: [
-          "Pre-Flight — ตรวจสเปกก่อนลงมือ",
-          "IDE Meta-Prompt (แผนจากโค้ดจริง)",
-          "แก้โค้ดอย่างปลอดภัย (Regression-Safe)",
-          "แผนงาน TODO ทีละเฟส",
-          "ชุดทดสอบมือ & UAT",
-          "Schema · Integration · ADR",
+          "การเขียน Prompt เพื่อช่วยเจนโค้ดและแก้ไขคำสั่ง",
+          "การวางโครงสร้างฟีเจอร์ใหม่ร่วมกับ AI",
+          "การใช้ AI ช่วย Debug และวิเคราะห์ข้อผิดพลาดของโค้ด",
+          "การแบ่งลำดับความสำคัญของงานและ Milestone",
+          "การประยุกต์ใช้ AI ในการช่วยคิดชุดทดสอบ (UAT & Test Cases)"
         ],
       },
     },

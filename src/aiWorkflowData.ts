@@ -29,16 +29,16 @@ export interface WorkflowPageContent {
 
 export const workflowDetails: Record<'en' | 'th', WorkflowPageContent> = {
   en: {
-    title: "AI-Assisted System Analysis & Software Engineering",
-    subtitle: "Production-grade prompt templates used in enterprise and full-stack projects — designed to clarify specs, prevent regression, and ship incrementally.",
-    intro: "These are the actual prompt patterns I use in large projects (HRMS dashboards, ERP integrations, legacy module maintenance). Each template is copy-ready: fill the bracket placeholders, paste into Cursor IDE or any LLM, and approve the plan before code changes.",
-    portfolioSummary: "Production-grade templates for HRMS/ERP projects — clarify specs, prevent regression, and ship in testable phases.",
+    title: "AI-Assisted Systems & Software Engineering",
+    subtitle: "Prompt engineering patterns designed to clarify specifications, prevent regression, and deliver features incrementally.",
+    intro: "Actual prompt workflows applied during my projects to systematically analyze code. These templates can be adapted for Cursor IDE or other LLMs to validate development plans before implementation.",
+    portfolioSummary: "Leveraging AI to validate specifications, protect existing code from regression, and deliver features in testable phases.",
     portfolioHighlights: [
-      "Check specs before coding",
-      "Protect existing code from breaking",
-      "Deliver step by step",
-      "Plan manual & UAT tests",
-      "Design data models & APIs",
+      "Validate requirements before implementation",
+      "Analyze impacts to protect existing code from breaking",
+      "Plan and deliver features in step-by-step phases",
+      "Assist in generating manual and UAT test cases",
+      "Aid in designing data models and API integrations",
     ],
     howToUse: [
       "Copy the template and replace [bracket] placeholders with your ticket, module, or stack.",
@@ -47,25 +47,26 @@ export const workflowDetails: Record<'en' | 'th', WorkflowPageContent> = {
     ],
     backBtn: "Back to Portfolio",
     saTabTitle: "System Analyst & Architect Workflows",
-    saTabSub: "Data model, integration design, ADR decisions",
+    saTabSub: "Data models, integration design, and ADR decisions",
     devTabTitle: "AI-Assisted Development Workflows",
-    devTabSub: "Spec check, safe changes, incremental delivery, UAT",
+    devTabSub: "Spec checks, safe changes, incremental delivery, and UAT",
     whenToUseLabel: "When to use",
     portfolioExampleLabel: "Used in projects like",
     saCards: [
       {
         icon: "fa-solid fa-user-gear",
         title: "Solution Architect Persona",
-        summary: "Forces decisive architecture recommendations with explicit trade-offs — no vague \"it depends\" answers.",
+        summary: "Forces decisive architecture recommendations with explicit trade-offs — avoiding vague \"it depends\" answers.",
         whenToUse: "Early design phase, technology shortlisting, or architecture review meetings.",
-        portfolioExample: "Evaluating integration approach between Angular HRMS modules and .NET Core services.",
+        portfolioExample: "Evaluating integration approaches between web frontends and backend services.",
         rule: "Architect Role",
-        prompt: `[ROLE] You are a Solution Architect for enterprise web systems (Angular + .NET/Java APIs + RDBMS). Prioritize practical, maintainable solutions over theoretical perfection.
+        prompt: `[ROLE] You are a Solution Architect for enterprise web systems. Prioritize practical, maintainable solutions over theoretical perfection.
 
-[CONTEXT]
-- Domain: [e.g., HRMS leave management / ERP reporting]
-- Team constraints: [skillset, timeline, budget]
-- Non-negotiables: [compliance, uptime, existing stack]
+[WORKSPACE CONTEXT]
+- Read rules from: @agent.md / @skills.md (if available) to align with team constraints and technical stack guidelines.
+- Target Domain: [e.g., Leave Management / ERP Reporting / Payment Integration]
+- Tech Stack: [e.g., Angular + .NET Core / React + Node.js]
+- System Constraints: [e.g., skillsets, timeline, budget, compliance]
 
 [RULES]
 1. Give ONE clear recommendation — never end with only "it depends".
@@ -85,20 +86,19 @@ export const workflowDetails: Record<'en' | 'th', WorkflowPageContent> = {
         title: "Schema & Database Design",
         summary: "Structured data modeling with entities, indexes, and normalization trade-offs for production databases.",
         whenToUse: "New module design, report query optimization, or schema review before migration.",
-        portfolioExample: "HRMS reporting tables and complex SQL for dashboards at Soft Square.",
+        portfolioExample: "Designing reporting tables and complex SQL for enterprise dashboards.",
         rule: "Data Model Spec",
-        prompt: `Design a production Data Model for [Domain: e.g., HR leave & approval workflow]
+        prompt: `Design a production Data Model for [Domain: e.g., Order Processing / Inventory Management]
 
 [INPUTS]
-- Known entities: [e.g., Employee, LeaveRequest, Approver, Department]
-- Database: [PostgreSQL / MySQL / Oracle]
-- Expected scale: [rows/year, peak concurrent users]
-- Read patterns: [dashboards, exports, real-time UI]
-- Write patterns: [CRUD, batch import, audit logs]
+- Database Engine: [PostgreSQL / MySQL / SQL Server / Oracle]
+- Expected Scale: [e.g., rows/year, peak concurrent users]
+- Primary Read Patterns: [e.g., real-time UI dashboards, batch data exports]
+- Primary Write Patterns: [e.g., high-frequency CRUD, batch import, audit logs]
 
 [OUTPUT — use these sections only]
 1. Entity list with attributes (name + SQL type + nullable + notes)
-2. Relationships & cardinality (text or Mermaid ER)
+2. Relationships & cardinality (text or Mermaid ER diagram)
 3. Indexes (with WHY each index exists — query pattern it serves)
 4. Normalization vs performance trade-off (explicit decision)
 5. Migration / rollout risks for existing data`,
@@ -109,45 +109,45 @@ export const workflowDetails: Record<'en' | 'th', WorkflowPageContent> = {
         title: "Integration Architecture",
         summary: "Defines API/event contracts, failure handling, and security for service-to-service communication.",
         whenToUse: "Connecting frontend to backend, third-party APIs, or multi-system ERP integrations.",
-        portfolioExample: "ECT-ERP+HRMS integration — Angular UI with .NET Core APIs and PostgreSQL.",
+        portfolioExample: "Designing fullstack integration workflows between client UIs and core APIs.",
         rule: "Integration Blueprint",
         prompt: `Design integration between [System A] and [System B]
 
 [CONSTRAINTS]
-- Protocol: [REST / gRPC / message queue / batch file]
-- Sync model: [sync request-response / async event]
-- Auth: [JWT / API key / OAuth / internal network]
-- SLA: [timeout, retry budget, idempotency required? Y/N]
+- Protocol/Transport: [REST / gRPC / GraphQL / Message Queue / File Batch]
+- Sync Model: [Synchronous Request-Response / Asynchronous Event]
+- Authentication: [JWT / API Key / OAuth2 / Mutual TLS]
+- SLA/Reliability: [e.g., timeout limits, retry budget, idempotency required? Y/N]
 
 [OUTPUT]
 1. Contract: request/response JSON Schema or TypeScript interfaces
 2. Sequence flow (numbered steps or Mermaid sequenceDiagram)
 3. Failure matrix: error type → retry? → user message → log level
 4. Idempotency & duplicate handling strategy
-5. Security checklist (transport, authZ scopes, rate limits, PII handling)`,
+5. Security checklist (transport encryption, authZ scopes, rate limits, PII handling)`,
         benefit: "Prevents integration bugs before a single endpoint is coded."
       },
       {
         icon: "fa-solid fa-scale-balanced",
-        title: "Technical Decision Record (ADR)",
+        title: "Architecture Decision Record (ADR)",
         summary: "Structured technology comparison with a definitive recommendation and migration risks.",
         whenToUse: "Choosing between libraries, databases, or architecture patterns under real constraints.",
-        portfolioExample: "Comparing report generation approaches (JasperReports vs in-app PDF) under enterprise load.",
+        portfolioExample: "Comparing technical components or third-party libraries under enterprise workloads.",
         rule: "ADR Template",
         prompt: `Create an Architectural Decision Record (ADR)
 
 [DECISION]
-Compare [Option A] vs [Option B] for [goal: e.g., PDF report generation at scale]
+Compare [Option A] vs [Option B] for [Goal: e.g., Local storage caching vs State management]
 
 [CONSTRAINTS]
-- Team: [current skills]
-- Timeline: [release date]
-- Scale: [requests/day, data volume]
-- Must integrate with: [existing stack]
+- Team Competency: [current skills or tech stack guidelines in @skills.md]
+- Timeline/Urgency: [release date / constraints]
+- Scale/Performance: [expected traffic / throughput / data volume]
+- Integration: Must seamlessly integrate with [existing stack]
 
 [OUTPUT — ADR format]
 ## Status: Proposed
-## Context (2-3 sentences)
+## Context (2-3 sentences explaining the problem)
 ## Comparison Matrix (Performance | Complexity | Cost | Ops burden)
 ## Decision: [pick one — decisive]
 ## Consequences (positive + negative)
@@ -161,18 +161,18 @@ Compare [Option A] vs [Option B] for [goal: e.g., PDF report generation at scale
         icon: "fa-solid fa-clipboard-check",
         title: "Pre-Flight Spec Validation",
         summary: "Stops implementation until requirements, scope, and regression risks are explicit.",
-        whenToUse: "Every new ticket — especially on legacy HRMS/ERP modules with stable production flows.",
-        portfolioExample: "UAT bug fixes and new dashboard features without breaking existing HRMS workflows.",
+        whenToUse: "Every new ticket — especially on legacy modules with stable production flows.",
+        portfolioExample: "Analyzing business requirements and bug fixes without breaking existing workflows.",
         rule: "Spec Gate",
         prompt: `[ROLE] Senior developer reviewing a task BEFORE any code is written.
 
-[PROJECT CONTEXT]
-- Stack: [e.g., Angular 17 + TypeScript + .NET Core 8 + PostgreSQL]
-- Module: [e.g., Leave Request screen / Payroll export]
-- Must NOT break: [list existing flows users rely on daily]
+[WORKSPACE SETTINGS]
+- Cross-reference with rules in @agent.md and guidelines in @skills.md to check for compliance.
+- Target Module/Screen: [e.g., Checkout Page / Employee Profile]
+- Regression Guard: [list critical existing flows that must NOT break]
 
 [REQUEST]
-[paste ticket, user story, or feature description]
+[paste ticket description, user story, or feature request here]
 
 [OUTPUT — do not write code]
 1. Ambiguities (max 5, ranked by impact)
@@ -190,110 +190,110 @@ End with: "Reply APPROVED to proceed, or answer the questions above."`,
         title: "IDE Meta-Prompt (Context-Aware Plan)",
         summary: "AI reads the actual workspace first, then generates a project-specific execution plan for approval.",
         whenToUse: "Medium-to-large features where file selection and pattern matching matter.",
-        portfolioExample: "Adding responsive mobile layout to portfolio without breaking desktop — analyze files first.",
+        portfolioExample: "Planning layouts and cross-module adjustments by analyzing the workspace codebase first.",
         rule: "Plan Before Code",
         prompt: `Before implementing ANY code for: [Feature / bugfix description]
 
 [MANDATORY FIRST STEP]
-1. Read relevant files in this workspace (list which you inspected).
-2. Identify patterns already used (naming, folder structure, CSS approach, state management).
+1. Read relevant files in this workspace (list which files you inspected).
+2. Align with the coding style defined in @skills.md and development workflows in @agent.md.
+3. Identify existing patterns (naming conventions, folder structures, styling approaches, state management).
 
 [THEN OUTPUT]
 ## Execution Plan
-- Files to CREATE (with purpose each)
-- Files to MODIFY (with what changes, line-level intent)
-- Files explicitly NOT to touch (regression guard)
-- Desktop vs mobile scope (if UI work — which breakpoints)
-- Test checklist after implementation
+- Files to CREATE (with the specific purpose of each)
+- Files to MODIFY (with planned changes and line-level intent)
+- Files explicitly NOT to touch (regression guardrails)
+- Breakpoints / Layout scope (if UI work — specify mobile vs desktop boundaries)
+- Post-implementation test checklist
 
 [CONSTRAINTS]
-- Minimal diff — do not refactor unrelated code
-- Match existing author style in this repo
-- No new dependencies unless justified
+- Minimal diff — do not refactor unrelated code.
+- Match the exact coding style found in this repository.
+- Do not introduce new dependencies unless explicitly justified.
 
-Present this plan only. Wait for my "APPROVED" before writing code.`,
-        benefit: "Converts a one-line request into a safe, repo-aware implementation plan."
+Present this plan only. Wait for my "APPROVED" before writing any code.`,
+        prompt: "Converts a one-line request into a safe, repo-aware implementation plan."
       },
       {
         icon: "fa-solid fa-shield-halved",
         title: "Regression-Safe Implementation",
-        summary: "Principal-engineer guardrails for changing production code without breaking stable modules.",
+        summary: "Guardrails for changing production code safely without breaking stable, existing modules.",
         whenToUse: "Any code change on mature codebases — the default prompt for implementation work.",
-        portfolioExample: "Maintaining legacy HRMS modules and Angular dashboards during cooperative education.",
+        portfolioExample: "Implementing clean features and bug fixes on established legacy systems.",
         rule: "Safe Change",
         prompt: `[ROLE] Principal Software Engineer — stability first.
 
 [CONTEXT]
-- Stack: [e.g., Angular + TypeScript / React + Vite / C# .NET]
-- Task: [specific change — one feature or bugfix only]
-- Reference patterns: [paste similar existing file or describe convention]
+- Coding Standard: Strict compliance with @skills.md and execution behaviors in @agent.md.
+- Specific Task: [Describe the precise change — one feature or bugfix only]
+- Reference Pattern: [Paste a similar existing file or describe the expected repository convention]
 
 [HARD RULES]
 1. Do NOT modify files outside the stated scope.
-2. Do NOT change desktop layout when task is mobile-only (use @media only).
+2. Do NOT alter layout constraints outside the specified viewport (use isolated media queries if UI work).
 3. Do NOT refactor, rename, or "clean up" unrelated code.
-4. Ask questions if spec is ambiguous — do not assume.
-5. Full implementations only — no "// TODO" or truncated snippets.
+4. Ask questions if the specification is ambiguous — do not make assumptions.
+5. Provide full implementations only — no placeholders, "// TODO", or truncated code blocks.
 
 [EDGE CASES TO HANDLE]
-[list or write "propose 3 edge cases and wait for approval"]
+[List specific edge cases OR state: "Propose 3 edge cases and wait for approval"]
 
 [DELIVERABLES]
 1. Code changes (minimal diff)
 2. Brief summary: what changed and why
 3. Manual test steps (3-5 bullets)
-4. What was intentionally NOT changed`,
+4. What was intentionally left unchanged`,
         benefit: "The core prompt for enterprise maintenance — prevents scope creep and regressions."
       },
       {
         icon: "fa-solid fa-list-check",
         title: "Structured TODO Milestones",
-        summary: "Breaks large deliverables into small, testable phases — ship and verify incrementally.",
+        summary: "Breaks large deliverables into small, testable phases — shipping and verifying incrementally.",
         whenToUse: "Multi-day features, refactors, or responsive redesigns split across review cycles.",
-        portfolioExample: "Portfolio mobile responsive: P0 nav → P1 layout → P2 polish, each testable alone.",
+        portfolioExample: "Splitting massive feature rollouts into independent, testable frontend/backend phases.",
         rule: "Incremental Delivery",
         prompt: `Break this task into incremental, testable milestones:
 
-[TASK] [e.g., Make portfolio mobile-responsive without affecting desktop ≥969px]
+[TASK DESCRIPTION] [e.g., Implement dark mode / Refactor authentication flow]
+[TARGET CODEBASE] [Core files or modules involved]
 
-[PROJECT] [stack and key files]
-
-[OUTPUT — numbered milestones only, no code yet]
-For each milestone:
-- ID (P0, P1, P2...)
-- Goal (one sentence)
-- Files touched
-- Acceptance criteria (how I verify in browser/DevTools)
-- Rollback note (what to revert if it fails)
+[OUTPUT — numbered milestones only, no code blocks yet]
+For each milestone, define:
+- ID (P0, P1, P2...) following prioritized development pipelines in @agent.md
+- Goal (one clear sentence)
+- Files to be modified/created
+- Acceptance criteria (how to manually verify in the environment/DevTools)
+- Rollback strategy (how to safely revert this specific milestone if it fails)
 
 [RULES]
-- Each milestone must be independently testable
-- P0 = highest risk / blocker first
-- Desktop (≥969px) must remain unchanged unless milestone explicitly says otherwise
-- Max 5 milestones
+- Each milestone must be independently testable and deployable.
+- P0 = Highest risk, core logic, or architectural blockers first.
+- Keep existing code completely stable outside the active milestone scope.
+- Maximum of 5 milestones.
 
-Wait for me to say "Start P0" before implementing milestone 1.`,
-        benefit: "Makes large AI-assisted work reviewable in small PR-sized chunks."
+Wait for me to say "Start [Milestone ID]" before implementing any code.`,
+        benefit: "Makes large AI-assisted work reviewable in small, PR-sized chunks."
       },
       {
         icon: "fa-solid fa-code",
         title: "Fullstack Code Explainer",
         summary: "Onboarding-friendly explanation of data flow across frontend, API, and database layers.",
         whenToUse: "Understanding legacy modules, handover documentation, or pre-refactor analysis.",
-        portfolioExample: "Explaining HRMS dashboard data flow from Angular component → API → SQL report query.",
+        portfolioExample: "Tracing end-to-end data pipelines from UI events to database storage layers.",
         rule: "Code Walkthrough",
         prompt: `Explain this code for a developer joining the project mid-sprint.
 
-[STACK] [e.g., Angular component → .NET Core controller → PostgreSQL]
-[CODE / FILES] [paste snippet or list file paths]
+[TECH STACK] [e.g., Frontend Component → API Controller → Database Query]
+[CODE / FILE PATHS] [Paste code snippet or list file locations]
 
 [OUTPUT]
 1. **Purpose** — what business problem this solves (plain English)
-2. **Trigger** — what user action or event starts this flow
+2. **Trigger** — what user action or system event starts this flow
 3. **Step-by-step data flow** (numbered, include API endpoints & DB tables if any)
-4. **Dependencies** — other modules/services this touches
+4. **Dependencies** — other modules/services/files this touches (cross-reference @skills.md tech stacks)
 5. **Gotchas** — non-obvious logic, side effects, or legacy workarounds
-6. **If I need to change X** — which file to start with`,
+6. **Modification Guide** — if I need to change this behavior, which file/function should I start with?`,
         benefit: "Reduces onboarding time on complex enterprise codepaths."
       },
       {
@@ -301,38 +301,39 @@ Wait for me to say "Start P0" before implementing milestone 1.`,
         title: "Manual Test & UAT Checklist",
         summary: "Structured test cases for manual QA — happy path, edge cases, and regression checks.",
         whenToUse: "Before UAT submission or production release on user-facing features.",
-        portfolioExample: "UAT verification for HRMS features and bug fixes before deployment.",
+        portfolioExample: "Validating user flows and visual components against specifications before deployment.",
         rule: "QA Checklist",
-        prompt: `Create a Manual Test Suite for: [Feature name]
+        prompt: `Create a Manual Test Suite for: [Feature Name / Ticket ID]
 
-[USER FLOW] [e.g., User submits leave request → manager approves → status updates on dashboard]
-[ENVIRONMENTS] [dev / staging URLs, test accounts if needed]
-[REGRESSION AREAS] [existing flows that must still work]
+[EXPECTED USER FLOW] [e.g., User adds item to cart → cart totals recalculate → checkout updates]
+[TESTING ENVIRONMENT] [e.g., Dev URL / Staging environment details]
+[REGRESSION FOCUS] [List existing features that must remain unaffected]
 
 [OUTPUT — table format]
-| ID | Title | Pre-conditions | Steps | Expected result | Priority |
-Include:
-- At least 1 happy path
-- At least 3 edge/negative cases (invalid input, permissions, network)
-- At least 2 regression checks (unrelated features still work)
-- Mobile + desktop rows if UI feature
+| ID | Title | Pre-conditions | Steps to Reproduce | Expected Result | Priority |
 
-Add a final "Sign-off checklist" (5 yes/no items for release readiness).`,
-        benefit: "Matches real UAT workflow — structured, reproducible, audit-friendly."
+Ensure you include:
+- At least 1 Happy Path case.
+- At least 3 Edge/Negative cases (e.g., empty states, invalid inputs, network disruptions).
+- At least 2 Regression checks (verifying related features still work perfectly).
+- Multi-viewport verification (Mobile vs Desktop) if it is a UI feature.
+
+Add a final "Sign-off Checklist" consisting of 5 decisive Yes/No items for production release readiness.`,
+        benefit: "Matches real UAT workflows — structured, reproducible, and audit-friendly."
       }
     ]
   },
   th: {
-    title: "กระบวนการวิเคราะห์ระบบและพัฒนาซอฟต์แวร์ร่วมกับ AI",
-    subtitle: "เทมเพลต Prompt ระดับใช้งานจริงในโปรเจกต์องค์กร — ออกแบบมาเพื่อเคลียร์สเปก ป้องกัน Regression และส่งมอบงานทีละเฟส",
-    intro: "นี่คือรูปแบบ Prompt ที่ผมใช้จริงในโปรเจกต์ขนาดใหญ่ (HRMS Dashboard, ERP Integration, ดูแล Legacy Module) แต่ละเทมเพลต copy ไปใช้ได้ทันที: แทนค่าใน [วงเล็บ] แล้ววางใน Cursor IDE หรือ LLM อื่น — อนุมัติแผนก่อนลงมือแก้โค้ดเสมอ",
-    portfolioSummary: "เทมเพลตที่ใช้จริงในโปรเจกต์ HRMS/ERP — เคลียร์สเปก ป้องกัน Regression ส่งมอบทีละเฟส",
+    title: "กระบวนการพัฒนาซอฟต์แวร์ร่วมกับ AI (AI-Assisted Development)",
+    subtitle: "แนวทางการเขียน Prompt เพื่อช่วยเคลียร์สเปกงาน ป้องกันบั๊กกระทบระบบเดิม และส่งมอบงานเป็นขั้นตอน",
+    intro: "รูปแบบ Prompt ที่ผมประยุกต์ใช้ในโปรเจกต์ต่างๆ เพื่อช่วยไล่โค้ดและวางแผนงานอย่างเป็นระบบ โดยสามารถนำไปปรับใช้ใน Cursor IDE หรือ LLM อื่นๆ เพื่อตรวจสอบแผนงานก่อนเริ่มเขียนโค้ดจริง",
+    portfolioSummary: "ประยุกต์ใช้เครื่องมือ AI ช่วยตรวจสอบสเปกงาน ป้องกันโค้ดกระทบส่วนอื่น และวางแผนส่งมอบงานทีละเฟส",
     portfolioHighlights: [
-      "ตรวจสเปกก่อนลงมือ",
-      "แก้โค้ดโดยไม่พังระบบเดิม",
-      "ส่งมอบทีละขั้น ทดสอบได้",
-      "วางแผนทดสอบ UAT",
-      "ออกแบบข้อมูลและเชื่อม API",
+      "ตรวจสอบความถูกต้องของสเปกก่อนเริ่มงาน",
+      "วิเคราะห์ผลกระทบเพื่อไม่ให้กระทบระบบเดิม (Regression Check)",
+      "วางแผนและส่งมอบงานเป็นขั้นตอนที่จับต้องได้",
+      "ช่วยคิดสถานการณ์สำหรับทดสอบระบบ (UAT)",
+      "ช่วยออกแบบโครงสร้างข้อมูลและการเชื่อมต่อ API",
     ],
     howToUse: [
       "Copy เทมเพลต แล้วแทนค่า [วงเล็บ] ด้วย Ticket, Module หรือ Tech Stack ของคุณ",
@@ -341,25 +342,26 @@ Add a final "Sign-off checklist" (5 yes/no items for release readiness).`,
     ],
     backBtn: "กลับหน้าพอร์ตโฟลิโอ",
     saTabTitle: "งานวิเคราะห์และออกแบบระบบ (SA & Architect)",
-    saTabSub: "Data Model, Integration, ADR",
+    saTabSub: "การออกแบบโครงสร้างข้อมูล, API Integration และข้อตกลง ADR",
     devTabTitle: "งานพัฒนาและเขียนโปรแกรม (AI-Assisted Dev)",
-    devTabSub: "เช็กสเปก, แก้โค้ดปลอดภัย, ส่งมอบทีละเฟส, UAT",
+    devTabSub: "การตรวจสอบสเปก, แก้โค้ดอย่างปลอดภัย, ส่งมอบทีละเฟส และเตรียมชุดทดสอบ UAT",
     whenToUseLabel: "ใช้เมื่อไหร่",
     portfolioExampleLabel: "ใช้ในโปรเจกต์เช่น",
     saCards: [
       {
         icon: "fa-solid fa-user-gear",
         title: "บทบาท Solution Architect",
-        summary: "บังคับให้ AI ให้คำแนะนำที่ชัดเจน พร้อม Trade-off — ไม่ตอบกว้างๆ ว่า \"ขึ้นอยู่กับ\"",
-        whenToUse: "ช่วงออกแบบระบบ, เลือกเทคโนโลยี, หรือ Review สถาปัตยกรรม",
-        portfolioExample: "ประเมินวิธีเชื่อมต่อ Angular HRMS กับ .NET Core API",
+        summary: "บังคับให้ AI ให้คำแนะนำที่ชัดเจน พร้อมวิเคราะห์ข้อดีข้อเสียอย่างตรงไปตรงมา — ไม่ตอบกว้างๆ แค่ \"ขึ้นอยู่กับ\"",
+        whenToUse: "ช่วงออกแบบระบบ, เลือกเทคโนโลยี หรือทบทวนสถาปัตยกรรม (Architecture Review)",
+        portfolioExample: "ประเมินแนวทางการเชื่อมต่อและเลือกสถาปัตยกรรมระหว่างระบบหน้าบ้านและบริการหลังบ้าน",
         rule: "Architect Role",
-        prompt: `[บทบาท] คุณคือ Solution Architect สำหรับระบบเว็บองค์กร (Angular + .NET/Java API + RDBMS) เน้นโซลูชันที่ใช้งานได้จริงมากกว่าความสมบูรณ์แบบใน theory
+        prompt: `[บทบาท] คุณคือ Solution Architect สำหรับระบบเว็บองค์กร เน้นโซลูชันที่ใช้งานได้จริงมากกว่าความสมบูรณ์แบบใน theory
 
-[บริบท]
-- โดเมน: [เช่น HRMS ระบบลา / รายงาน ERP]
-- ข้อจำกัดทีม: [ทักษะ, ไทม์ไลน์, งบ]
-- สิ่งที่ห้ามเปลี่ยน: [Compliance, Uptime, Stack เดิม]
+[บริบทของ WORKSPACE]
+- อ่านกฎเกณฑ์จาก: @agent.md / @skills.md (ถ้ามีในโปรเจกต์) เพื่อให้สอดคล้องกับข้อจำกัดของทีมและแนวทางขององค์กร
+- โดเมนระบบ: [เช่น ระบบจัดการคลังสินค้า / ระบบชำระเงิน / หน้า Dashboard รายงาน]
+- เทคโนโลยี (Tech Stack): [เช่น React + Node.js / Angular + .NET Core]
+- ข้อจำกัดของโครงการ: [เช่น ทักษะของทีม, ไทม์ไลน์, งบประมาณ, ระบบเดิมที่ห้ามเปลี่ยน]
 
 [กฎ]
 1. ให้คำแนะนำเดียวที่ชัดเจน — ห้ามจบแค่ "ขึ้นอยู่กับ"
@@ -372,247 +374,247 @@ Add a final "Sign-off checklist" (5 yes/no items for release readiness).`,
 2. ตาราง Trade-off (ได้อะไร vs เสียอะไร vs ความเสี่ยง)
 3. สิ่งที่ไม่ควรทำ (anti-patterns)
 4. ขั้นตอนถัดไปที่ทีม Dev ทำได้ทันที`,
-        benefit: "เปลี่ยนการออกแบบที่คลุมเครือให้เป็นข้อตัดสินใจที่ทีมลงมือได้"
+        benefit: "เปลี่ยนการออกแบบที่คลุมเครือให้เป็นแนวทางตัดสินใจที่ทีมนำไปลงมือต่อได้ทันที"
       },
       {
         icon: "fa-solid fa-database",
         title: "การออกแบบ Schema & Database",
-        summary: "ออกแบบ Data Model พร้อม Index, ความสัมพันธ์ และ Trade-off ของ Normalization สำหรับ Production",
-        whenToUse: "ออกแบบ Module ใหม่, ปรับ Query รายงาน, หรือ Review Schema ก่อน Migrate",
-        portfolioExample: "ตารางรายงาน HRMS และ SQL ซับซ้อนสำหรับ Dashboard ที่ Soft Square",
+        summary: "ออกแบบ Data Model พร้อมกำหนดโครงสร้างตาราง, การทำดัชนี (Index) และวิเคราะห์ความคุ้มค่าของการทำ Normalization สำหรับระบบจริง",
+        whenToUse: "เมื่อต้องการออกแบบตารางใหม่, ปรับแต่ง SQL Query สำหรับรายงาน หรือทบทวนโครงสร้างก่อนเขียนคำสั่ง Migration",
+        portfolioExample: "ออกแบบตารางจัดเก็บข้อมูลและเขียนคำสั่ง SQL ซับซ้อนเพื่อเพิ่มประสิทธิภาพระบบ",
         rule: "Data Model Spec",
-        prompt: `ออกแบบ Data Model สำหรับ Production: [โดเมน เช่น ระบบลาและอนุมัติ HR]
+        prompt: `ออกแบบ Data Model สำหรับ Production: [โดเมน เช่น ระบบจัดการคำสั่งซื้อสินค้า / ระบบสมาชิก]
 
 [ข้อมูลเข้า]
-- Entity ที่รู้แล้ว: [เช่น Employee, LeaveRequest, Approver, Department]
-- Database: [PostgreSQL / MySQL / Oracle]
-- Scale คาดการณ์: [แถว/ปี, concurrent users]
-- รูปแบบอ่าน: [Dashboard, Export, Real-time UI]
-- รูปแบบเขียน: [CRUD, Batch import, Audit log]
+- Database Engine: [PostgreSQL / MySQL / SQL Server / Oracle]
+- Scale คาดการณ์: [เช่น ปริมาณแถวข้อมูลต่อปี, จำนวนผู้ใช้งานพร้อมกันในช่วงพีค]
+- รูปแบบการอ่านข้อมูล (Read Patterns): [เช่น แสดงผลบน Dashboard เรียลไทม์, ส่งออกไฟล์รายงานประจำเดือน]
+- รูปแบบการเขียนข้อมูล (Write Patterns): [เช่น ดำเนินการ CRUD ทั่วไป, การนำเข้าข้อมูลแบบ Batch, บันทึก Audit Log]
 
 [ผลลัพธ์ — ใช้หัวข้อนี้เท่านั้น]
 1. รายการ Entity + Attribute (ชื่อ + SQL type + nullable + หมายเหตุ)
-2. ความสัมพันธ์ & Cardinality (ข้อความหรือ Mermaid ER)
+2. ความสัมพันธ์ & Cardinality (ข้อความหรือ Mermaid ER diagram)
 3. Index (พร้อมเหตุผล — query ไหนใช้ index นี้)
 4. Trade-off Normalization vs Performance (ตัดสินใจชัดเจน)
 5. ความเสี่ยง Migration สำหรับข้อมูลเดิม`,
-        benefit: "ได้ Schema ที่ Review ได้ พร้อมเหตุผลของ Index — ไม่ใช่แค่รายชื่อตาราง"
+        benefit: "ได้โครงสร้างฐานข้อมูลที่มีเหตุผลรองรับในการทำ Index ชัดเจน ไม่ใช่แค่รายชื่อตาราง"
       },
       {
         icon: "fa-solid fa-network-wired",
         title: "สถาปัตยกรรมการเชื่อมต่อระบบ",
-        summary: "กำหนด Contract ของ API/Event, การจัดการ Error และ Security ระหว่าง Service",
-        whenToUse: "เชื่อม Frontend-Backend, Third-party API หรือ Integration หลายระบบ",
-        portfolioExample: "ECT-ERP+HRMS — Angular UI กับ .NET Core API และ PostgreSQL",
+        summary: "กำหนด Contract ของ API/Event, วางแนวทางการจัดการข้อผิดพลาด (Error Handling) และระบบความปลอดภัยระหว่างบริการ",
+        whenToUse: "เชื่อม Frontend-Backend, Third-party API หรือ Integration หลายระบบเข้าด้วยกัน",
+        portfolioExample: "ออกแบบ Flow การรับส่งข้อมูลและการเชื่อมต่อ API ระหว่างระบบ Client และเซิร์ฟเวอร์หลัก",
         rule: "Integration Blueprint",
         prompt: `ออกแบบ Integration ระหว่าง [ระบบ A] กับ [ระบบ B]
 
-[ข้อจำกัด]
-- Protocol: [REST / gRPC / message queue / batch file]
-- รูปแบบ: [sync / async event]
-- Auth: [JWT / API key / OAuth / internal network]
-- SLA: [timeout, retry budget, ต้อง Idempotent? ใช่/ไม่]
+[ข้อจำกัดทางเทคนิค]
+- Protocol/Transport: [REST / gRPC / GraphQL / Message Queue / Batch File]
+- รูปแบบการสื่อสาร: [Synchronous Request-Response / Asynchronous Event]
+- การยืนยันตัวตน (Auth): [JWT / API Key / OAuth2 / Internal Network]
+- SLA/Reliability: [เช่น การจำกัด Timeout, จำนวนรอบในการ Retry, ต้องจัดการแบบ Idempotent หรือไม่ ใช่/ไม่]
 
 [ผลลัพธ์]
-1. Contract: JSON Schema หรือ TypeScript interface
+1. Contract: รูปแบบโครงสร้าง JSON Schema หรือ TypeScript interfaces
 2. Sequence flow (ลำดับขั้นตอนหรือ Mermaid sequenceDiagram)
 3. Failure matrix: ประเภท error → retry? → ข้อความผู้ใช้ → log level
-4. กลยุทธ์ Idempotency และจัดการข้อมูลซ้ำ
-5. Security checklist (transport, authZ, rate limit, PII)`,
-        benefit: "ลดบั๊ก Integration ก่อนเขียน Endpoint แรก"
+4. กลยุทธ์ Idempotency และการจัดการข้อมูลซ้ำซ้อน
+5. Security checklist (การเข้ารหัสข้อมูล, ขอบเขตสิทธิ์ AuthZ, Rate Limit, การจัดการข้อมูลอ่อนไหว PII)`,
+        benefit: "ลดข้อผิดพลาดในการเชื่อมต่อระบบลงตั้งแต่ก่อนเริ่มเขียนโค้ดสำหรับ Endpoint แรก"
       },
       {
         icon: "fa-solid fa-scale-balanced",
-        title: "บันทึกการตัดสินใจเทคนิค (ADR)",
-        summary: "เปรียบเทียบเทคโนโลยีแบบมีโครงสร้าง พร้อมคำแนะนำที่ชัดเจนและแผน Migration",
-        whenToUse: "เลือก Library, Database หรือ Pattern ภายใต้ข้อจำกัดจริง",
-        portfolioExample: "เปรียบเทียบ JasperReports vs in-app PDF ภายใต้โหลดองค์กร",
+        title: "บันทึกการตัดสินใจทางเทคนิค (ADR)",
+        summary: "เปรียบเทียบเทคโนโลยีและสถาปัตยกรรมอย่างมีโครงสร้าง พร้อมคำแนะนำที่เป็นรูปธรรมและแผนประเมินความเสี่ยงในการย้ายระบบ",
+        whenToUse: "ใช้ในการเลือกเฟรมเวิร์ก, ไลบรารี, ฐานข้อมูล หรือรูปแบบสถาปัตยกรรมภายใต้ข้อจำกัดจริงของโครงการ",
+        portfolioExample: "เปรียบเทียบและบันทึกเหตุผลในการเลือกเครื่องมือและเทคนิคสำหรับตอบโจทย์ความต้องการของระบบ",
         rule: "ADR Template",
         prompt: `สร้าง Architectural Decision Record (ADR)
 
 [การตัดสินใจ]
-เปรียบเทียบ [ทางเลือก A] กับ [ทางเลือก B] เพื่อ [เป้าหมาย เช่น สร้าง PDF report ที่ scale ได้]
+เปรียบเทียบ [ทางเลือก A] กับ [ทางเลือก B] เพื่อ [เป้าหมาย เช่น การจัดการ State ภายในแอปพลิเคชัน]
 
 [ข้อจำกัด]
-- ทีม: [ทักษะปัจจุบัน]
-- ไทม์ไลน์: [วันปล่อย]
-- Scale: [request/วัน, ปริมาณข้อมูล]
-- ต้องเชื่อมกับ: [stack เดิม]
+- ทักษะทีม: [อิงจากแนวทางเทคโนโลยีใน @skills.md หรือทักษะปัจจุบันของทีม]
+- ไทม์ไลน์: [กำหนดปล่อยระบบ / ข้อจำกัดด้านเวลา]
+- Scale/Performance: [จำนวน Request ต่อวัน, ปริมาณการรับส่งข้อมูล]
+- การเชื่อมต่อ: ต้องทำงานร่วมกับ [Stack ระบบปัจจุบัน] ได้อย่างไม่มีปัญหา
 
 [ผลลัพธ์ — รูปแบบ ADR]
 ## Status: Proposed
-## Context (2-3 ประโยค)
-## ตารางเปรียบเทียบ (Performance | Complexity | Cost | Ops)
-## Decision: [เลือกหนึ่งทาง — ชัดเจน]
-## Consequences (บวก + ลบ)
+## Context (2-3 ประโยคอธิบายปัญหาและที่มา)
+## ตารางเปรียบเทียบ (Performance | Complexity | Cost | Ops burden)
+## Decision: [เลือกหนึ่งทาง — ชัดเจนและเด็ดขาด]
+## Consequences (ผลกระทบด้านบวก + ด้านลบ)
 ## แผน Migration ถ้าเปลี่ยนจากวิธีเดิม
-## Rollback strategy`,
-        benefit: "บันทึกเหตุผลการตัดสินใจ — สำคัญสำหรับทีมและการ Audit"
+## Rollback strategy (แผนการย้อนกลับกรณีระบบทำงานผิดพลาด)`,
+        benefit: "มีเอกสารบันทึกเหตุผลในทุกการตัดสินใจทางเทคนิค ซึ่งสำคัญมากสำหรับความเข้าใจของทีมและการตรวจสอบ (Audit)"
       }
     ],
     devCards: [
       {
         icon: "fa-solid fa-clipboard-check",
         title: "Pre-Flight — ตรวจสเปกก่อนลงมือ",
-        summary: "หยุดการ Implement จนกว่า Requirement, Scope และความเสี่ยง Regression จะชัดเจน",
-        whenToUse: "ทุก Ticket ใหม่ — โดยเฉพาะ Legacy HRMS/ERP ที่ Production ใช้งานจริง",
-        portfolioExample: "แก้บั๊ก UAT และฟีเจอร์ Dashboard ใหม่โดยไม่พัง Flow เดิมของ HRMS",
+        summary: "กลั่นกรองและตรวจสอบความชัดเจนของความต้องการ ขอบเขตงาน และความเสี่ยงที่จะกระทบฟังก์ชันเดิมก่อนเริ่มเขียนโค้ด",
+        whenToUse: "ใช้กับทุก Ticket งานใหม่ — โดยเฉพาะเมื่อต้องปรับปรุงโมดูลเดิมที่มีผู้ใช้งานจริงและระบบเสถียรอยู่แล้ว",
+        portfolioExample: "วิเคราะห์ Requirement ของฟีเจอร์ใหม่และเคสบั๊ก UAT เพื่อวางแผนการแก้ไขไม่ให้กระทบฟังก์ชันเดิม",
         rule: "Spec Gate",
         prompt: `[บทบาท] Senior Developer ตรวจงานก่อนเขียนโค้ดทุกบรรทัด
 
-[บริบทโปรเจกต์]
-- Stack: [เช่น Angular 17 + TypeScript + .NET Core 8 + PostgreSQL]
-- Module: [เช่น หน้าลา / Export Payroll]
-- ห้ามพัง: [Flow ที่ผู้ใช้ใช้ทุกวัน]
+[การตั้งค่าข้อจำกัด]
+- ตรวจสอบกฎการพัฒนาและมาตรฐานโค้ดใน @agent.md และ @skills.md เพื่อไม่ให้หลุดสเปก
+- โมดูล/หน้าจอเป้าหมาย: [เช่น ระบบตะกร้าสินค้า / หน้าข้อมูลผู้ใช้]
+- จุดที่ห้ามพังเด็ดขาด (Regression Guard): [ระบุ Flow สำคัญที่ห้ามมีผลกระทบ]
 
 [คำขอ]
-[วาง Ticket, User Story หรือรายละเอียดฟีเจอร์]
+[วางรายละเอียด Ticket, User Story หรือเงื่อนไขของฟีเจอร์ที่ได้รับมอบหมาย]
 
-[ผลลัพธ์ — ห้ามเขียนโค้ด]
-1. จุดคลุมเครือ (ไม่เกิน 5 เรียงตามผลกระทบ)
-2. คำถามที่ต้องตอบ (ไม่เกิน 3 — เฉพาะที่ blocking)
-3. สมมติฐาน (ลำดับเลข — ต้องให้ฉันอนุมัติ)
-4. IN scope / OUT of scope
-5. พื้นที่เสี่ยง Regression (ไฟล์, API, component ร่วม)
-6. ลำดับ Implement ที่แนะนำ (ไม่เกิน 3 ขั้น)
+[ผลลัพธ์ — ห้ามเขียนโค้ดเด็ดขาด]
+1. จุดคลุมเครือ (ไม่เกิน 5 จุด เรียงลำดับตามความรุนแรงของผลกระทบ)
+2. คำถามที่ต้องตอบก่อนเริ่มงาน (ไม่เกิน 3 ข้อ — เฉพาะข้อที่เป็น Blocker)
+3. สมมติฐานในการทำงาน (ระบุเป็นข้อๆ — ต้องให้ฉันตรวจสอบและอนุมัติก่อน)
+4. สิ่งที่อยู่ในขอบเขต (IN scope) / สิ่งที่อยู่นอกขอบเขต (OUT of scope)
+5. พื้นที่เสี่ยงที่จะเกิด Regression (ไฟล์, API, หรือ Shared Components ที่เกี่ยวข้อง)
+6. ลำดับขั้นตอนการ Implement ที่แนะนำ (ไม่เกิน 3 ขั้นตอน)
 
-จบด้วย: "ตอบ APPROVED เพื่อดำเนินการ หรือตอบคำถามด้านบน"`,
-        benefit: "ลดงานแก้ซ้ำจาก AI เดาสเปกผิดบนระบบ Production"
+จบด้วยข้อความ: "ตอบ APPROVED เพื่อดำเนินการ หรือตอบคำถามด้านบน"`,
+        benefit: "ช่วยป้องกันปัญหาโค้ดพังและลดเวลาทำงานซ้ำซ้อนจากการที่ AI คาดเดาความต้องการผิดพลาดบนระบบ Production"
       },
       {
         icon: "fa-solid fa-brain",
         title: "IDE Meta-Prompt (แผนจากโค้ดจริง)",
-        summary: "ให้ AI อ่าน Workspace ก่อน แล้วสร้างแผนลงมือที่ตรงกับโปรเจกต์นี้",
-        whenToUse: "ฟีเจอร์ขนาดกลาง-ใหญ่ ที่การเลือกไฟล์และ Pattern สำคัญ",
-        portfolioExample: "ทำ Portfolio responsive บนมือถือโดยไม่กระทบ Desktop — วิเคราะห์ไฟล์ก่อน",
+        summary: "สั่งการให้ AI ทำความเข้าใจซอร์สโค้ดในโปรเจกต์ปัจจุบันก่อน เพื่อวางแผนขั้นตอนการทำงานให้สอดคล้องกับโครงสร้างเดิม",
+        whenToUse: "ฟีเจอร์ระดับกลางถึงใหญ่ที่ต้องอ้างอิงสไตล์การตั้งชื่อ โครงสร้างโฟลเดอร์ หรือการจัดการสถานะร่วมกับโค้ดส่วนอื่น",
+        portfolioExample: "สั่งวิเคราะห์ Source Code ทั่วทั้ง Workspace เพื่อวางโครงสร้างการเพิ่มฟีเจอร์ใหม่อย่างกลมกลืน",
         rule: "Plan Before Code",
-        prompt: `ก่อนเขียนโค้ดใดๆ สำหรับ: [รายละเอียดฟีเจอร์ / แก้บั๊ก]
+        prompt: `ก่อนเขียนโค้ดใดๆ สำหรับงาน: [รายละเอียดฟีเจอร์ / รายละเอียดการแก้บั๊ก]
 
-[ขั้นตอนบังคับก่อน]
-1. อ่านไฟล์ที่เกี่ยวข้องใน Workspace นี้ (ระบุว่าอ่านไฟล์ไหนบ้าง)
-2. ระบุ Pattern ที่โปรเจกต์ใช้อยู่ (ชื่อ, โฟลเดอร์, CSS, state)
+[ขั้นตอนบังคับก่อนเริ่มงาน]
+1. อ่านไฟล์ที่เกี่ยวข้องใน Workspace นี้ (ระบุรายชื่อไฟล์ที่คุณเข้าไปตรวจสอบ)
+2. อ้างอิงสไตล์ไกด์จาก @skills.md และขั้นตอนการจัดการ Agent จาก @agent.md เพื่อให้ทำงานได้ตรงตามมาตรฐานของทีม
+3. ระบุ Pattern ปัจจุบันของระบบ (โครงสร้างโฟลเดอร์, รูปแบบการตั้งชื่อ, แนวทางการเขียน CSS, การจัดการ State)
 
-[จากนั้นสรุป]
+[จากนั้นสรุปโครงสร้าง]
 ## Execution Plan
-- ไฟล์ที่จะ CREATE (พร้อมเหตุผล)
-- ไฟล์ที่จะ MODIFY (เปลี่ยนอะไร ระดับ intent)
-- ไฟล์ที่ห้ามแตะ (ป้องกัน Regression)
-- ขอบเขต Desktop vs Mobile (ถ้าเป็น UI — breakpoint ไหน)
-- Checklist ทดสอบหลังทำเสร็จ
+- ไฟล์ที่จะสร้างใหม่ (CREATE)พร้อมระบุวัตถุประสงค์ของแต่ละไฟล์
+- ไฟล์ที่จะแก้ไข (MODIFY) เปลี่ยนแปลงส่วนไหนและต้องการผลลัพธ์อะไรในระดับบรรทัด
+- ไฟล์ที่ห้ามแตะต้องเด็ดขาด (Regression Guardrails)
+- ขอบเขตหน้าจอแสดงผล (กรณีงาน UI — ระบุ Breakpoint ของ Mobile และ Desktop ให้ชัดเจน)
+- Checklist สำหรับทดสอบระบบหลังแก้ไขเสร็จสิ้น
 
 [ข้อจำกัด]
-- Diff เล็กที่สุด — ห้าม refactor ที่ไม่เกี่ยว
-- ให้สไตล์ตรงกับโค้ดเดิมใน repo
-- ห้ามเพิ่ม dependency ใหม่ถ้าไม่จำเป็น
+- Diff โค้ดต้องเล็กที่สุด — ห้ามปรับแต่งหรือ Refactor โค้ดส่วนอื่นที่ไม่เกี่ยวข้อง
+- เขียนสไตล์โค้ดให้ตรงกับรูปแบบดั้งเดิมของ Repository นี้
+- ห้ามเพิ่ม Dependency ใหม่เข้ามาในโปรเจกต์ยกเว้นระบุเหตุผลความจำเป็นที่ชัดเจน
 
-ส่งแผนเท่านั้น รอ "APPROVED" ก่อนเขียนโค้ด`,
-        benefit: "เปลี่ยนคำสั่งสั้นๆ เป็นแผนที่ปลอดภัยและตรงกับ Repo"
+ส่งเฉพาะแผนงานนี้เท่านั้น รอข้อความ "APPROVED" จากฉันก่อนเริ่มเขียนโค้ดจริง`,
+        benefit: "เปลี่ยนคำสั่งสั้นๆ ให้กลายเป็นแผนการแก้ไขโค้ดที่ปลอดภัย แม่นยำ และเข้ากับสไตล์เดิมของโปรเจกต์"
       },
       {
         icon: "fa-solid fa-shield-halved",
         title: "แก้โค้ดอย่างปลอดภัย (Regression-Safe)",
-        summary: "กฎระดับ Principal Engineer สำหรับแก้ Production โดยไม่พัง Module ที่เสถียร",
-        whenToUse: "ทุกครั้งที่แก้ Codebase ที่ mature — Prompt หลักสำหรับงาน Implement",
-        portfolioExample: "ดูแล Legacy HRMS และ Angular Dashboard ช่วงสหกิจศึกษา",
+        summary: "กำหนดข้อจำกัดการปรับปรุงโค้ดอย่างรัดกุม เพื่อป้องกันปัญหาผลกระทบย้อนกลับ (Regression) ในโมดูลที่ทำงานเสถียรอยู่แล้ว",
+        whenToUse: "ทุกครั้งที่แก้ไขโค้ดในโครงการขนาดใหญ่ที่มีผู้ใช้งานจริง — ใช้เป็น Prompt หลักในการสั่งเขียนโค้ด",
+        portfolioExample: "แก้ไขฟังก์ชันและเขียนโค้ดเพิ่มตัวเลือกการทำงานภายในระบบโดยไม่กระทบความเสถียรภาพเดิม",
         rule: "Safe Change",
         prompt: `[บทบาท] Principal Software Engineer — เสถียรภาพมาก่อน
 
-[บริบท]
-- Stack: [เช่น Angular + TypeScript / React + Vite / C# .NET]
-- งาน: [การเปลี่ยนแปลงเฉพาะจุด — หนึ่งฟีเจอร์หรือบั๊ก]
-- Pattern อ้างอิง: [วางไฟล์ตัวอย่างหรืออธิบาย convention]
+[บริบทการทำงาน]
+- มาตรฐานทางเทคนิค: ทำตามข้อตกลงใน @skills.md และพฤติกรรมความปลอดภัยตาม @agent.md อย่างเคร่งครัด
+- งานที่ต้องทำ: [ระบุรายละเอียดการเปลี่ยนแปลงเฉพาะจุด — พัฒนาหนึ่งฟีเจอร์ หรือแก้ไขหนึ่งบั๊กเท่านั้น]
+- โค้ดอ้างอิง: [วางไฟล์ตัวอย่าง หรืออธิบายรูปแบบสถาปัตยกรรม/Convention ที่ระบบใช้อยู่]
 
 [กฎเหล็ก]
-1. ห้ามแก้ไฟล์นอก Scope ที่ระบุ
-2. ห้ามเปลี่ยน Desktop เมื่องานเป็น Mobile เท่านั้น (ใช้ @media)
-3. ห้าม refactor/rename/"เก็บกวน" โค้ดที่ไม่เกี่ยว
-4. ถามถ้าสเปกคลุมเครือ — ห้ามเดา
-5. โค้ดเต็มเท่านั้น — ห้าม "// TODO" หรือตัดทอน
+1. ห้ามแก้ไขไฟล์ใดๆ ที่อยู่นอกเหนือจาก Scope ขอบเขตงานที่ตกลงไว้
+2. ห้ามเปลี่ยน Layout หน้าจออื่นเมื่องานที่ได้รับมอบหมายระบุ Viewport เฉพาะ (เช่น งานโมบายล์ให้ใช้ isolated @media เท่านั้น)
+3. ห้ามทำ Refactor, เปลี่ยนชื่อตัวแปร หรือ "แอบเคลียร์โค้ดเก่า" ในส่วนที่ไม่เกี่ยวข้องกับชิ้นงาน
+4. หากพบความคลุมเครือในสเปกงาน ให้หยุดถามทันที — ห้ามใช้สมมติฐานหรือคาดเดาเอาเอง
+5. ต้องส่งมอบโค้ดเวอร์ชันใช้งานได้เต็มรูปแบบ — ห้ามเขียนตัวเปิดช่องว่าง, ใส่คอมเมนต์ "// TODO" หรือตัดทอนโค้ดบางส่วนออก
 
-[Edge Cases]
-[ระบุ หรือเขียน "เสนอ 3 edge cases แล้วรออนุมัติ"]
+[Edge Cases ที่ต้องดักจับ]
+[ระบุเคสพิเศษที่ต้องการให้ดักจับ หรือระบุ: "เสนอ 3 edge cases ที่อาจเกิดขึ้น แล้วรอฉันอนุมัติ"]
 
-[ส่งมอบ]
-1. โค้ดที่เปลี่ยน (diff เล็กสุด)
-2. สรุปสั้นๆ: เปลี่ยนอะไร ทำไม
-3. ขั้นตอนทดสอบมือ (3-5 ข้อ)
-4. สิ่งที่ตั้งใจไม่เปลี่ยน`,
-        benefit: "Prompt หลักสำหรับงาน Enterprise — กันขอบเขตบานและ Regression"
+[การส่งมอบงาน]
+1. โค้ดที่ผ่านการเปลี่ยนแปลง (Minimal Diff ที่สุด)
+2. สรุปสั้นๆ: จุดที่เปลี่ยนคืออะไรและทำไปเพื่ออะไร
+3. ขั้นตอนการทดสอบด้วยตนเอง (Manual Test Steps) จำนวน 3-5 ข้อ
+4. รายการสิ่งที่ตั้งใจไม่แก้ไข (เพื่อยืนยันว่าไม่ได้กระทบส่วนอื่น)`,
+        benefit: "เป็นแนวทางหลักสำหรับงานบำรุงรักษาระบบ (Maintenance) ที่ช่วยจำกัดขอบเขตงานไม่ให้บานปลายและป้องกันระบบพัง"
       },
       {
         icon: "fa-solid fa-list-check",
         title: "แผนงาน TODO ทีละเฟส",
-        summary: "แบ่งงานใหญ่เป็น Milestone เล็กที่ทดสอบได้ — ส่งมอบและตรวจทีละส่วน",
-        whenToUse: "ฟีเจอร์หลายวัน, Refactor หรือ Responsive redesign แบ่งรอบ Review",
-        portfolioExample: "Portfolio mobile: P0 เมนู → P1 layout → P2 polish ทดสอบแยกกันได้",
+        summary: "ย่อยชิ้นงานขนาดใหญ่ให้กลายเป็นเป้าหมายย่อย (Milestones) ที่แยกตรวจสอบและทดสอบการทำงานได้อย่างเป็นอิสระ",
+        whenToUse: "ฟีเจอร์ที่ต้องใช้เวลาทำหลายวัน, งานปรับรื้อโค้ด (Refactor) หรือการรื้อดีไซน์หน้าจอที่ต้องผ่านการรีวิวหลายรอบ",
+        portfolioExample: "แตกฟีเจอร์ขนาดใหญ่ให้กลายเป็นชิ้นงานย่อยระดับ Pull Request เพื่อควบคุมความปลอดภัยของระบบ",
         rule: "Incremental Delivery",
-        prompt: `แบ่งงานนี้เป็น Milestone ที่ทดสอบได้ทีละส่วน:
+        prompt: `แบ่งงานชิ้นนี้ให้กลายเป็นกลุ่มเป้าหมายย่อย (Milestones) ที่สามารถแยกทดสอบได้อย่างเป็นอิสระ:
 
-[งาน] [เช่น ทำ Portfolio responsive บนมือถือโดยไม่กระทบ Desktop ≥969px]
+[รายละเอียดงานทั้งหมด] [เช่น พัฒนาระบบรองรับภาษาข้ามแพลตฟอร์ม / ปรับโครงสร้าง Auth]
+[ขอบเขตโมดูลหลัก] [ระบุชื่อโฟลเดอร์ คอร์ไฟล์ หรือชุด API ที่เกี่ยวข้อง]
 
-[โปรเจกต์] [stack และไฟล์หลัก]
+[ผลลัพธ์ — แสดงเฉพาะแผนลำดับเลข Milestone และห้ามเพิ่งเขียนโค้ด]
+ในแต่ละ Milestone ให้ระบุรายละเอียดดังนี้:
+- ID ของงาน (P0, P1, P2...) โดยอ้างอิงลำดับความสำคัญตามไปป์ไลน์ใน @agent.md
+- เป้าหมายของเฟสนี้ (เขียนสรุปใน 1 ประโยคชัดๆ)
+- รายชื่อไฟล์ที่มีการแก้ไขหรือสร้างใหม่
+- เกณฑ์การยอมรับงาน (Acceptance Criteria — วิธีตรวจสอบผลลัพธ์ผ่าน Browser หรือ DevTools)
+- แผนการถอยกลับ (Rollback Strategy — วิธีสั่ง Revert โค้ดอย่างปลอดภัยในเฟสนี้หากเกิดข้อผิดพลาด)
 
-[ผลลัพธ์ — เฉพาะ milestone ยังไม่เขียนโค้ด]
-แต่ละ milestone ระบุ:
-- ID (P0, P1, P2...)
-- เป้าหมาย (หนึ่งประโยค)
-- ไฟล์ที่เกี่ยวข้อง
-- เกณฑ์ยอมรับ (ตรวจใน browser/DevTools อย่างไร)
-- Rollback (ถ้าพังจะ revert อะไร)
+[กฎควบคุม]
+- ทุกๆ Milestone ที่ถูกซอยออกมา ต้องสามารถรันและแยกทดสอบระบบตัวมันเองได้โดยไม่พึ่งเฟสถัดไป
+- กำหนดให้ P0 คือส่วนงานที่มีความเสี่ยงสูงสุด คอร์โลจิกหลัก หรือส่วนที่เป็นสถาปัตยกรรมที่เป็นตัวบล็อกงานอื่น
+- รักษาความเสถียรของ Source Code เดิมทั้งหมดภายนอกเฟสที่กำลังเปิดทำ
+- จำกัดจำนวนสูงสุดไม่เกิน 5 Milestones
 
-[กฎ]
-- แต่ละ milestone ทดสอบแยกได้
-- P0 = ความเสี่ยงสูงสุด / blocker ก่อน
-- Desktop (≥969px) ต้องไม่เปลี่ยนถ้า milestone ไม่ได้ระบุ
-- ไม่เกิน 5 milestones
-
-รอคำสั่ง "Start P0" ก่อนเริ่ม milestone แรก`,
-        benefit: "ทำให้งาน AI-assisted ใหญ่ๆ Review ได้ทีละก้อนเท่า PR เล็ก"
+รอฉันส่งข้อความบอกว่า "Start [ตามด้วยไอดี Milestone]" ก่อน จึงจะสามารถเริ่มต้นเขียนโค้ดในเฟสนั้นๆ ได้`,
+        benefit: "ช่วยแบ่งงานขนาดใหญ่ให้ส่งมอบและรีวิวร่วมกับ AI ได้ง่ายขึ้นในลักษณะเดียวกับการส่ง Pull Request ขนาดเล็ก"
       },
       {
         icon: "fa-solid fa-code",
         title: "อธิบายโค้ด Fullstack",
-        summary: "อธิบาย Data Flow ข้าม Frontend, API และ Database สำหรับ Onboarding",
-        whenToUse: "ทำความเข้าใจ Legacy, ส่งมอบงาน หรือวิเคราะห์ก่อน Refactor",
-        portfolioExample: "อธิบาย Flow Dashboard HRMS จาก Angular → API → SQL Report",
+        summary: "สรุปและแจกแจงเส้นทางการเดินทางของข้อมูล (Data Flow) ตั้งแต่หน้าบ้าน, API จนถึงระดับฐานข้อมูลเพื่อให้ง่ายต่อการทำความเข้าใจ",
+        whenToUse: "ใช้เมื่อต้องการศึกษาโมดูลเก่าของระบบ (Legacy Module), เตรียมเอกสารส่งมอบงาน หรือวิเคราะห์โครงสร้างก่อนเริ่มเขียนโค้ดใหม่",
+        portfolioExample: "วิเคราะห์หาเส้นทาง Data Flow ตั้งแต่การคลิกปุ่มบนหน้าจอวิ่งผ่าน Controller ไปจนถึงคำสั่งบันทึกลงฐานข้อมูล",
         rule: "Code Walkthrough",
-        prompt: `อธิบายโค้ดนี้สำหรับ Dev ที่เข้ามากลางโปรเจกต์
+        prompt: `ช่วยอธิบายการทำงานของซอร์สโค้ดชุดนี้ เพื่อให้ต้อนรับ Developer ที่เพิ่งย้ายเข้ามาใหม่ในทีมให้เข้าใจได้ทันที
 
-[Stack] [เช่น Angular component → .NET Core controller → PostgreSQL]
-[โค้ด / ไฟล์] [วาง snippet หรือระบุ path]
+[TECH STACK] [เช่น หน้าจอสั่งซื้อ UI → API Controller หลังบ้าน → คำสั่ง Query บน DB]
+[SOURCE CODE / FILE PATHS] [วางส่วนของโค้ดที่ต้องการให้วิเคราะห์ หรือพิมพ์ที่อยู่พาธไฟล์]
 
-[ผลลัพธ์]
-1. **วัตถุประสงค์** — แก้ปัญหาธุรกิจอะไร (ภาษาคนทั่วไป)
-2. **จุดเริ่ม** — action หรือ event อะไร trigger flow นี้
-3. **Data flow ทีละขั้น** (ลำดับเลข รวม endpoint & ตาราง DB ถ้ามี)
-4. **Dependencies** — module/service อื่นที่เกี่ยวข้อง
-5. **จุดระวัง** — logic แปลก, side effect, workaround legacy
-6. **ถ้าต้องแก้ X** — เริ่มที่ไฟล์ไหน`,
-        benefit: "ลดเวลา Onboarding บน Codepath องค์กรที่ซับซ้อน"
+[ผลลัพธ์การวิเคราะห์]
+1. **วัตถุประสงค์เชิงธุรกิจ (Purpose)** — โค้ดชุดนี้สร้างขึ้นมาเพื่อแก้โจทย์ปัญหาธุรกิจข้อไหน (อธิบายด้วยภาษามนุษย์ทั่วไป)
+2. **จุดเริ่มต้นระบบ (Trigger)** — การกระทำใดของผู้ใช้หรือ Event ระบบใดที่เป็นตัวเริ่มต้นเปิดใช้งาน Flow นี้
+3. **เส้นทางข้อมูลทีละสเต็ป (Data Flow)** — อธิบายกระบวนการรับส่งข้อมูลเป็นข้อๆ (ลำดับเลขชัดเจน รวมชื่อ Endpoint และตาราง DB ที่เกี่ยว)
+4. **ส่วนเชื่อมโยงภายนอก (Dependencies)** — มีโมดูล ไฟล์ หรือบริการอื่นใดที่โค้ดชุดนี้วิ่งไปเรียกใช้งาน (เช็กเงื่อนไขควบคู่กับ @skills.md)
+5. **จุดควรระวัง (Gotchas)** — โลจิกที่ซ่อนอยู่, ผลกระทบข้างเคียง (Side Effects) หรือโค้ด Workaround ที่ต้องดักทางไว้
+6. **คู่มือการแก้ไข (Modification Guide)** — หากในอนาคตฉันต้องการปรับเปลี่ยนพฤติกรรมการทำงานของฟังก์ชันนี้ ควรเริ่มลงมือที่ไฟล์หรือฟังก์ชันไหนก่อน`,
+        benefit: "ช่วยลดเวลาในการทำความเข้าใจซอร์สโค้ด (Onboarding Time) บนระบบงานองค์กรที่มีความซับซ้อนสูง"
       },
       {
         icon: "fa-solid fa-vial-circle-check",
         title: "ชุดทดสอบมือ & UAT",
-        summary: "Test Case สำหรับ QA มือ — Happy path, Edge case และ Regression",
-        whenToUse: "ก่อนส่ง UAT หรือปล่อย Production ฟีเจอร์ที่ผู้ใช้เห็น",
-        portfolioExample: "ตรวจ UAT ฟีเจอร์ HRMS และแก้บั๊กก่อน Deploy",
+        summary: "จัดทำกรณีทดสอบ (Test Cases) สำหรับผู้ทดสอบ เพื่อครอบคลุมทั้งการทำงานปกติ (Happy Path), กรณีขอบเขตปัญหา (Edge Cases) และการทดสอบระบบเดิม",
+        whenToUse: "ทำก่อนส่งมอบงานให้ผู้ใช้ตรวจรับระบบ (UAT) หรือก่อนเปิดใช้งานฟีเจอร์ส่วนหน้าจอระบบบน Production",
+        portfolioExample: "ออกแบบตารางแผนการตรวจสอบงานและเตรียมชุดตรวจรับฟังก์ชันระบบเพื่อควบคุมมาตรฐานก่อนปล่อยงาน",
         rule: "QA Checklist",
-        prompt: `สร้างชุดทดสอบมือสำหรับ: [ชื่อฟีเจอร์]
+        prompt: `ช่วยออกแบบชุดทดสอบระบบด้วยตนเอง (Manual Test Suite) สำหรับงาน: [ระบุชื่อฟีเจอร์ หรือไอดีของ Ticket งาน]
 
-[User Flow] [เช่น ส่งคำขอลา → หัวหน้าอนุมัติ → สถานะอัปเดตบน Dashboard]
-[Environment] [dev/staging URL, test account]
-[Regression] [Flow เดิมที่ต้องยังใช้ได้]
+[USER FLOW คาดหวัง] [เช่น ลูกค้าเลือกสินค้า → ยอดรวมคำนวณใหม่ → กดชำระเงินสำเร็จหน้าแอปฯ]
+[สภาพแวดล้อมที่ใช้ทดสอบ] [เช่น ลิงก์สำหรับเทสสเตจจิ้ง สิทธิ์ยูสเซอร์ หรือข้อมูลชุดทดสอบ]
+[จุดเน้นย้ำความปลอดภัย] [ระบุฟังก์ชันรอบข้างที่ต้องการให้ทดสอบควบคู่เพื่อให้มั่นใจว่าไม่พัง]
 
-[ผลลัพธ์ — รูปแบบตาราง]
-| ID | Title | Pre-conditions | Steps | Expected | Priority |
-รวม:
-- Happy path อย่างน้อย 1 เคส
-- Edge/Negative อย่างน้อย 3 เคส
-- Regression อย่างน้อย 2 เคส
-- แถว Mobile + Desktop ถ้าเป็นฟีเจอร์ UI
+[ผลลัพธ์ — แสดงออกมาในรูปแบบตารางสี่เหลี่ยม Markdown เท่านั้น]
+| ID | Title | Pre-conditions | Steps to Reproduce | Expected Result | Priority |
 
-เพิ่ม "Sign-off checklist" ท้ายสุด (5 ข้อ ใช่/ไม่ใช่ ก่อนปล่อย)`,
-        benefit: "ตรงกับ Workflow UAT จริง — มีโครงสร้าง ทำซ้ำได้ พร้อม Audit"
+กำหนดให้ตารางต้องครอบคลุมเงื่อนไขดังต่อไปนี้:
+- มีกรณีทำงานปกติ (Happy Path) อย่างน้อย 1 เคส
+- มีกรณีเงื่อนไขพิเศษหรือข้อผิดพลาด (Edge / Negative Cases) อย่างน้อย 3 เคส (เช่น กรอกค่าว่าง, สิทธิ์ไม่ถึง, สัญญาณเน็ตตัด)
+- มีกรณีตรวจสอบผลกระทบย้อนกลับ (Regression Checks) อย่างน้อย 2 เคส เพื่อยันว่าระบบข้างเคียงยังทำงานได้ปกติ
+- หากเป็นงาน UI ให้ซอยแถวแยกระหว่างพฤติกรรมบน Mobile และ Desktop เสมอ
+
+ลงท้ายด้วยหัวข้อ "Sign-off Checklist" เป็นรายการเช็กบ็อกซ์ ใช่/ไม่ใช่ จำนวน 5 ข้อเพื่อประเมินความพร้อมสุดท้ายก่อนอัปโหลดขึ้น Production`,
+        benefit: "เข้ากับกระบวนการตรวจรับงานจริงในอุตสาหกรรม มีโครงสร้างชัดเจน ทำซ้ำได้ และเอื้อต่อการตรวจสอบความถูกต้อง"
       }
     ]
   }

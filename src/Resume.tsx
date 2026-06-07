@@ -206,9 +206,9 @@ export default function Resume({ lang, setLang }: ResumeProps) {
                 </div>
               </div>
               <div className="skill-category">
-                <h3>{data.skills.gitCommands.title}</h3>
+                <h3>{data.skills.softSkills.title}</h3>
                 <div className="skill-tags">
-                  {data.skills.gitCommands.commands.map((cmd, idx) => (
+                  {data.skills.softSkills.commands.map((cmd, idx) => (
                     <span key={idx}>{cmd}</span>
                   ))}
                 </div>
